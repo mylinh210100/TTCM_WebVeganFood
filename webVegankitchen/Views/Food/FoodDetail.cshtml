@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "FoodDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/css/food.css">
+<link rel="stylesheet" href="~/Content/css/style.css">
+
+<section class="banner-bottom py-5">
+    <div class="container py-md-5">
+        <!-- product right -->
+        <div class="left-ads-display wthree">
+            <div class="row">
+                <div class="desc1-left col-md-6">
+                    <img src="~/Content/images/saladluudo.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="col-md-6 pl-lg-3">
+                    <h3 class="desc1-right">Red pomegranate salad</h3>
+                    <a class="price-title">Price: <span class="price">$2</span></a>
+                    <div class="available mt-3">
+                        <span><a href="~/Login/LoginRegis">login to save in your order </a></span>
+                        <p class="material">Material: Red pomegranate, cucumber, tomato, yellow bell pepper, red bell pepper, purple cabbage, lollo lettuce.</p>
+                    </div>
+                    <div>
+                        <button class="btn-select">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+            <!--/row-->
+            <!--OrtherFood-->
+            <h3 class="title-wthree-single my-lg-5 my-4 text-left">Featured Foods</h3>
+            @Html.Partial("_OrtherFood")
+            <!--/ortherfood-->
+            <!--Comment-->
+            @Html.Partial("_CommentFood")
+            <!--//Comment-->
+            <!--//row-->
+        </div>
+    </div>
+</section>
+

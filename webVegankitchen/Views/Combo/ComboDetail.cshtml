@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "ComboDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/css/food.css">
+<link rel="stylesheet" href="~/Content/css/style.css">
+
+<section class="banner-bottom py-5">
+    <div class="container py-md-5">
+        <!-- product right -->
+        <div class="left-ads-display wthree">
+            <div class="row">
+                <div class="desc1-left col-md-6">
+                    <img src="~/Content/images/combo2.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="col-md-6 pl-lg-3">
+                    <h3 class="desc1-right">Combo 1</h3>
+                    <a class="price-title">Price: <span class="price">$5</span></a>
+                    <div class="available mt-3">
+                        <span><a href="~/Login/LoginRegis">login to save in your order </a></span>
+                        <p class="material">Foods: <span>Celery, green apple</span></p>
+                        <p class="material">Drinks: <span>Celery juice</span></p>
+                        <p class="material">Number of people: <span>2</span></p>
+                    </div>
+                    <div>
+                        <button class="btn-select">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+            <!--/row-->
+            <!--Featured Combo-->
+            <h3 class="title-wthree-single my-lg-5 my-4 text-left">Featured Combo</h3>
+            @Html.Partial("_OrtherCombo")
+            <!--//Featured Combo-->
+            <!--Comment-->
+            @Html.Partial("_CommentCombo")
+            <!--//Comment-->
+            <!--//row-->
+        </div>
+    </div>
+</section>

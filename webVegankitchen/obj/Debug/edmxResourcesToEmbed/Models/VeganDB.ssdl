@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VeganfoodModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="IdU" />
+    </Key>
+    <Property Name="IdU" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IDCustomer" Type="int" />
+  </EntityType>
+  <EntityType Name="Combo">
+    <Key>
+      <PropertyRef Name="IdCombo" />
+    </Key>
+    <Property Name="IdCombo" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="Comboname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Comboprice" Type="int" Nullable="false" />
+    <Property Name="NumberOfFoods" Type="int" Nullable="false" />
+    <Property Name="NumberOfDrinks" Type="int" Nullable="false" />
+    <Property Name="NumberOfEating" Type="int" Nullable="false" />
+    <Property Name="ImgCombo" Type="varchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ComboDetailDrink">
+    <Key>
+      <PropertyRef Name="IdCombo" />
+      <PropertyRef Name="IdDrink" />
+    </Key>
+    <Property Name="IdCombo" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="IdDrink" Type="varchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ComboDetailFood">
+    <Key>
+      <PropertyRef Name="IdCombo" />
+      <PropertyRef Name="IdFood" />
+    </Key>
+    <Property Name="IdCombo" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="IdFood" Type="varchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="IdProduct" />
+    </Key>
+    <Property Name="IdProduct" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="Comments" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="IdU" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="IdCustomer" />
+    </Key>
+    <Property Name="IdCustomer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Phone" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Drink">
+    <Key>
+      <PropertyRef Name="IdDrink" />
+    </Key>
+    <Property Name="IdDrink" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="Drinkname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Drinkprice" Type="int" Nullable="false" />
+    <Property Name="Drinkmaterial" Type="nvarchar" MaxLength="100" />
+    <Property Name="ImgDrink" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Food">
+    <Key>
+      <PropertyRef Name="IdFood" />
+    </Key>
+    <Property Name="IdFood" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="Foodname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Foodprice" Type="int" Nullable="false" />
+    <Property Name="Foodmaterial" Type="nvarchar" MaxLength="1000" />
+    <Property Name="ImgFood" Type="varchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Fund">
+    <Key>
+      <PropertyRef Name="IdActive" />
+    </Key>
+    <Property Name="IdActive" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="NameActive" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="TotalFund" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="IdOrder" />
+    </Key>
+    <Property Name="IdOrder" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdCustomer" Type="int" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="SumOfFood" Type="int" Nullable="false" />
+    <Property Name="IdActive" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Discount" Type="float" />
+    <Property Name="Totalprice" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="IdOrder" />
+      <PropertyRef Name="Serial" />
+    </Key>
+    <Property Name="IdOrder" Type="int" Nullable="false" />
+    <Property Name="Serial" Type="int" Nullable="false" />
+    <Property Name="IdFood" Type="varchar" MaxLength="15" />
+    <Property Name="IdDrink" Type="varchar" MaxLength="15" />
+    <Property Name="IdCombo" Type="char" MaxLength="10" />
+    <Property Name="Amount" Type="int" Nullable="false" />
+    <Property Name="Price" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Account_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="IdCustomer" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="IDCustomer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bill_Fund">
+    <End Role="Fund" Type="Self.Fund" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Fund">
+        <PropertyRef Name="IdActive" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="IdActive" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BillDetail_Bill">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="IdOrder" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="IdOrder" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BillDetail_Drink">
+    <End Role="Drink" Type="Self.Drink" Multiplicity="0..1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Drink">
+        <PropertyRef Name="IdDrink" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="IdDrink" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BillDetail_Food">
+    <End Role="Food" Type="Self.Food" Multiplicity="0..1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Food">
+        <PropertyRef Name="IdFood" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="IdFood" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ComboDetailDrink_Combo">
+    <End Role="Combo" Type="Self.Combo" Multiplicity="1" />
+    <End Role="ComboDetailDrink" Type="Self.ComboDetailDrink" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Combo">
+        <PropertyRef Name="IdCombo" />
+      </Principal>
+      <Dependent Role="ComboDetailDrink">
+        <PropertyRef Name="IdCombo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ComboDetailDrink_Drink">
+    <End Role="Drink" Type="Self.Drink" Multiplicity="1" />
+    <End Role="ComboDetailDrink" Type="Self.ComboDetailDrink" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Drink">
+        <PropertyRef Name="IdDrink" />
+      </Principal>
+      <Dependent Role="ComboDetailDrink">
+        <PropertyRef Name="IdDrink" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ComboDetailFood_Combo">
+    <End Role="Combo" Type="Self.Combo" Multiplicity="1" />
+    <End Role="ComboDetailFood" Type="Self.ComboDetailFood" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Combo">
+        <PropertyRef Name="IdCombo" />
+      </Principal>
+      <Dependent Role="ComboDetailFood">
+        <PropertyRef Name="IdCombo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ComboDetailFood_Food">
+    <End Role="Food" Type="Self.Food" Multiplicity="1" />
+    <End Role="ComboDetailFood" Type="Self.ComboDetailFood" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Food">
+        <PropertyRef Name="IdFood" />
+      </Principal>
+      <Dependent Role="ComboDetailFood">
+        <PropertyRef Name="IdFood" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="IdU" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="IdU" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="IdCustomer" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="IdCustomer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetail_Combo">
+    <End Role="Combo" Type="Self.Combo" Multiplicity="0..1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Combo">
+        <PropertyRef Name="IdCombo" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="IdCombo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="VeganfoodModelStoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Combo" EntityType="Self.Combo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ComboDetailDrink" EntityType="Self.ComboDetailDrink" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ComboDetailFood" EntityType="Self.ComboDetailFood" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Drink" EntityType="Self.Drink" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Food" EntityType="Self.Food" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Fund" EntityType="Self.Fund" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Account_Customer" Association="Self.FK_Account_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bill_Fund" Association="Self.FK_Bill_Fund">
+      <End Role="Fund" EntitySet="Fund" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BillDetail_Bill" Association="Self.FK_BillDetail_Bill">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="OrderDetail" EntitySet="OrderDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BillDetail_Drink" Association="Self.FK_BillDetail_Drink">
+      <End Role="Drink" EntitySet="Drink" />
+      <End Role="OrderDetail" EntitySet="OrderDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BillDetail_Food" Association="Self.FK_BillDetail_Food">
+      <End Role="Food" EntitySet="Food" />
+      <End Role="OrderDetail" EntitySet="OrderDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ComboDetailDrink_Combo" Association="Self.FK_ComboDetailDrink_Combo">
+      <End Role="Combo" EntitySet="Combo" />
+      <End Role="ComboDetailDrink" EntitySet="ComboDetailDrink" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ComboDetailDrink_Drink" Association="Self.FK_ComboDetailDrink_Drink">
+      <End Role="Drink" EntitySet="Drink" />
+      <End Role="ComboDetailDrink" EntitySet="ComboDetailDrink" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ComboDetailFood_Combo" Association="Self.FK_ComboDetailFood_Combo">
+      <End Role="Combo" EntitySet="Combo" />
+      <End Role="ComboDetailFood" EntitySet="ComboDetailFood" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ComboDetailFood_Food" Association="Self.FK_ComboDetailFood_Food">
+      <End Role="Food" EntitySet="Food" />
+      <End Role="ComboDetailFood" EntitySet="ComboDetailFood" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_Account" Association="Self.FK_Comment_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetail_Combo" Association="Self.FK_OrderDetail_Combo">
+      <End Role="Combo" EntitySet="Combo" />
+      <End Role="OrderDetail" EntitySet="OrderDetail" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

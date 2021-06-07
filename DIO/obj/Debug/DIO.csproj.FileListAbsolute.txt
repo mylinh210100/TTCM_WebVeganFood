@@ -1,0 +1,15 @@
+C:\Users\ACER\source\repos\webVegankitchen\DIO\obj\Debug\DIO.csproj.AssemblyReference.cache
+C:\Users\ACER\source\repos\webVegankitchen\DIO\obj\Debug\DIO.csproj.CoreCompileInputs.cache
+C:\Users\ACER\source\repos\webVegankitchen\DIO\bin\Debug\DIO.dll.config
+C:\Users\ACER\source\repos\webVegankitchen\DIO\bin\Debug\DIO.dll
+C:\Users\ACER\source\repos\webVegankitchen\DIO\bin\Debug\DIO.pdb
+C:\Users\ACER\source\repos\webVegankitchen\DIO\bin\Debug\DAO.dll
+C:\Users\ACER\source\repos\webVegankitchen\DIO\bin\Debug\EntityFramework.dll
+C:\Users\ACER\source\repos\webVegankitchen\DIO\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\ACER\source\repos\webVegankitchen\DIO\bin\Debug\DAO.pdb
+C:\Users\ACER\source\repos\webVegankitchen\DIO\bin\Debug\DAO.dll.config
+C:\Users\ACER\source\repos\webVegankitchen\DIO\bin\Debug\EntityFramework.xml
+C:\Users\ACER\source\repos\webVegankitchen\DIO\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\ACER\source\repos\webVegankitchen\DIO\obj\Debug\DIO.csproj.CopyComplete
+C:\Users\ACER\source\repos\webVegankitchen\DIO\obj\Debug\DIO.dll
+C:\Users\ACER\source\repos\webVegankitchen\DIO\obj\Debug\DIO.pdb

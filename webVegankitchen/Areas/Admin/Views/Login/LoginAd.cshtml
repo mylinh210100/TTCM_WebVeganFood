@@ -1,0 +1,37 @@
+﻿@model webVegankitchen.Areas.Admin.Model.LoginModel
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="~/Content/css/bootstrap.css">
+<link href="//fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet">
+<link href="~/Content/css/admin.css" rel="stylesheet" />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, null, new { @class = "alert alert-danger" })
+<div class="admin">
+    <div class="admin-title">
+        <a class="title">Admin Login</a>
+    </div>
+    <div class="group">
+        <label for="user" class="label">Username</label>
+        @Html.TextBoxFor(model => model.UserName, new { @class = "input", @placeholder = "UserName", @autofocus = "autofocus" })
+    </div>
+    <div class="group mt-3">
+        <label for="pass" class="label">Password</label>
+        @Html.TextBoxFor(model => model.PassWord, new { @class = "input", @placeholder = "PassWord", @type = "password" })
+    </div>
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(model => model.RememberMe)
+            Remember Me
+        </label>
+    </div>
+    <div class="group mt-3">
+        <button class="button" type="submit">Log In</button>   
+    </div>
+</div>
+}
+
+

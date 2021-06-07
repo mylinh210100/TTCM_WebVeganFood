@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="VeganfoodModelStoreContainer" CdmEntityContainer="VeganfoodEntities">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="VeganfoodModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="IdU" ColumnName="IdU" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="IDCustomer" ColumnName="IDCustomer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comboes">
+      <EntityTypeMapping TypeName="VeganfoodModel.Combo">
+        <MappingFragment StoreEntitySet="Combo">
+          <ScalarProperty Name="IdCombo" ColumnName="IdCombo" />
+          <ScalarProperty Name="Comboname" ColumnName="Comboname" />
+          <ScalarProperty Name="Comboprice" ColumnName="Comboprice" />
+          <ScalarProperty Name="NumberOfFoods" ColumnName="NumberOfFoods" />
+          <ScalarProperty Name="NumberOfDrinks" ColumnName="NumberOfDrinks" />
+          <ScalarProperty Name="NumberOfEating" ColumnName="NumberOfEating" />
+          <ScalarProperty Name="ImgCombo" ColumnName="ImgCombo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="VeganfoodModel.Comment">
+        <MappingFragment StoreEntitySet="Comment">
+          <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="IdU" ColumnName="IdU" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="VeganfoodModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="IdCustomer" ColumnName="IdCustomer" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Drinks">
+      <EntityTypeMapping TypeName="VeganfoodModel.Drink">
+        <MappingFragment StoreEntitySet="Drink">
+          <ScalarProperty Name="IdDrink" ColumnName="IdDrink" />
+          <ScalarProperty Name="Drinkname" ColumnName="Drinkname" />
+          <ScalarProperty Name="Drinkprice" ColumnName="Drinkprice" />
+          <ScalarProperty Name="Drinkmaterial" ColumnName="Drinkmaterial" />
+          <ScalarProperty Name="ImgDrink" ColumnName="ImgDrink" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Foods">
+      <EntityTypeMapping TypeName="VeganfoodModel.Food">
+        <MappingFragment StoreEntitySet="Food">
+          <ScalarProperty Name="IdFood" ColumnName="IdFood" />
+          <ScalarProperty Name="Foodname" ColumnName="Foodname" />
+          <ScalarProperty Name="Foodprice" ColumnName="Foodprice" />
+          <ScalarProperty Name="Foodmaterial" ColumnName="Foodmaterial" />
+          <ScalarProperty Name="ImgFood" ColumnName="ImgFood" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Funds">
+      <EntityTypeMapping TypeName="VeganfoodModel.Fund">
+        <MappingFragment StoreEntitySet="Fund">
+          <ScalarProperty Name="IdActive" ColumnName="IdActive" />
+          <ScalarProperty Name="NameActive" ColumnName="NameActive" />
+          <ScalarProperty Name="TotalFund" ColumnName="TotalFund" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="VeganfoodModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
+          <ScalarProperty Name="IdCustomer" ColumnName="IdCustomer" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="SumOfFood" ColumnName="SumOfFood" />
+          <ScalarProperty Name="IdActive" ColumnName="IdActive" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Totalprice" ColumnName="Totalprice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetails">
+      <EntityTypeMapping TypeName="VeganfoodModel.OrderDetail">
+        <MappingFragment StoreEntitySet="OrderDetail">
+          <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
+          <ScalarProperty Name="Serial" ColumnName="Serial" />
+          <ScalarProperty Name="IdFood" ColumnName="IdFood" />
+          <ScalarProperty Name="IdDrink" ColumnName="IdDrink" />
+          <ScalarProperty Name="IdCombo" ColumnName="IdCombo" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="VeganfoodModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ComboDetailDrink" TypeName="VeganfoodModel.ComboDetailDrink" StoreEntitySet="ComboDetailDrink">
+      <EndProperty Name="Combo">
+        <ScalarProperty Name="IdCombo" ColumnName="IdCombo" />
+      </EndProperty>
+      <EndProperty Name="Drink">
+        <ScalarProperty Name="IdDrink" ColumnName="IdDrink" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ComboDetailFood" TypeName="VeganfoodModel.ComboDetailFood" StoreEntitySet="ComboDetailFood">
+      <EndProperty Name="Combo">
+        <ScalarProperty Name="IdCombo" ColumnName="IdCombo" />
+      </EndProperty>
+      <EndProperty Name="Food">
+        <ScalarProperty Name="IdFood" ColumnName="IdFood" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

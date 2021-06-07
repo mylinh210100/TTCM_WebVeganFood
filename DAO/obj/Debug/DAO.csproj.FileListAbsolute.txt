@@ -1,0 +1,11 @@
+C:\Users\ACER\source\repos\webVegankitchen\DAO\bin\Debug\DAO.dll.config
+C:\Users\ACER\source\repos\webVegankitchen\DAO\bin\Debug\DAO.dll
+C:\Users\ACER\source\repos\webVegankitchen\DAO\bin\Debug\DAO.pdb
+C:\Users\ACER\source\repos\webVegankitchen\DAO\bin\Debug\EntityFramework.dll
+C:\Users\ACER\source\repos\webVegankitchen\DAO\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\ACER\source\repos\webVegankitchen\DAO\bin\Debug\EntityFramework.xml
+C:\Users\ACER\source\repos\webVegankitchen\DAO\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\ACER\source\repos\webVegankitchen\DAO\obj\Debug\DAO.csproj.CoreCompileInputs.cache
+C:\Users\ACER\source\repos\webVegankitchen\DAO\obj\Debug\DAO.csproj.CopyComplete
+C:\Users\ACER\source\repos\webVegankitchen\DAO\obj\Debug\DAO.dll
+C:\Users\ACER\source\repos\webVegankitchen\DAO\obj\Debug\DAO.pdb

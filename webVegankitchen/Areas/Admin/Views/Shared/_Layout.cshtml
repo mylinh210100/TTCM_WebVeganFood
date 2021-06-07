@@ -1,0 +1,58 @@
+﻿
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>VeganFood</title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/css/bootstrap.css">
+    <link href="//fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet">
+    <link href="~/Content/css/admin.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="main-sec inner-page" style=" background: #dedddd">
+        <!-- //header -->
+        <header class="header" id="home">
+            <div class="container">
+                <div class="top-w3pvt d-flex" >
+                    <div id="logo">
+                        <h1 style="font-weight: bold; font-size:50px; font-family:'Times New Roman'">
+                                <span style="color:#1e9d2f">
+                                    VeganFood
+                                </span>
+                        </h1>
+                    </div>
+                    <div class="forms ml-auto">
+                        @Html.ActionLink("Log out", "Logout", "Login", new { @class = "btn mt-2" })
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <div class="mt-3 row">
+        <div class="col-md-2 list">
+            <ul class="list-group">
+                <li class="list-group-item"><a href="" style="color: #bc1313">Customer</a></li>
+                <li class="list-group-item"><a href="" style="color: #bc1313">Foudation</a></li>
+                <li class="list-group-item"><a href="" style="color: #bc1313">Food</a></li>
+                <li class="list-group-item"><a href="" style="color: #bc1313">Drink</a></li>
+                <li class="list-group-item"><a href="" style="color: #bc1313">Combo</a></li>
+                <li class="list-group-item"><a href="" style="color: #bc1313">Order</a></li>
+                <li class="list-group-item"><a href="" style="color: #bc1313">Comment</a></li>
+            </ul>
+        </div>
+        <div class="col-md-10">
+            @RenderBody()
+        </div>
+    </div>
+
+</body>
+</html>
+
+

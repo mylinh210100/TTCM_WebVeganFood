@@ -1,0 +1,5 @@
+CREATE PROCEDURE sp_Select_Food
+AS
+BEGIN
+	SELECT * FROM Food
+END
