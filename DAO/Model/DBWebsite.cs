@@ -14,6 +14,8 @@ namespace DAO.Model
 
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Combo> Comboes { get; set; }
+        public virtual DbSet<ComboDrinkDetail> ComboDrinkDetails { get; set; }
+        public virtual DbSet<ComboFoodDetail> ComboFoodDetails { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Drink> Drinks { get; set; }
@@ -47,14 +49,32 @@ namespace DAO.Model
                 .IsUnicode(false);
 
             modelBuilder.Entity<Combo>()
-                .HasMany(e => e.Drinks)
-                .WithMany(e => e.Comboes)
-                .Map(m => m.ToTable("ComboDrinkDetail").MapLeftKey("IdCombo").MapRightKey("IdDrink"));
+                .HasMany(e => e.ComboDrinkDetails)
+                .WithRequired(e => e.Combo)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Combo>()
-                .HasMany(e => e.Foods)
-                .WithMany(e => e.Comboes)
-                .Map(m => m.ToTable("ComboFoodDetail").MapLeftKey("IdCombo").MapRightKey("IdFood"));
+                .HasMany(e => e.ComboFoodDetails)
+                .WithRequired(e => e.Combo)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ComboDrinkDetail>()
+                .Property(e => e.IdCombo)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ComboDrinkDetail>()
+                .Property(e => e.IdDrink)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ComboFoodDetail>()
+                .Property(e => e.IdCombo)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ComboFoodDetail>()
+                .Property(e => e.IdFood)
+                .IsUnicode(false);
 
             modelBuilder.Entity<Comment>()
                 .Property(e => e.IdProduct)
@@ -87,6 +107,11 @@ namespace DAO.Model
                 .Property(e => e.ImgDrink)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<Drink>()
+                .HasMany(e => e.ComboDrinkDetails)
+                .WithRequired(e => e.Drink)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Food>()
                 .Property(e => e.IdFood)
                 .IsUnicode(false);
@@ -94,6 +119,11 @@ namespace DAO.Model
             modelBuilder.Entity<Food>()
                 .Property(e => e.ImgFood)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Food>()
+                .HasMany(e => e.ComboFoodDetails)
+                .WithRequired(e => e.Food)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Foundation>()
                 .HasMany(e => e.Orders)

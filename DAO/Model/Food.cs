@@ -12,33 +12,33 @@ namespace DAO.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Food()
         {
+            ComboFoodDetails = new HashSet<ComboFoodDetail>();
             OrderDetails = new HashSet<OrderDetail>();
-            Comboes = new HashSet<Combo>();
         }
 
         [Key]
-        [StringLength(50)]
-        [Required(ErrorMessage ="You must input this field")]
+        [StringLength(50, ErrorMessage = "maximum of length is 50 charecters")]
+        [Required(ErrorMessage = "you must input this field")]
         public string IdFood { get; set; }
 
-        [Required(ErrorMessage = "You must input this field")]
-        [StringLength(100)]
+        [Required(ErrorMessage = "you must input this field")]
+        [StringLength(100, ErrorMessage = "maximum of length is 100 charecters")]
         public string FoodName { get; set; }
 
-        [Required(ErrorMessage = "You must input this field")]
+        [Required(ErrorMessage = "you must input this field")]
         public double FoodPrice { get; set; }
 
-        [StringLength(500)]
+        [StringLength(500, ErrorMessage = "maximum of length is 500 charecters")]
         public string Foodmaterial { get; set; }
 
-        [Required(ErrorMessage = "You must input this field")]
-        [StringLength(500)]
+        [Required(ErrorMessage = "you must input this field")]
+        [StringLength(500, ErrorMessage = "maximum of length is 500 charecters")]
         public string ImgFood { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual ICollection<ComboFoodDetail> ComboFoodDetails { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Combo> Comboes { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

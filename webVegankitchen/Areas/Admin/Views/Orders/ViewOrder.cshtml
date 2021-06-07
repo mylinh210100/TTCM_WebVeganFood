@@ -1,0 +1,42 @@
+﻿@model IEnumerable<DAO.Model.Order>
+
+@{
+    ViewBag.Title = "ViewOrder";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/css/admin.css" />
+
+<div class="container-fluid">
+    <div>
+        <h2 style="font-family: 'Times New Roman'; font-weight: bold; font-size: 30px; color: #ff0000">Order page</h2>
+    </div>
+    <div class="row">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Id customer</th>
+                    <th>Date</th>
+                    <th>Sum of Product</th>
+                    <th>Id Foundation</th>
+                    <th>Total Payment</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.IdOrder</td>
+                        <td>@item.IdCustomer</td>
+                        <td>@(item.Date.HasValue?item.Date.Value.ToString("dd/MM/yyyy hh:mm:ss") : "")</td>
+                        <td>@item.SumOfProduct</td>
+                        <td>@item.IdFoundation</td>
+                        <td>@item.TotalCash</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

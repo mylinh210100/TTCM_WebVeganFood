@@ -12,31 +12,33 @@ namespace DAO.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Drink()
         {
+            ComboDrinkDetails = new HashSet<ComboDrinkDetail>();
             OrderDetails = new HashSet<OrderDetail>();
-            Comboes = new HashSet<Combo>();
         }
 
         [Key]
-        [StringLength(50)]
+        [StringLength(50, ErrorMessage = "maximum of length is 50 charecters")]
+        [Required(ErrorMessage = "you must input this field")]
         public string IdDrink { get; set; }
 
-        [Required]
-        [StringLength(50)]
+        [Required(ErrorMessage = "you must input this field")]
+        [StringLength(50, ErrorMessage = "maximum of length is 50 charecters")]
         public string DrinkName { get; set; }
 
+        [Required(ErrorMessage = "you must input this field")]
         public double DrinkPrice { get; set; }
 
-        [StringLength(50)]
+        [StringLength(50, ErrorMessage = "maximum of length is 50 charecters")]
         public string Drinkmaterial { get; set; }
 
-        [Required]
-        [StringLength(500)]
+        [Required(ErrorMessage = "you must input this field")]
+        [StringLength(500, ErrorMessage = "maximum of length is 500 charecters")]
         public string ImgDrink { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual ICollection<ComboDrinkDetail> ComboDrinkDetails { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Combo> Comboes { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

@@ -8,8 +8,10 @@ namespace webVegankitchen.Areas.Admin.Model
 {
     public class LoginModel
     {
-        [Required]
+        [Required(ErrorMessage = "You must input this field")]
         public string UserName { get; set; }
+
+        [Required(ErrorMessage = "You must input this field")]
         public string PassWord { get; set; }
         public bool RememberMe { get; set; }
 

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<DAO.Model.Combo>
+
+@{
+    ViewBag.Title = "ComboIndex";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/css/admin.css" />
+
+<div class="container-fluid">
+    <div>
+        <h2 style="font-family: 'Times New Roman'; font-weight: bold; font-size: 30px; color: #ff0000">Combo page</h2>
+    </div>
+    <div class="mt-2 mb-3">
+        <table class="table">
+            <tr>
+                <td>
+                    @Html.ActionLink("Insert new Combo", "InsertCombos", "Combos")
+                </td>
+                <td>
+                    @Html.ActionLink("View Drink of combo", "ComboDrink", "ComboDetail")
+                </td>
+                <td>
+                    @Html.ActionLink("View Food of Combo", "ComboFood", "ComboDetail")
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="row">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Id Combo</th>
+                    <th>Combo name</th>
+                    <th>Combo Price</th>
+                    <th>Number Of Foods</th>
+                    <th>Number Of Drinks</th>
+                    <th>Number Of Person</th>
+                    <th>ImgCombo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@item.IdCombo</td>
+                    <td>@item.ComboName</td>
+                    <td>@item.ComboPrice</td>
+                    <td>@item.NumberOfFoods</td>
+                    <td>@item.NumberOfDinks</td>
+                    <td>@item.NumberOfPerson</td>
+                    <td><img src="~/Content/@item.ImgCombo " alt="" class="img-fluid" /></td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

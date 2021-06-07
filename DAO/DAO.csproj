@@ -55,6 +55,8 @@
   <ItemGroup>
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\Combo.cs" />
+    <Compile Include="Model\ComboDrinkDetail.cs" />
+    <Compile Include="Model\ComboFoodDetail.cs" />
     <Compile Include="Model\Comment.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\DBWebsite.cs" />

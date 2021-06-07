@@ -9,7 +9,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true, null, new { @class = "alert alert-danger" })
+    @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
 <div class="admin">
     <div class="admin-title">
         <a class="title">Admin Login</a>
@@ -17,10 +17,12 @@
     <div class="group">
         <label for="user" class="label">Username</label>
         @Html.TextBoxFor(model => model.UserName, new { @class = "input", @placeholder = "UserName", @autofocus = "autofocus" })
+        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
     </div>
     <div class="group mt-3">
         <label for="pass" class="label">Password</label>
         @Html.TextBoxFor(model => model.PassWord, new { @class = "input", @placeholder = "PassWord", @type = "password" })
+        @Html.ValidationMessageFor(model => model.PassWord, "", new { @class = "text-danger" })
     </div>
     <div class="checkbox">
         <label>

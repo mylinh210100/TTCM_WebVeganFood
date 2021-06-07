@@ -22,15 +22,27 @@ namespace webVegankitchen.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult FoodInsert(Food collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult FoodInsert(Food foods)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    return RedirectToAction("FoodIndex");
+                    var model = new FoodsModel();
+                    int rs = model.Insert(foods.IdFood, foods.FoodName, 
+                        foods.FoodPrice, foods.Foodmaterial, foods.ImgFood);
+
+                    if (rs > 0)
+                    {
+                        return RedirectToAction("FoodIndex");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Insert fail!");
+                    }
                 }
-                return View(collection);
+                return View(foods);
             }
             catch (Exception)
             {
@@ -39,5 +51,8 @@ namespace webVegankitchen.Areas.Admin.Controllers
             }
             
         }
+
+
+
     }
 }

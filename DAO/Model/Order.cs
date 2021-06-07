@@ -20,8 +20,7 @@ namespace DAO.Model
 
         public int IdCustomer { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
         public int SumOfProduct { get; set; }
 

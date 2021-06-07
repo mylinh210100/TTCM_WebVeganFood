@@ -1,0 +1,39 @@
+﻿@model IEnumerable<DAO.Model.Foundation>
+@{
+    ViewBag.Title = "FoundationIndex";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/css/admin.css" />
+
+<div class="container-fluid">
+    <div>
+        <h2 style="font-family: 'Times New Roman'; font-weight: bold; font-size: 30px; color: #ff0000">Foundation page</h2>
+    </div>
+    <div class="mt-2 mb-3">
+        @Html.ActionLink("Insert new Fund", "FoundInsert", "Foundation")
+    </div>
+    <div class="row">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Serial</th>
+                    <th>Foundation Name</th>
+                    <th>Total Cash</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.IdFound</td>
+                        <td>@item.FoundationName</td>
+                        <td>@item.TotalCash</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

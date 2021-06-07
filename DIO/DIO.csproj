@@ -52,7 +52,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs" />
+    <Compile Include="ComboDrinkModel.cs" />
+    <Compile Include="ComboFoodModel.cs" />
+    <Compile Include="CombosModel.cs" />
+    <Compile Include="CommentsModel.cs" />
+    <Compile Include="CustomersModel.cs" />
+    <Compile Include="DrinksModel.cs" />
     <Compile Include="FoodsModel.cs" />
+    <Compile Include="FoundationModel.cs" />
+    <Compile Include="OrdersModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

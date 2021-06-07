@@ -1,0 +1,39 @@
+﻿@model IEnumerable<DAO.Model.ComboDrinkDetail>
+
+@{
+    ViewBag.Title = "ComboDrink";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/css/admin.css" />
+
+<div class="container-fluid">
+    <div>
+        <h2 style="font-family: 'Times New Roman'; font-weight: bold; font-size: 30px; color: #ff0000">Combo Drink Detail page</h2>
+    </div>
+    <div class="mt-2 mb-3">
+        @Html.ActionLink("Insert new detail", "InsertDetailDrink", "ComboDetail")
+    </div>
+    <div class="row">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Id Combo</th>
+                    <th>Id Drink</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.IdCombo</td>
+                        <td>@item.IdDrink</td>
+                        <td>@item.Price</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
