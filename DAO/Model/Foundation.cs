@@ -24,6 +24,7 @@ namespace DAO.Model
         public string FoundationName { get; set; }
 
         public double TotalCash { get; set; }
+        public int Status { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }

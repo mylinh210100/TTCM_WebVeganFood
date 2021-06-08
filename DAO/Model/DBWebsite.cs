@@ -8,7 +8,7 @@ namespace DAO.Model
     public partial class DBWebsite : DbContext
     {
         public DBWebsite()
-            : base("name=DBWebsite")
+            : base("name=DBWebsite1")
         {
         }
 
@@ -28,12 +28,17 @@ namespace DAO.Model
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Account>()
-                .Property(e => e.UserName)
+                .Property(e => e.Username)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Account>()
-                .Property(e => e.PaWo)
+                .Property(e => e.PassWo)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Account>()
+                .HasMany(e => e.Comments)
+                .WithRequired(e => e.Account)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Combo>()
                 .Property(e => e.IdCombo)
@@ -80,19 +85,10 @@ namespace DAO.Model
                 .Property(e => e.IdProduct)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Comment>()
-                .Property(e => e.UserName)
-                .IsUnicode(false);
-
             modelBuilder.Entity<Customer>()
                 .Property(e => e.Phone)
                 .IsFixedLength()
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Customer>()
-                .HasMany(e => e.Accounts)
-                .WithOptional(e => e.Customer)
-                .HasForeignKey(e => e.IdCusomter);
 
             modelBuilder.Entity<Customer>()
                 .HasMany(e => e.Orders)

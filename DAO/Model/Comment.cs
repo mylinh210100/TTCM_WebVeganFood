@@ -17,8 +17,7 @@ namespace DAO.Model
         [StringLength(500)]
         public string Comments { get; set; }
 
-        [StringLength(50)]
-        public string UserName { get; set; }
+        public long IdAcc { get; set; }
 
         public virtual Account Account { get; set; }
     }

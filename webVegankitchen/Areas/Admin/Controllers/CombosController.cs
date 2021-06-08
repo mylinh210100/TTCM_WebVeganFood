@@ -8,21 +8,24 @@ using System.Web.Mvc;
 
 namespace webVegankitchen.Areas.Admin.Controllers
 {
-    public class CombosController : Controller
+    public class CombosController : BaseController
     {
         // GET: Admin/Combos
-        public ActionResult ComboIndex()
+        public ActionResult ComboIndex(int page = 1, int pageSz = 5)
         {
             var listcombo = new CombosModel();
-            var model = listcombo.ListAll();
+            var model = listcombo.ListAll(page, pageSz);
             return View(model);
         }
 
+        [HttpGet]
         public ActionResult InsertCombos()
         {
             return View();
         }
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult InsertCombos(Combo combos)
         {
             try
@@ -51,8 +54,33 @@ namespace webVegankitchen.Areas.Admin.Controllers
                 return View();
             }
         }
-        
 
+        [HttpGet]
+        public ActionResult EditCombo(string id)
+        {
+            var combo = new CombosModel().ViewDetail(id);
+
+            return View(combo);
+        }
+
+        [HttpPost]
+        public ActionResult EditCombo(Combo combo)
+        {
+            if (ModelState.IsValid)
+            {
+                var model = new CombosModel();
+                var rs = model.Update(combo);
+                if (rs)
+                {
+                    return RedirectToAction("ComboIndex", "Combos");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Update fail!");
+                }
+            }
+            return View("ComboIndex");
+        }
 
     }
 }

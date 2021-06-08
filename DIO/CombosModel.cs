@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using PagedList;
 using System.Threading.Tasks;
 
 namespace DIO
@@ -15,10 +16,10 @@ namespace DIO
         {
             context = new DBWebsite();
         }
-        public List<Combo> ListAll()
+        public IEnumerable<Combo> ListAll(int page, int pSz)
         {
-            var listall = context.Database.SqlQuery<Combo>("sp_Select_ComboAll").ToList();
-            return listall;
+            //var listall = context.Database.SqlQuery<Combo>("sp_Select_ComboAll").ToList();
+            return context.Comboes.OrderBy(c => c.IdCombo).ToPagedList(page, pSz);
         }
 
         public int Insert(string id, string name, double price, int numoffood, int numofdrink, int numofperson, string src)
@@ -36,5 +37,32 @@ namespace DIO
             int add = context.Database.ExecuteSqlCommand("sp_Combo_Insert @id, @name, @price, @numoffood, @numofdrink, @numofperson, @src", parameters);
             return add;
         }
+
+        public Combo ViewDetail(string id)
+        {
+            return context.Comboes.SingleOrDefault(f => f.IdCombo == id);
+        }
+
+        public bool Update(Combo combo)
+        {
+            try
+            {
+                var c = context.Comboes.Find(combo.IdCombo);
+                c.ComboPrice = combo.ComboPrice;
+                c.NumberOfFoods = combo.NumberOfFoods;
+                c.NumberOfDinks = combo.NumberOfDinks;
+                c.NumberOfPerson = combo.NumberOfPerson;
+                c.ImgCombo = combo.ImgCombo;
+
+                context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        
     }
 }

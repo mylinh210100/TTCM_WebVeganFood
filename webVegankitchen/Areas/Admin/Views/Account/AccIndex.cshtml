@@ -1,0 +1,43 @@
+﻿@*@model IEnumerable<DAO.Model.Account>*@
+
+@using PagedList.Mvc;
+@model PagedList.PagedList<DAO.Model.Account>
+
+@{
+    ViewBag.Title = "AccIndex";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/css/admin.css" />
+<link rel="stylesheet" href="~/Content/PagedList.css" />
+
+<div class="container-fluid">
+    @section titlepage{
+        Account view Page
+    }
+    <div class="row">
+        <table class="table table-bordered">
+            <thead class="text-center">
+                <tr>
+                    <th>Id </th>
+                    <th>UserName</th>
+                    <th>Password</th>
+                    <th>Id Customer</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.IdAcc</td>
+                        <td>@item.Username</td>
+                        <td>@item.PassWo</td>
+                        <td>@item.IdCustomer</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @Html.PagedListPager(Model, page =>Url.Action("AccIndex", new { page }))
+    </div>
+</div>
+

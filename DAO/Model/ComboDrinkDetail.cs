@@ -11,14 +11,14 @@ namespace DAO.Model
     {
         [Key]
         [Column(Order = 0)]
-        [StringLength(10, ErrorMessage = "maximum of length is 10 charecters")]
-        [Required(ErrorMessage = "you must input this field")]
+        [StringLength(10, ErrorMessage = "maximum of length is 10 characters")]
+        [Required(ErrorMessage = "You must input this field")]
         public string IdCombo { get; set; }
 
         [Key]
         [Column(Order = 1)]
-        [StringLength(50, ErrorMessage = "maximum of length is 50 charecters")]
-        [Required(ErrorMessage = "you must input this field")]
+        [StringLength(50, ErrorMessage = "maximum of length is 50 characters")]
+        [Required(ErrorMessage = "You must input this field")]
         public string IdDrink { get; set; }
 
         public double? Price { get; set; }

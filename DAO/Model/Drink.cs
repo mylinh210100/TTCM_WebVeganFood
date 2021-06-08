@@ -17,23 +17,24 @@ namespace DAO.Model
         }
 
         [Key]
-        [StringLength(50, ErrorMessage = "maximum of length is 50 charecters")]
-        [Required(ErrorMessage = "you must input this field")]
+        [StringLength(50, ErrorMessage = "maximum of length is 50 characters")]
+        [Required(ErrorMessage = "You must input this field")]
         public string IdDrink { get; set; }
 
-        [Required(ErrorMessage = "you must input this field")]
-        [StringLength(50, ErrorMessage = "maximum of length is 50 charecters")]
+        [Required(ErrorMessage = "You must input this field")]
+        [StringLength(50, ErrorMessage = "maximum of length is 50 characters")]
         public string DrinkName { get; set; }
 
-        [Required(ErrorMessage = "you must input this field")]
+        [Required(ErrorMessage = "You must input this field")]
         public double DrinkPrice { get; set; }
 
-        [StringLength(50, ErrorMessage = "maximum of length is 50 charecters")]
+        [StringLength(50, ErrorMessage = "maximum of length is 50 characters")]
         public string Drinkmaterial { get; set; }
 
-        [Required(ErrorMessage = "you must input this field")]
-        [StringLength(500, ErrorMessage = "maximum of length is 500 charecters")]
+        [Required(ErrorMessage = "You must input this field")]
+        [StringLength(500, ErrorMessage = "maximum of length is 500 characters")]
         public string ImgDrink { get; set; }
+        public int Status { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ComboDrinkDetail> ComboDrinkDetails { get; set; }

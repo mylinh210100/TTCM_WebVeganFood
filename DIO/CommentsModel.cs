@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using PagedList;
 using System.Threading.Tasks;
 
 namespace DIO
@@ -14,10 +15,10 @@ namespace DIO
         {
             context = new DBWebsite();
         }
-        public List<Comment> ListAll()
+        public IEnumerable<Comment> ListAll(int page, int pSz)
         {
-            var listall = context.Database.SqlQuery<Comment>("sp_View_Cmt").ToList();
-            return listall;
+            //var listall = context.Database.SqlQuery<Comment>("sp_View_Cmt").ToList();
+            return context.Comments.OrderBy(c => c.IdAcc).ToPagedList(page, pSz);
         }
     }
 }

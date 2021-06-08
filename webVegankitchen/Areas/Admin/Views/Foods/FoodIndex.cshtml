@@ -1,42 +1,53 @@
-﻿@model IEnumerable<DAO.Model.Food>
+﻿@*@model IEnumerable<DAO.Model.Food>*@
+
+@using PagedList.Mvc;
+@model PagedList.PagedList<DAO.Model.Food>
+
 @{
     ViewBag.Title = "FoodIndex";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 <link rel="stylesheet" href="~/Content/css/admin.css" />
+<link rel="stylesheet" href="~/Content/PagedList.css" />
 
 <div class="container-fluid">
-    <div>
-        <h2 style="font-family: 'Times New Roman'; font-weight: bold; font-size: 30px; color: #ff0000">Food page</h2>
-    </div>
+    @section titlepage{
+        Food Page
+    }
     <div class="mt-2 mb-3">
         @Html.ActionLink("Insert new food", "FoodInsert", "Foods")
     </div>
     <div class="row">
         <table class="table table-bordered">
-            <thead>
+            <thead class="text-center">
                 <tr>
                     <th>IdFood</th>
                     <th>FoodName</th>
                     <th>FoodPrice</th>
                     <th>FoodMaterial</th>
                     <th>ImgFood</th>
+                    <th colspan="2">Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach(var item in Model)
-            {
-                <tr>
-                    <td>@item.IdFood</td>
-                    <td>@item.FoodName</td>
-                    <td>@item.FoodPrice</td>
-                    <td>@item.Foodmaterial</td>
-                    <td><img src="~/Content/@item.ImgFood" alt="" class="img-fluid"/></td>
-                </tr>
-            }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.IdFood</td>
+                        <td>@item.FoodName</td>
+                        <td>@item.FoodPrice</td>
+                        <td>@item.Foodmaterial</td>
+                        <td><img src="~/Content/@item.ImgFood" alt="" class="img-fluid" /></td>
+                        <td>
+                            <a href="~/Admin/Foods/EditFood/@item.IdFood">Edit</a>
+                        </td>
+                        <td><a href="~/Admin/Foods/DeleteFood/@item.IdFood">Delete</a></td>
+                    </tr>
+                }
             </tbody>
         </table>
+        @Html.PagedListPager(Model, page => Url.Action("FoodIndex", new { page }))
     </div>
 </div>
 

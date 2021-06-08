@@ -1,42 +1,50 @@
-﻿
-using DIO;
+﻿using DIO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
-using webVegankitchen.Areas.Admin.Code;
 using webVegankitchen.Areas.Admin.Model;
+using webVegankitchen.Common;
 
 namespace webVegankitchen.Areas.Admin.Controllers
 {
     public class LoginController : Controller
     {
-        // GET: Admin/LoginAd
-        [HttpGet]
-        public ActionResult LoginAd()
+        // GET: Admin/Login
+        public ActionResult Index()
         {
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult LoginAd(LoginModel model)
+        public ActionResult Login(LoginModel model)
         {
-            //var result = new Account().Login(model.UserName, model.PassWord);
-            if (Membership.ValidateUser(model.UserName, model.PassWord) && ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                //SessionHelper.SetSession(new UserSession() { UserName = model.UserName });
-                FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                ModelState.AddModelError("", "Username or Password is incorrect");
-            }
-            return View(model);
-        }
+                var dao = new UserModel();
+                var result = dao.Login(model.UserName, Encryptor.MD5Hash( model.PassWord));
 
+                if (result == 1)
+                {
+                    var user = dao.GetByName(model.UserName);
+                    var usession = new UserLogin();
+                    usession.UserName = user.Username;
+                    usession.Id = user.IdAcc;
+                    Session.Add(ComConstants.USER_SESSION, usession);
+
+                    return RedirectToAction("Index", "HomeAdmin");
+                }
+                else if(result == 0)
+                {
+                    ModelState.AddModelError("", "this account is not exist");
+                }
+                else if(result == -1)
+                {
+                    ModelState.AddModelError("", "your password is incorrect!");
+                }
+            }
+            return View("Index");
+           
+        }
     }
 }

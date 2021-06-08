@@ -1,8 +1,9 @@
 --1
-CREATE PROCEDURE sp_Select_Food
+CREATE PROCEDURE sp_Select_idFood
 AS
 BEGIN
-	SELECT * FROM Food
+	SELECT IdFood
+	FROM Food
 END
 --2
 CREATE PROCEDURE sp_Select_DrinkAll
@@ -29,7 +30,11 @@ BEGIN
 	SELECT * FROM Combo
 END
 --6
-
+CREATE PROCEDURE sp_Select_Account
+AS
+BEGIN
+	SELECT * FROM Account
+END
 --7
 CREATE PROCEDURE sp_Select_Foundation
 AS

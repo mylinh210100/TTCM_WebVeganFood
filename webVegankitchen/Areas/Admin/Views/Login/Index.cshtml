@@ -1,0 +1,41 @@
+﻿@model webVegankitchen.Areas.Admin.Model.LoginModel
+
+@{
+    Layout = null;
+}
+
+<link rel="stylesheet" href="~/Content/css/stylelogin.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="~/Content/css/bootstrap.css">
+<link href="//fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet">
+<link href="~/Content/css/admin.css" rel="stylesheet" />
+
+@using (Html.BeginForm("Login", "Login", FormMethod.Post))
+{
+    @Html.ValidationSummary(false, "", new {@class = "text-danger" });
+    <div class="admin">
+        <div class="admin-title">
+            <a class="title">Admin Login</a>
+        </div>
+        <div class="group">
+            <label for="user" class="label">Username</label>
+            @Html.TextBoxFor(model => model.UserName, new { @class = "input", @placeholder = "UserName", @autofocus = "autofocus" })
+            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+        </div>
+        <div class="group mt-3">
+            <label for="pass" class="label">Password</label>
+            @Html.PasswordFor(model => model.PassWord, new { @class = "input", @placeholder = "PassWord", @type = "password" })
+            @Html.ValidationMessageFor(model => model.PassWord, "", new { @class = "text-danger" })
+        </div>
+        <div class="checkbox">
+            <label>
+                @Html.CheckBoxFor(model => model.RememberMe)
+                Remember Me
+            </label>
+        </div>
+        <div class="group mt-3">
+            <button class="button" type="submit">Log In</button>
+        </div>
+    </div>
+}
+

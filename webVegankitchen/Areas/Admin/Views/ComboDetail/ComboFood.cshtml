@@ -7,19 +7,20 @@
 <link rel="stylesheet" href="~/Content/css/admin.css" />
 
 <div class="container-fluid">
-    <div>
-        <h2 style="font-family: 'Times New Roman'; font-weight: bold; font-size: 30px; color: #ff0000">Combo Food Detail page</h2>
-    </div>
+    @section titlepage{
+        Combo food detail Page
+    }
     <div class="mt-2 mb-3">
-        @Html.ActionLink("Insert new detail", "InsertDetailFood", "ComboDetail")
+        @Html.ActionLink("Insert new detail", "InsertComboFood", "ComboDetail")
     </div>
     <div class="row">
         <table class="table table-bordered">
-            <thead>
+            <thead class="text-center">
                 <tr>
                     <th>Id Combo</th>
                     <th>Id Food</th>
-                    <th>Price</th>
+                    <th>Price ($)</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,6 +30,7 @@
                         <td>@item.IdCombo</td>
                         <td>@item.IdFood</td>
                         <td>@item.Price</td>
+                        <td><a href="~/Admin/ComboDetail/DeleteComboFood/@item.IdFood">Delete</a></td>
                     </tr>
                 }
             </tbody>

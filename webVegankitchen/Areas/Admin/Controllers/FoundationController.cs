@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace webVegankitchen.Areas.Admin.Controllers
 {
-    public class FoundationController : Controller
+    public class FoundationController : BaseController
     {
         // GET: Admin/Foudation
         public ActionResult FoundationIndex()

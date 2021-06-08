@@ -8,16 +8,17 @@ using System.Web.Mvc;
 
 namespace webVegankitchen.Areas.Admin.Controllers
 {
-    public class DrinksController : Controller
+    public class DrinksController : BaseController
     {
         // GET: Admin/Drinks
-        public ActionResult DrinkIndex()
+        public ActionResult DrinkIndex(int page = 1, int pageSz = 5)
         {
             var listdrink = new DrinksModel();
-            var model = listdrink.ListAll();
+            var model = listdrink.ListAll(page, pageSz);
             return View(model);
         }
 
+        [HttpGet]
         public ActionResult InsertDrink()
         {
             return View();
@@ -52,8 +53,32 @@ namespace webVegankitchen.Areas.Admin.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult EditDrink(string id)
+        {
+            var drink = new DrinksModel().ViewDetail(id);
 
+            return View(drink);
+        }
 
+        [HttpPost]
+        public ActionResult EditDrink(Drink drink)
+        {
+            if (ModelState.IsValid)
+            {
+                var model = new DrinksModel();
+                var rs = model.Update(drink);
+                if (rs)
+                {
+                    return RedirectToAction("DrinkIndex", "Drinks");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Update fail!");
+                }
+            }
+            return View("DrinkIndex");
+        }
 
     }
 }

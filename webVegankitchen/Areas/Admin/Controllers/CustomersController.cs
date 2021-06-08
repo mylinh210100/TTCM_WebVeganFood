@@ -7,13 +7,13 @@ using System.Web.Mvc;
 
 namespace webVegankitchen.Areas.Admin.Controllers
 {
-    public class CustomersController : Controller
+    public class CustomersController : BaseController
     {
         // GET: Admin/Customers
-        public ActionResult ViewCustomer()
+        public ActionResult ViewCustomer(int page = 1, int pageSz = 10)
         {
             var listcus = new CustomersModel();
-            var model = listcus.ListAll();
+            var model = listcus.ListAll(page, pageSz);
             return View(model);
         }
     }

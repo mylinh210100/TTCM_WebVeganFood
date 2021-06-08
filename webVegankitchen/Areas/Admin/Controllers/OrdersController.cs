@@ -7,13 +7,13 @@ using System.Web.Mvc;
 
 namespace webVegankitchen.Areas.Admin.Controllers
 {
-    public class OrdersController : Controller
+    public class OrdersController : BaseController
     {
         // GET: Admin/Orders
-        public ActionResult ViewOrder()
+        public ActionResult ViewOrder(int page = 1, int pageSz = 10)
         {
             var listorder = new OrdersModel();
-            var model = listorder.ListAll();
+            var model = listorder.ListAll(page, pageSz);
             return View(model);
         }
     }

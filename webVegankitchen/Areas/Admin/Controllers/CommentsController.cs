@@ -7,13 +7,13 @@ using System.Web.Mvc;
 
 namespace webVegankitchen.Areas.Admin.Controllers
 {
-    public class CommentsController : Controller
+    public class CommentsController : BaseController
     {
         // GET: Admin/Comments
-        public ActionResult ViewComment()
+        public ActionResult ViewComment(int page = 1, int pageSz = 10)
         {
             var listcmt = new CommentsModel();
-            var model = listcmt.ListAll();
+            var model = listcmt.ListAll(page, pageSz);
             return View(model);
         }
     }

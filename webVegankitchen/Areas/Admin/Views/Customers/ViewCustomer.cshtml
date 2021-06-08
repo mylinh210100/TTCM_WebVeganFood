@@ -1,4 +1,5 @@
-﻿@model IEnumerable<DAO.Model.Customer>
+﻿@model PagedList.PagedList<DAO.Model.Customer>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "ViewCustomer";
@@ -6,14 +7,15 @@
 }
 
 <link rel="stylesheet" href="~/Content/css/admin.css" />
+<link rel="stylesheet" href="~/Content/PagedList.css" />
 
 <div class="container-fluid">
-    <div>
-        <h2 style="font-family: 'Times New Roman'; font-weight: bold; font-size: 30px; color: #ff0000">Customer page</h2>
-    </div>
+    @section titlepage{
+        Customer View Page
+    }
     <div class="row">
         <table class="table table-bordered">
-            <thead>
+            <thead class="text-center">
                 <tr>
                     <th>Serial</th>
                     <th>Full Name</th>
@@ -35,5 +37,6 @@
                 }
             </tbody>
         </table>
+        @Html.PagedListPager(Model, page => Url.Action("ViewCustomer", new { page }))
     </div>
 </div>

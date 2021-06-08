@@ -16,14 +16,17 @@ namespace DAO.Model
         }
 
         [Key]
-        [StringLength(50)]
-        public string UserName { get; set; }
+        public long IdAcc { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string PaWo { get; set; }
+        public string Username { get; set; }
 
-        public int? IdCusomter { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string PassWo { get; set; }
+
+        public int? IdCustomer { get; set; }
 
         public virtual Customer Customer { get; set; }
 

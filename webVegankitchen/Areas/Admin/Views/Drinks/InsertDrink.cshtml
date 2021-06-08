@@ -6,12 +6,14 @@
 }
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("InsertDrink", "Drinks", FormMethod.Post)) 
 {
     @Html.AntiForgeryToken()
     
 <div class="form-horizontal">
-    <h4 style="font-family:'Times New Roman'; color: #bc1313">Page Insert Drink</h4>
+    @section titlepage{
+        Drink insert Page
+    }
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
@@ -55,7 +57,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Insert" class="btn btn-default" style="background: #62ace1"/>
+            <input type="submit" value="Insert" class="btn btn-default" style="background: #62ace1" />
         </div>
     </div>
 </div>
