@@ -19,7 +19,7 @@ namespace DIO
         public IEnumerable<ComboDrinkDetail> ListAll(int page, int pSz)
         {
             //var listall = context.Database.SqlQuery<ComboDrinkDetail>("sp_View_DetailComboDrink").ToList();
-            return context.ComboDrinkDetails.OrderBy(c => c.IdCombo).ToPagedList(page, pSz);
+            return context.ComboDrinkDetails.OrderBy(c => c.Id).ToPagedList(page, pSz);
         }
 
         public string Insert(ComboDrinkDetail detail)

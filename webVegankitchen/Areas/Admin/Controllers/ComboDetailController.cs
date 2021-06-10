@@ -33,6 +33,8 @@ namespace webVegankitchen.Areas.Admin.Controllers
             ViewBag.IdFood = new SelectList(dao.ListID(), "IdFood", "FoodName", selectedId);
         }
 
+        // insert
+
         [HttpGet]
         public ActionResult InsertComboFood()
         {
@@ -107,29 +109,33 @@ namespace webVegankitchen.Areas.Admin.Controllers
 
         }
 
-        public ActionResult Delete(string id, string idf)
+        // update
+
+        [HttpGet]
+        public ActionResult EditComboFood(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ComboFoodDetail comboFoodDetail = db.ComboFoodDetails.Where(c => c.IdCombo == id && c.IdFood == idf).SingleOrDefault();
-            if (comboFoodDetail == null)
-            {
-                return HttpNotFound();
-            }
-            return View(comboFoodDetail);
+            var food = new ComboFoodModel().ViewDetail(id);
+
+            return View(food);
         }
 
-        // POST: Admin/ComboFoodDetails/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        [HttpPost]
+        public ActionResult EditComboFood(ComboFoodDetail food)
         {
-            ComboFoodDetail comboFoodDetail = db.ComboFoodDetails.Find(id);
-            db.ComboFoodDetails.Remove(comboFoodDetail);
-            db.SaveChanges();
-            return RedirectToAction("ComboFood");
+            if (ModelState.IsValid)
+            {
+                var model = new ComboFoodModel();
+                var rs = model.Update(food);
+                if (rs)
+                {
+                    return RedirectToAction("ComboFood", "ComboDetail");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Update fail!");
+                }
+            }
+            return View("ComboFood");
         }
     }
 }

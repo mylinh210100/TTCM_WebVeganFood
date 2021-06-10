@@ -13,11 +13,11 @@
 <div class="container-fluid">
     @section titlepage{
         Foundation Page
-        }
+    }
     <div class="row">
-        <table class="table table-bordered text-center">
+        <table class="table table-bordered text-center mr-2 ml-2">
             <thead>
-                <tr>
+                <tr style="background: #ebffff ">
                     <th>Serial</th>
                     <th>Foundation Name</th>
                     <th>Total Cash</th>
@@ -34,8 +34,8 @@
                 }
             </tbody>
         </table>
-        @Html.PagedListPager(Model, page => Url.Action("FoundationIndex", new { page }))
     </div>
+    @Html.PagedListPager(Model, page => Url.Action("FoundationIndex", new { page }))
 </div>
 
 

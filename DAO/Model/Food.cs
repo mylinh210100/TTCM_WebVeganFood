@@ -18,20 +18,20 @@ namespace DAO.Model
 
         [Key]
         [StringLength(50)]
-        [Required(ErrorMessage = "you must input to this field")]
         public string IdFood { get; set; }
 
-        [Required(ErrorMessage = "you must input to this field")]
+        [Required]
         [StringLength(100)]
         public string FoodName { get; set; }
 
-        [Required(ErrorMessage = "you must input to this field")]
         public double FoodPrice { get; set; }
 
         [StringLength(500)]
         public string Foodmaterial { get; set; }
 
-        [Required(ErrorMessage = "you must input to this field")]
+        public long? Quantitysold { get; set; }
+
+        [Required]
         [StringLength(500)]
         public string ImgFood { get; set; }
 

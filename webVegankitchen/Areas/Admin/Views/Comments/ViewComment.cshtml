@@ -7,17 +7,31 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<link rel="stylesheet" href="~/Content/css/admin.css" />
+<link href="~/Areas/ContentAdmin/admin.css" rel="stylesheet" />
 <link rel="stylesheet" href="~/Content/PagedList.css" />
 
 <div class="container-fluid">
     @section titlepage{
         Comment view Page
     }
+    <div class="row mb-2">
+        <div class="col-md-5"></div>
+        <div class="col-md-7">
+            <form action="#" method="post" class="newsletter row">
+                <div class="col-md-5"></div>
+                <div class="col-md-5 input-group pt-1">
+                    <input class="w-50 form-control" type="search" placeholder="Search here..." required="">
+                </div>
+                <div class="col-md-2 pt-1">
+                    <button class="btn btn-outline-success" value="" type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="row">
-        <table class="table table-bordered text-center">
+        <table class="table table-bordered text-center mr-2">
             <thead>
-                <tr>
+                <tr style="background: #ebffff ">
                     <th>Id Product</th>
                     <th>Comments</th>
                     <th>Id User</th>

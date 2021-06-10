@@ -21,20 +21,22 @@ namespace DAO.Model
         [StringLength(10, ErrorMessage = "maximum is 10 characters")]
         public string IdCombo { get; set; }
 
-        [Required(ErrorMessage = "you must input to this field")]
+        [Required]
         [StringLength(50, ErrorMessage = "maximum is 50 characters")]
         public string ComboName { get; set; }
 
         public double? ComboPrice { get; set; }
 
-        public int NumberOfFoods { get; set; }
+        public int? NumberOfFoods { get; set; }
 
-        public int NumberOfDinks { get; set; }
+        public int? NumberOfDinks { get; set; }
 
-        [Required(ErrorMessage = "you must input to this field")]
         public int NumberOfPerson { get; set; }
 
-        [Required(ErrorMessage = "you must input to this field")]
+        [Required]
+        public long? Quantitysold { get; set; }
+
+        [Required]
         [StringLength(500, ErrorMessage = "maximum is 500 characters")]
         public string ImgCombo { get; set; }
 

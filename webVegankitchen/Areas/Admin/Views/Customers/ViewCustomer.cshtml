@@ -6,17 +6,31 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<link rel="stylesheet" href="~/Content/css/admin.css" />
+<link href="~/Areas/ContentAdmin/admin.css" rel="stylesheet" />
 <link rel="stylesheet" href="~/Content/PagedList.css" />
 
 <div class="container-fluid">
     @section titlepage{
         Customer View Page
     }
+    <div class="row mb-2">
+        <div class="col-md-5"></div>
+        <div class="col-md-7">
+            <form action="#" method="post" class="newsletter row">
+                <div class="col-md-5"></div>
+                <div class="col-md-5 input-group pt-1">
+                    <input class="w-50 form-control" type="search" placeholder="Search here..." required="">
+                </div>
+                <div class="col-md-2 pt-1">
+                    <button class="btn btn-outline-success" value="" type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="row">
-        <table class="table table-bordered">
+        <table class="table table-bordered mr-2 ml-2">
             <thead class="text-center">
-                <tr>
+                <tr style="background: #ebffff ">
                     <th>Serial</th>
                     <th>Full Name</th>
                     <th>Phone Number</th>
@@ -37,6 +51,6 @@
                 }
             </tbody>
         </table>
-        @Html.PagedListPager(Model, page => Url.Action("ViewCustomer", new { page }))
     </div>
+    @Html.PagedListPager(Model, page => Url.Action("ViewCustomer", new { page }))
 </div>

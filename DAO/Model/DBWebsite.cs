@@ -8,7 +8,7 @@ namespace DAO.Model
     public partial class DBWebsite : DbContext
     {
         public DBWebsite()
-            : base("name=DBWebsite")
+            : base("name=DBWebsite1")
         {
         }
 

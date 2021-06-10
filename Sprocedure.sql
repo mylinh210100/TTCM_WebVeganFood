@@ -35,7 +35,7 @@ BEGIN
 	JOIN inserted ON Combo.IdCombo = inserted.IdCombo
 END
 -- sau khi insert drink
-CREATE TRIGGER trg_Price2Combo ON ComboDrinkDetail
+ALTER TRIGGER trg_Price2Combo ON ComboDrinkDetail
 AFTER INSERT AS
 BEGIN
 	UPDATE Combo
@@ -87,13 +87,76 @@ BEGIN
 	JOIN deleted ON Combo.IdCombo = deleted.IdCombo
 END
 
+--7 UPDATE TOTALCASH FOR ORDER FROM ORDER_DETAIL
+CREATE TRIGGER trg_TotalCashOrder
+ON OrderDetail
+AFTER INSERT AS
+BEGIN
+	UPDATE [Order]
+	SET TotalCash = TotalCash + (SELECT SUM(a.Price) FROM inserted a WHERE a.IdOrder = [Order].IdOrder) 
+	FROM [Order]
+	JOIN inserted ON [Order].IdOrder = inserted.IdOrder
+END
 
-
-
---8
+--8  UPDATE QUANTITYSOLD FOR FOOD, DRINK, COMBO FROM OERDER_DETAIL
+ALTER TRIGGER trg_updateQuantitysoldFood
+ON OrderDetail
+AFTER INSERT AS
+BEGIN
+	UPDATE Food
+	SET Quantitysold = Quantitysold + (SELECT SUM(a.Amount) FROM inserted a
+							WHERE a.IdFood = Food.IdFood)
+	FROM Food
+	JOIN inserted ON Food.IdFood = inserted.IdFood
+END
 --9
-
+ALTER TRIGGER trg_updateQuantitysoldDrink
+ON OrderDetail
+AFTER INSERT AS
+BEGIN
+	UPDATE Drink
+	SET Quantitysold = Quantitysold + (SELECT SUM(a.Amount) FROM inserted a
+							WHERE a.IdFood = Drink.IdDrink)
+	FROM Drink
+	JOIN inserted ON Drink.IdDrink = inserted.IdDrink
+END
 --10
+CREATE TRIGGER trg_updateQuantitysoldCombo
+ON OrderDetail
+AFTER INSERT AS
+BEGIN
+	UPDATE Combo
+	SET Quantitysold = Quantitysold + (SELECT SUM(a.Amount) FROM inserted a
+							WHERE a.IdFood = Combo.IdCombo)
+	FROM Combo
+	JOIN inserted ON Combo.IdCombo = inserted.IdCombo
+END
+
+--
+
+--UPDATE SUMOFPRODUCT FOR ORDER FROM ORDER_DETAIL
+CREATE TRIGGER trg_SumofProduct
+ON OrderDetail
+AFTER INSERT AS
+BEGIN
+	UPDATE [Order]
+	SET SumOfProduct = SumOfProduct + (SELECT SUM(a.Amount) FROM inserted a
+							WHERE a.IdOrder = [Order].IdOrder)
+	FROM [Order]
+	JOIN inserted ON [Order].IdOrder = inserted.IdCombo
+END
+
+--UPDATE TOTAL_CASH FOR FOUNDATION FROM ORDER
+CREATE TRIGGER trg_TotalCashFoundation
+ON [Order]
+AFTER INSERT AS
+BEGIN
+	UPDATE Foundation
+	SET TotalCash = Foundation.TotalCash + (SELECT COUNT(a.TotalCash)  FROM inserted a WHERE a.IdFoundation = Foundation.IdFound)
+	FROM Foundation
+	JOIN inserted ON Foundation.IdFound = inserted.IdFoundation
+
+END
 
 --11
 CREATE PROCEDURE sp_Food_Insert

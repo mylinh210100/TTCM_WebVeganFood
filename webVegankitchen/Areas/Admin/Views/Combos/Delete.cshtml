@@ -75,9 +75,13 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-warning" /> |
-            @Html.ActionLink("Back to List", "ComboIndex")
+        <div class="form-actions no-color row">
+            <div class="col-md-1 mt-2">
+                <input type="submit" value="Delete" class="btn" style="font-family: 'Times New Roman'; font-size: 20px; background: #b71c1c; color: white" />
+            </div>
+            <div class="col-md-3 mt-2">
+                <a href="@Url.Action("ComboIndex", "Combos")" class="btn btn-back"> Back to Combo</a>
+            </div>
         </div>
     }
 </div>

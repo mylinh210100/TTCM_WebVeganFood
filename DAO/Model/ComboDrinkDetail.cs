@@ -11,15 +11,14 @@ namespace DAO.Model
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "you must input to this field")]
+        [Required]
         [StringLength(10)]
         public string IdCombo { get; set; }
 
-        [Required(ErrorMessage = "you must input to this field")]
+        [Required]
         [StringLength(50)]
         public string IdDrink { get; set; }
 
-        [Required(ErrorMessage = "you must input to this field")]
         public double? Price { get; set; }
 
         public virtual Combo Combo { get; set; }

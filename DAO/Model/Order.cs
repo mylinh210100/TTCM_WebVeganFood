@@ -22,13 +22,13 @@ namespace DAO.Model
 
         public DateTime? Date { get; set; }
 
-        public int SumOfProduct { get; set; }
+        public int? SumOfProduct { get; set; }
 
         public int IdFoundation { get; set; }
 
         public double? Discount { get; set; }
 
-        public double TotalCash { get; set; }
+        public double? TotalCash { get; set; }
 
         public virtual Customer Customer { get; set; }
 

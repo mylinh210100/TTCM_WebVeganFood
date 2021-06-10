@@ -19,7 +19,7 @@ namespace DIO
         public IEnumerable<ComboFoodDetail> ListAll(int page, int pSz)
         {
             //var listall = context.Database.SqlQuery<ComboFoodDetail>("sp_View_DetailComboFood").ToList();
-            return context.ComboFoodDetails.OrderBy(f => f.IdCombo).ToPagedList(page, pSz);
+            return context.ComboFoodDetails.OrderBy(f => f.Id).ToPagedList(page, pSz);
         }
 
         public string Insert(ComboFoodDetail detail)
@@ -34,12 +34,25 @@ namespace DIO
             return context.Foods.Where(f => f.Status == 1).ToList();
         }
 
-        public ComboFoodDetail ViewDetail(string id)
+        public ComboFoodDetail ViewDetail(int id)
         {
-            return context.ComboFoodDetails.SingleOrDefault(f => f.IdCombo == id);
+            return context.ComboFoodDetails.SingleOrDefault(f => f.Id == id);
         }
 
-        
+        public bool Update(ComboFoodDetail food)
+        {
+            try
+            {
+                var f = context.ComboFoodDetails.Find(food.Id);
+                f.Price = food.Price;
+                context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
+        }
 
 
 
