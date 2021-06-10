@@ -109,33 +109,55 @@ namespace webVegankitchen.Areas.Admin.Controllers
 
         }
 
-        // update
-
-        [HttpGet]
-        public ActionResult EditComboFood(int id)
+        public ActionResult DeleteFood(int? id)
         {
-            var food = new ComboFoodModel().ViewDetail(id);
-
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ComboFoodDetail food = db.ComboFoodDetails.Find(id);
+            if (food == null)
+            {
+                return HttpNotFound();
+            }
             return View(food);
         }
 
-        [HttpPost]
-        public ActionResult EditComboFood(ComboFoodDetail food)
+
+        [HttpPost, ActionName("DeleteFood")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteFoodConfirmed(int id)
         {
-            if (ModelState.IsValid)
-            {
-                var model = new ComboFoodModel();
-                var rs = model.Update(food);
-                if (rs)
-                {
-                    return RedirectToAction("ComboFood", "ComboDetail");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Update fail!");
-                }
-            }
-            return View("ComboFood");
+            ComboFoodDetail food = db.ComboFoodDetails.Find(id);
+            db.ComboFoodDetails.Remove(food);
+            db.SaveChanges();
+            return RedirectToAction("ComboFood");
         }
+
+        public ActionResult DeleteDrink(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ComboDrinkDetail food = db.ComboDrinkDetails.Find(id);
+            if (food == null)
+            {
+                return HttpNotFound();
+            }
+            return View(food);
+        }
+
+
+        [HttpPost, ActionName("DeleteDrink")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteDrinkConfirmed(int id)
+        {
+            ComboDrinkDetail drink = db.ComboDrinkDetails.Find(id);
+            db.ComboDrinkDetails.Remove(drink);
+            db.SaveChanges();
+            return RedirectToAction("ComboDrink");
+        }
+
     }
 }

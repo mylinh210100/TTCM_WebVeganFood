@@ -91,3 +91,11 @@ C:\Users\ACER\source\repos\webVegankitchen\webVegankitchen\bin\PagedList.dll
 C:\Users\ACER\source\repos\webVegankitchen\webVegankitchen\bin\PagedList.Mvc.dll
 C:\Users\ACER\source\repos\webVegankitchen\webVegankitchen\bin\PagedList.xml
 C:\Users\ACER\source\repos\webVegankitchen\webVegankitchen\bin\PagedList.Mvc.xml
+C:\Users\ACER\source\repos\webVegankitchen\webVegankitchen\bin\CKFinder.dll
+C:\Users\ACER\source\repos\webVegankitchen\webVegankitchen\bin\CKFinder_FileEditor.dll
+C:\Users\ACER\source\repos\webVegankitchen\webVegankitchen\bin\CKFinder_ImageResize.dll
+C:\Users\ACER\source\repos\webVegankitchen\webVegankitchen\bin\CKFinder_Watermark.dll
+C:\Users\ACER\source\repos\webVegankitchen\webVegankitchen\bin\CKFinder.pdb
+C:\Users\ACER\source\repos\webVegankitchen\webVegankitchen\bin\CKFinder_FileEditor.pdb
+C:\Users\ACER\source\repos\webVegankitchen\webVegankitchen\bin\CKFinder_ImageResize.pdb
+C:\Users\ACER\source\repos\webVegankitchen\webVegankitchen\bin\CKFinder_Watermark.pdb
