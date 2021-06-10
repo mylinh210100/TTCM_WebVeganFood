@@ -28,7 +28,7 @@
                         </h1>
                     </div>
                     <div class="forms ml-auto">
-                        @Html.ActionLink("Log out", "Logout", "Login", new { @class = "btn mt-2" })
+                        <a href="@Url.Action("Logout", "HomeAdmin")" class="btn btn-outline-dark mt-3">Log Out</a>
                     </div>
                 </div>
             </div>
@@ -49,13 +49,14 @@
             </ul>
         </div>
         <div class="col-md-10">
-            <div>
-                <h2 style="font-family: 'Times New Roman'; font-weight: bold; font-size: 30px; color: #ff0000">@RenderSection("titlepage", required: true)</h2>
+            <div class="row mb-3">
+                <div class="col-lg-5">
+                    <h2 style="font-family: 'Times New Roman'; font-weight: bold; font-size: 30px; color: #4800ff">@RenderSection("titlepage", required: true)</h2>
+                </div>                
             </div>
             @RenderBody()
         </div>
     </div>
-
 </body>
 </html>
 

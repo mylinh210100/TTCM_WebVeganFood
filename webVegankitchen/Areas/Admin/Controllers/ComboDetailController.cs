@@ -3,6 +3,7 @@ using DIO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -10,18 +11,19 @@ namespace webVegankitchen.Areas.Admin.Controllers
 {
     public class ComboDetailController : BaseController
     {
+        DBWebsite db = new DBWebsite();
         // GET: Admin/ComboDetail
-        public ActionResult ComboDrink()
+        public ActionResult ComboDrink(int page = 1, int pageSz = 5)
         {
-            var lcd = new ComboDrinkModel();
-            var model = lcd.ListAll();
+            var list = new ComboDrinkModel();
+            var model = list.ListAll(page, pageSz);
             return View(model);
         }
 
-        public ActionResult ComboFood()
+        public ActionResult ComboFood(int page = 1, int pageSz = 5)
         {
             var list = new ComboFoodModel();
-            var model = list.ListAll();
+            var model = list.ListAll(page, pageSz);
             return View(model);
         }
 
@@ -105,57 +107,29 @@ namespace webVegankitchen.Areas.Admin.Controllers
 
         }
 
-        //[HttpGet]
-        //public ActionResult EditComboFood(string idc)
-        //{
-        //    var food = new ComboFoodModel().ViewDetail(idc);
-        //    return View(food);
-        //}
+        public ActionResult Delete(string id, string idf)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ComboFoodDetail comboFoodDetail = db.ComboFoodDetails.Where(c => c.IdCombo == id && c.IdFood == idf).SingleOrDefault();
+            if (comboFoodDetail == null)
+            {
+                return HttpNotFound();
+            }
+            return View(comboFoodDetail);
+        }
 
-        //[HttpPost]
-        //public ActionResult EditComboFood(ComboFoodDetail detail)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var model = new ComboFoodModel();
-        //        var rs = model.Update(detail);
-        //        if (rs)
-        //        {
-        //            return RedirectToAction("ComboFood", "ComboDetail");
-        //        }
-        //        else
-        //        {
-        //            ModelState.AddModelError("", "Update fail!");
-        //        }
-        //    }
-        //    return View("ComboFood");
-        //}
-
-        //[HttpGet]
-        //public ActionResult EditComboDrink(string idc)
-        //{
-        //    var food = new ComboDrinkModel().ViewDetail(idc);
-        //    return View(food);
-        //}
-
-        //[HttpPost]
-        //public ActionResult EditComboDrink(ComboDrinkDetail detail)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var model = new ComboDrinkModel();
-        //        var rs = model.Update(detail);
-        //        if (rs)
-        //        {
-        //            return RedirectToAction("ComboDrink", "ComboDetail");
-        //        }
-        //        else
-        //        {
-        //            ModelState.AddModelError("", "Update fail!");
-        //        }
-        //    }
-        //    return View("ComboDrink");
-        //}
-
+        // POST: Admin/ComboFoodDetails/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(string id)
+        {
+            ComboFoodDetail comboFoodDetail = db.ComboFoodDetails.Find(id);
+            db.ComboFoodDetails.Remove(comboFoodDetail);
+            db.SaveChanges();
+            return RedirectToAction("ComboFood");
+        }
     }
 }

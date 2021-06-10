@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DAO.Model;
@@ -10,6 +11,7 @@ namespace webVegankitchen.Areas.Admin.Controllers
 {
     public class FoodsController : BaseController
     {
+        DBWebsite db = new DBWebsite();
         // GET: Admin/Foods
         public ActionResult FoodIndex(int page = 1, int pageSz = 5)
         {
@@ -80,6 +82,32 @@ namespace webVegankitchen.Areas.Admin.Controllers
             }
             return View("FoodIndex");
         }
+
+        public ActionResult Delete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Food food = db.Foods.Find(id);
+            if (food == null)
+            {
+                return HttpNotFound();
+            }
+            return View(food);
+        }
+
+        
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(string id)
+        {
+            Food food = db.Foods.Find(id);
+            db.Foods.Remove(food);
+            db.SaveChanges();
+            return RedirectToAction("FoodIndex");
+        }
+
 
 
     }

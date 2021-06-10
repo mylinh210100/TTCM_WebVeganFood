@@ -1,5 +1,5 @@
-﻿
-@model IEnumerable<DAO.Model.Foundation>
+﻿@using PagedList.Mvc;
+@model PagedList.PagedList<DAO.Model.Foundation>
 
 @{
     ViewBag.Title = "FoundationIndex";
@@ -34,6 +34,7 @@
                 }
             </tbody>
         </table>
+        @Html.PagedListPager(Model, page => Url.Action("FoundationIndex", new { page }))
     </div>
 </div>
 

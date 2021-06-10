@@ -3,6 +3,7 @@ using DIO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -10,6 +11,7 @@ namespace webVegankitchen.Areas.Admin.Controllers
 {
     public class CombosController : BaseController
     {
+        DBWebsite db = new DBWebsite();
         // GET: Admin/Combos
         public ActionResult ComboIndex(int page = 1, int pageSz = 5)
         {
@@ -33,8 +35,7 @@ namespace webVegankitchen.Areas.Admin.Controllers
                 if (ModelState.IsValid)
                 {
                     var model = new CombosModel();
-                    int rs = model.Insert(combos.IdCombo, combos.ComboName, combos.ComboPrice, combos.NumberOfFoods,
-                        combos.NumberOfDinks, combos.NumberOfPerson, combos.ImgCombo);
+                    int rs = model.Insert(combos.IdCombo, combos.ComboName, combos.NumberOfPerson, combos.ImgCombo);
 
                     if (rs > 0)
                     {
@@ -81,6 +82,32 @@ namespace webVegankitchen.Areas.Admin.Controllers
             }
             return View("ComboIndex");
         }
+
+        public ActionResult Delete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Combo c = db.Comboes.Find(id);
+            if (c == null)
+            {
+                return HttpNotFound();
+            }
+            return View(c);
+        }
+
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(string id)
+        {
+            Combo c = db.Comboes.Find(id);
+            db.Comboes.Remove(c);
+            db.SaveChanges();
+            return RedirectToAction("FoodIndex");
+        }
+
 
     }
 }

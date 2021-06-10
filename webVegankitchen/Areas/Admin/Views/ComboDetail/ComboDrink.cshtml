@@ -1,11 +1,12 @@
-﻿@model IEnumerable<DAO.Model.ComboDrinkDetail>
-
+﻿@model PagedList.PagedList<DAO.Model.ComboDrinkDetail>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "ComboDrink";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 <link rel="stylesheet" href="~/Content/css/admin.css" />
+<link rel="stylesheet" href="~/Content/PagedList.css" />
 
 <div class="container-fluid">
     @section titlepage{
@@ -18,24 +19,27 @@
         <table class="table table-bordered">
             <thead class="text-center">
                 <tr>
+                    <th>Serial</th>
                     <th>Id Combo</th>
                     <th>Id Drink</th>
                     <th>Price ($)</th>
-                    <th>Action</th>
+                    <th colspan="2">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
+                        <td>@item.Id</td>
                         <td>@item.IdCombo</td>
                         <td>@item.IdDrink</td>
                         <td>@item.Price</td>
-                        <td><a href="~/Admin/ComboDetail/DeleteComboDrink/@item.IdDrink">Delete</a></td>
+                        <td><a href="~/Admin/ComboDetail/DeleteDrink/@item.Id">Delete</a></td>
                     </tr>
                 }
             </tbody>
         </table>
+        @Html.PagedListPager(Model, page => Url.Action("ComboDrink", new { page }))
     </div>
 </div>
 

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using PagedList;
 using System.Threading.Tasks;
 
 namespace DIO
@@ -15,10 +16,10 @@ namespace DIO
         {
            context = new DBWebsite();
         }
-        public List<ComboDrinkDetail> ListAll()
+        public IEnumerable<ComboDrinkDetail> ListAll(int page, int pSz)
         {
-            var listall = context.Database.SqlQuery<ComboDrinkDetail>("sp_View_DetailComboDrink").ToList();
-            return listall;
+            //var listall = context.Database.SqlQuery<ComboDrinkDetail>("sp_View_DetailComboDrink").ToList();
+            return context.ComboDrinkDetails.OrderBy(c => c.IdCombo).ToPagedList(page, pSz);
         }
 
         public string Insert(ComboDrinkDetail detail)
@@ -33,28 +34,15 @@ namespace DIO
             return context.Drinks.Where(d => d.Status == 1).ToList();
         }
 
-        //public ComboDrinkDetail ViewDetail(string idc)
-        //{
-        //    return context.ComboDrinkDetails.SingleOrDefault(f => f.IdCombo == idc);
-        //}
+        public ComboDrinkDetail ViewDetail(string id)
+        {
+            return context.ComboDrinkDetails.SingleOrDefault(f => f.IdCombo == id);
+        }
 
-        //public bool Update(ComboDrinkDetail drink)
-        //{
-        //    try
-        //    {
-        //        var d = context.ComboDrinkDetails.Find(drink.IdDrink);
-        //        d.Price = drink.Price;
+        
 
-        //        context.SaveChanges();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        return false;
-        //    }
-        //    return true;
-        //}
-    
-    
-    
+
+
+
     }
 }

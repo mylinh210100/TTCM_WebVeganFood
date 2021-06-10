@@ -22,19 +22,16 @@ namespace DIO
             return context.Comboes.OrderBy(c => c.IdCombo).ToPagedList(page, pSz);
         }
 
-        public int Insert(string id, string name, double price, int numoffood, int numofdrink, int numofperson, string src)
+        public int Insert(string id, string name, int numofperson, string src)
         {
             object[] parameters =
             {
                 new SqlParameter("@id", id),
                 new SqlParameter("@name", name),
-                new SqlParameter("@price", price),
-                new SqlParameter("@numoffood", numoffood),
-                new SqlParameter("@numofdrink", numofdrink),
                 new SqlParameter("@numofperson", numofperson),
                 new SqlParameter("@src", src)
             };
-            int add = context.Database.ExecuteSqlCommand("sp_Combo_Insert @id, @name, @price, @numoffood, @numofdrink, @numofperson, @src", parameters);
+            int add = context.Database.ExecuteSqlCommand("sp_Combo_Insert @id, @name, @numofperson, @src", parameters);
             return add;
         }
 
@@ -48,9 +45,7 @@ namespace DIO
             try
             {
                 var c = context.Comboes.Find(combo.IdCombo);
-                c.ComboPrice = combo.ComboPrice;
-                c.NumberOfFoods = combo.NumberOfFoods;
-                c.NumberOfDinks = combo.NumberOfDinks;
+                c.ComboName = combo.ComboName;
                 c.NumberOfPerson = combo.NumberOfPerson;
                 c.ImgCombo = combo.ImgCombo;
 

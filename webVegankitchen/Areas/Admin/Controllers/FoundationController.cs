@@ -11,10 +11,10 @@ namespace webVegankitchen.Areas.Admin.Controllers
     public class FoundationController : BaseController
     {
         // GET: Admin/Foudation
-        public ActionResult FoundationIndex()
+        public ActionResult FoundationIndex(int page = 1, int pageSz = 2)
         {
             var listF = new FoundationModel();
-            var model = listF.ListAll();
+            var model = listF.ListAll(page, pageSz);
             return View(model);
         }
     }

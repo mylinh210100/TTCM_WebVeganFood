@@ -9,18 +9,17 @@ namespace DAO.Model
     [Table("ComboFoodDetail")]
     public partial class ComboFoodDetail
     {
-        [Key]
-        [Column(Order = 0)]
-        [StringLength(10, ErrorMessage = "maximum of length is 10 characters")]
-        [Required(ErrorMessage = "You must input this field")]
+        public int Id { get; set; }
+
+        [Required(ErrorMessage = "you must input to this field")]
+        [StringLength(10)]
         public string IdCombo { get; set; }
 
-        [Key]
-        [Column(Order = 1)]
-        [StringLength(50, ErrorMessage = "maximum of length is 50 characters")]
-        [Required(ErrorMessage = "You must input this field")]
+        [Required(ErrorMessage = "you must input to this field")]
+        [StringLength(50)]
         public string IdFood { get; set; }
 
+        [Required(ErrorMessage = "you must input to this field")]
         public double? Price { get; set; }
 
         public virtual Combo Combo { get; set; }

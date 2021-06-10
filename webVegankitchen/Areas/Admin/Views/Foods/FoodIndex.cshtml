@@ -1,5 +1,4 @@
-﻿@*@model IEnumerable<DAO.Model.Food>*@
-
+﻿
 @using PagedList.Mvc;
 @model PagedList.PagedList<DAO.Model.Food>
 
@@ -15,8 +14,23 @@
     @section titlepage{
         Food Page
     }
-    <div class="mt-2 mb-3">
-        @Html.ActionLink("Insert new food", "FoodInsert", "Foods")
+    <div class="row  mt-2 mb-3">
+        <div class="col-lg-5">
+            <div>
+                @Html.ActionLink("Insert new food", "FoodInsert", "Foods", new { @class = "btn btn-outline-info"})
+            </div>
+        </div>
+        <div class="col-lg-7">
+                <form action="#" method="post" class="newsletter row">
+                    <div class="col-lg-5"></div>
+                    <div class="col-lg-5 input-group pt-1">
+                        <input class="w-50 form-control" type="search" placeholder="Search here..." required="">
+                    </div>
+                    <div class="col-lg-2 pt-1">
+                        <button class="btn btn-outline-success" value="" type="submit">Search</button>
+                    </div>
+                </form>
+        </div>
     </div>
     <div class="row">
         <table class="table table-bordered">
@@ -33,16 +47,18 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
+                    <tr id="@item.IdFood">
                         <td>@item.IdFood</td>
                         <td>@item.FoodName</td>
                         <td>@item.FoodPrice</td>
                         <td>@item.Foodmaterial</td>
                         <td><img src="~/Content/@item.ImgFood" alt="" class="img-fluid" /></td>
                         <td>
-                            <a href="~/Admin/Foods/EditFood/@item.IdFood">Edit</a>
+                            <a href="~/Admin/Foods/EditFood/@item.IdFood" class="btn" style="color: #000000; border-color: #79c9db;">Edit</a>
                         </td>
-                        <td><a href="~/Admin/Foods/DeleteFood/@item.IdFood">Delete</a></td>
+                        <td>
+                            <a href="~/Admin/Foods/Delete/@item.IdFood">Delete</a>
+                        </td>
                     </tr>
                 }
             </tbody>

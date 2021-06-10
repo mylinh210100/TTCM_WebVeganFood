@@ -3,6 +3,7 @@ using DIO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -10,6 +11,7 @@ namespace webVegankitchen.Areas.Admin.Controllers
 {
     public class DrinksController : BaseController
     {
+        DBWebsite db = new DBWebsite();
         // GET: Admin/Drinks
         public ActionResult DrinkIndex(int page = 1, int pageSz = 5)
         {
@@ -79,6 +81,32 @@ namespace webVegankitchen.Areas.Admin.Controllers
             }
             return View("DrinkIndex");
         }
+
+        public ActionResult Delete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Drink drink = db.Drinks.Find(id);
+            if (drink == null)
+            {
+                return HttpNotFound();
+            }
+            return View(drink);
+        }
+
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(string id)
+        {
+            Drink d = db.Drinks.Find(id);
+            db.Drinks.Remove(d);
+            db.SaveChanges();
+            return RedirectToAction("DrinkIndex");
+        }
+
 
     }
 }

@@ -1,40 +1,51 @@
-﻿@model IEnumerable<DAO.Model.ComboFoodDetail>
+﻿
+@using PagedList.Mvc;
+@model PagedList.PagedList<DAO.Model.ComboFoodDetail>
+
+
 @{
     ViewBag.Title = "ComboFood";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 <link rel="stylesheet" href="~/Content/css/admin.css" />
+<link rel="stylesheet" href="~/Content/PagedList.css" />
 
 <div class="container-fluid">
     @section titlepage{
-        Combo food detail Page
+        combo Food detail Page
     }
     <div class="mt-2 mb-3">
-        @Html.ActionLink("Insert new detail", "InsertComboFood", "ComboDetail")
+        @Html.ActionLink("Insert new food", "IndertComboFood", "ComboDetail")
     </div>
     <div class="row">
         <table class="table table-bordered">
             <thead class="text-center">
                 <tr>
+                    <th>Serial</th>
                     <th>Id Combo</th>
                     <th>Id Food</th>
-                    <th>Price ($)</th>
-                    <th>Action</th>
+                    <th>Price</th>
+                    <th colspan="2">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.IdCombo</td>
+                        <td>@item.Id</td>
+                        <td>@item.IdCombo </td>
                         <td>@item.IdFood</td>
                         <td>@item.Price</td>
-                        <td><a href="~/Admin/ComboDetail/DeleteComboFood/@item.IdFood">Delete</a></td>
+
+                        <td>
+                            <a href="~/Admin/ComboDetail/Delete/@item.Id">Delete</a>
+                        </td>
                     </tr>
                 }
             </tbody>
         </table>
+        @Html.PagedListPager(Model, page => Url.Action("ComboFood", new { page }))
     </div>
 </div>
 

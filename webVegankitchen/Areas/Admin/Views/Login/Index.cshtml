@@ -27,12 +27,6 @@
             @Html.PasswordFor(model => model.PassWord, new { @class = "input", @placeholder = "PassWord", @type = "password" })
             @Html.ValidationMessageFor(model => model.PassWord, "", new { @class = "text-danger" })
         </div>
-        <div class="checkbox">
-            <label>
-                @Html.CheckBoxFor(model => model.RememberMe)
-                Remember Me
-            </label>
-        </div>
         <div class="group mt-3">
             <button class="button" type="submit">Log In</button>
         </div>

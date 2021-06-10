@@ -17,3 +17,16 @@ C:\Users\ACER\source\repos\webVegankitchen\DIO\bin\Debug\PagedList.dll
 C:\Users\ACER\source\repos\webVegankitchen\DIO\bin\Debug\PagedList.Mvc.dll
 C:\Users\ACER\source\repos\webVegankitchen\DIO\bin\Debug\PagedList.xml
 C:\Users\ACER\source\repos\webVegankitchen\DIO\bin\Debug\PagedList.Mvc.xml
+C:\Users\ACER\source\repos\webVegankitchen\DIO\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\ACER\source\repos\webVegankitchen\DIO\bin\Debug\System.Web.Helpers.dll
+C:\Users\ACER\source\repos\webVegankitchen\DIO\bin\Debug\System.Web.Mvc.dll
+C:\Users\ACER\source\repos\webVegankitchen\DIO\bin\Debug\System.Web.Razor.dll
+C:\Users\ACER\source\repos\webVegankitchen\DIO\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\ACER\source\repos\webVegankitchen\DIO\bin\Debug\System.Web.WebPages.dll
+C:\Users\ACER\source\repos\webVegankitchen\DIO\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\ACER\source\repos\webVegankitchen\DIO\bin\Debug\System.Web.Helpers.xml
+C:\Users\ACER\source\repos\webVegankitchen\DIO\bin\Debug\System.Web.Mvc.xml
+C:\Users\ACER\source\repos\webVegankitchen\DIO\bin\Debug\System.Web.Razor.xml
+C:\Users\ACER\source\repos\webVegankitchen\DIO\bin\Debug\System.Web.WebPages.xml
+C:\Users\ACER\source\repos\webVegankitchen\DIO\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\ACER\source\repos\webVegankitchen\DIO\bin\Debug\System.Web.WebPages.Razor.xml

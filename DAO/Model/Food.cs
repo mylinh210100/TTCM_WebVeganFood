@@ -17,24 +17,25 @@ namespace DAO.Model
         }
 
         [Key]
-        [StringLength(50, ErrorMessage = "maximum of length is 50 characters")]
-        [Required(ErrorMessage = "You must input this field")]
+        [StringLength(50)]
+        [Required(ErrorMessage = "you must input to this field")]
         public string IdFood { get; set; }
 
-        [Required(ErrorMessage = "You must input this field")]
-        [StringLength(100, ErrorMessage = "maximum of length is 100 characters")]
+        [Required(ErrorMessage = "you must input to this field")]
+        [StringLength(100)]
         public string FoodName { get; set; }
 
-        [Required(ErrorMessage = "You must input this field")]
+        [Required(ErrorMessage = "you must input to this field")]
         public double FoodPrice { get; set; }
 
-        [StringLength(500, ErrorMessage = "maximum of length is 500 characters")]
+        [StringLength(500)]
         public string Foodmaterial { get; set; }
 
-        [Required(ErrorMessage = "You must input this field")]
-        [StringLength(500, ErrorMessage = "maximum of length is 500 characters")]
+        [Required(ErrorMessage = "you must input to this field")]
+        [StringLength(500)]
         public string ImgFood { get; set; }
-        public int Status { get; set; }
+
+        public int? Status { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ComboFoodDetail> ComboFoodDetails { get; set; }

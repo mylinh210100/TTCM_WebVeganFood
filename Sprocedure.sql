@@ -5,60 +5,96 @@ BEGIN
 	SELECT IdFood
 	FROM Food
 END
---2
-CREATE PROCEDURE sp_Select_DrinkAll
-AS
+--2 // update so luong mon an khi them moi trong detail food
+CREATE TRIGGER trg_numofFoodCombo ON ComboFoodDetail
+AFTER INSERT AS
 BEGIN
-	SELECT * FROM Drink
+	UPDATE Combo
+	SET NumberOfFoods = NumberOfFoods + (SELECT COUNT(a.IdCombo) FROM inserted a
+						WHERE a.IdCombo = Combo.IdCombo)
+	FROM Combo
 END
---3
-CREATE PROCEDURE sp_View_DetailComboFood
-AS
+
+--3 update so luong do uong khi them moi trong detail drink
+CREATE TRIGGER trg_numofDrink On ComboDrinkDetail
+AFTER INSERT AS
 BEGIN
-	SELECT * FROM ComboFoodDetail
+	UPDATE Combo
+	SET NumberOfDinks = NumberOfDinks + (SELECT COUNT(a.IdCombo) FROM inserted a 
+						WHERE a.IdCombo = Combo.IdCombo)
+	FROM Combo
 END
---4
-CREATE PROCEDURE sp_View_DetailComboDrink
-AS
+--4 update gia combo sau khi insert new food
+ALTER TRIGGER trg_PriceCombo ON ComboFoodDetail
+AFTER INSERT AS
 BEGIN
-	SELECT * FROM ComboDrinkDetail
+	UPDATE Combo
+	SET ComboPrice = ComboPrice + (SELECT SUM(a.Price) FROM inserted a
+						WHERE a.IdCombo = Combo.IdCombo)
+	FROM Combo
+	JOIN inserted ON Combo.IdCombo = inserted.IdCombo
 END
---5
-CREATE PROCEDURE sp_Select_ComboAll
-AS
+-- sau khi insert drink
+CREATE TRIGGER trg_Price2Combo ON ComboDrinkDetail
+AFTER INSERT AS
 BEGIN
-	SELECT * FROM Combo
+	UPDATE Combo
+	SET ComboPrice = ComboPrice + (SELECT SUM(a.Price) FROM inserted a
+						WHERE a.IdCombo = Combo.IdCombo)
+	FROM Combo
+	JOIN inserted ON Combo.IdCombo = inserted.IdCombo
 END
---6
-CREATE PROCEDURE sp_Select_Account
-AS
-BEGIN
-	SELECT * FROM Account
+--5 update so luong thuc an bang combo sau khi xoa Food
+CREATE TRIGGER trg_deletefoodc ON  ComboFoodDetail
+AFTER DELETE AS
+BEGIN	
+	UPDATE Combo
+	SET NumberOfFoods = NumberOfFoods - (SELECT COUNT(a.IdCombo) FROM deleted a
+						WHERE a.IdCombo = Combo.IdCombo)
+	FROM Combo
+	JOIN deleted ON Combo.IdCombo = deleted.IdCombo
 END
---7
-CREATE PROCEDURE sp_Select_Foundation
-AS
-BEGIN
-	SELECT * FROM Foundation
+-- update so luong do uong sau khi xoa drink	
+ALTER TRIGGER trg_deletedrinkc ON  ComboDrinkDetail
+AFTER DELETE AS
+BEGIN	
+	UPDATE Combo
+	SET NumberOfDinks = NumberOfDinks - (SELECT COUNT(a.IdCombo) FROM deleted a
+						WHERE a.IdCombo = Combo.IdCombo)
+	FROM Combo
+	JOIN deleted ON Combo.IdCombo = deleted.IdCombo
 END
+
+--6 Update gia Combo
+-- sau khi xoa Food
+CREATE TRIGGER trg_priceAfterDelete1 ON  ComboFoodDetail
+AFTER DELETE AS
+BEGIN	
+	UPDATE Combo
+	SET ComboPrice = ComboPrice - (SELECT SUM(a.Price) FROM deleted a
+						WHERE a.IdCombo = Combo.IdCombo)
+	FROM Combo
+	JOIN deleted ON Combo.IdCombo = deleted.IdCombo
+END
+-- sau khi xoa drink
+CREATE TRIGGER trg_priceAfterDelete2 ON  ComboDrinkDetail
+AFTER DELETE AS
+BEGIN	
+	UPDATE Combo
+	SET ComboPrice = ComboPrice - (SELECT SUM(a.Price) FROM deleted a
+						WHERE a.IdCombo = Combo.IdCombo)
+	FROM Combo
+	JOIN deleted ON Combo.IdCombo = deleted.IdCombo
+END
+
+
+
+
 --8
-CREATE PROCEDURE sp_View_Cmt
-AS
-BEGIN
-	SELECT * FROM Comment
-END
 --9
-CREATE PROCEDURE sp_View_Customer
-AS
-BEGIN
-	SELECT * FROM Customer
-END
+
 --10
-CREATE PROCEDURE sp_View_Order
-AS
-BEGIN
-	SELECT * FROM [Order]
-END
+
 --11
 CREATE PROCEDURE sp_Food_Insert
 	@id varchar(50),
@@ -84,17 +120,14 @@ BEGIN
 	values (@id, @name, @price, @material, @src) 
 END
 --13
-CREATE PROCEDURE sp_Combo_Insert
+ALTER PROCEDURE sp_Combo_Insert
 	@id char(10),
 	@name nvarchar(50),
-	@price float,
-	@numoffood int,
-	@numofdrink int,
 	@numofperson int,
 	@src varchar(500)
 AS
 BEGIN
-	insert into Combo(IdCombo, ComboName, ComboPrice, NumberOfFoods, NumberOfDinks, NumberOfPerson, ImgCombo)
-	values (@id, @name, @price, @numoffood, @numofdrink, @numofperson, @src) 
+	insert into Combo(IdCombo, ComboName, NumberOfPerson, ImgCombo)
+	values (@id, @name, @numofperson, @src) 
 END
 

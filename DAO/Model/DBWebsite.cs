@@ -8,7 +8,7 @@ namespace DAO.Model
     public partial class DBWebsite : DbContext
     {
         public DBWebsite()
-            : base("name=DBWebsite1")
+            : base("name=DBWebsite")
         {
         }
 
@@ -54,14 +54,9 @@ namespace DAO.Model
                 .IsUnicode(false);
 
             modelBuilder.Entity<Combo>()
-                .HasMany(e => e.ComboDrinkDetails)
-                .WithRequired(e => e.Combo)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Combo>()
-                .HasMany(e => e.ComboFoodDetails)
-                .WithRequired(e => e.Combo)
-                .WillCascadeOnDelete(false);
+                .HasMany(e => e.OrderDetails)
+                .WithOptional(e => e.Combo)
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<ComboDrinkDetail>()
                 .Property(e => e.IdCombo)
@@ -91,6 +86,11 @@ namespace DAO.Model
                 .IsUnicode(false);
 
             modelBuilder.Entity<Customer>()
+                .HasMany(e => e.Accounts)
+                .WithOptional(e => e.Customer)
+                .WillCascadeOnDelete();
+
+            modelBuilder.Entity<Customer>()
                 .HasMany(e => e.Orders)
                 .WithRequired(e => e.Customer)
                 .WillCascadeOnDelete(false);
@@ -104,9 +104,9 @@ namespace DAO.Model
                 .IsUnicode(false);
 
             modelBuilder.Entity<Drink>()
-                .HasMany(e => e.ComboDrinkDetails)
-                .WithRequired(e => e.Drink)
-                .WillCascadeOnDelete(false);
+                .HasMany(e => e.OrderDetails)
+                .WithOptional(e => e.Drink)
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<Food>()
                 .Property(e => e.IdFood)
@@ -117,9 +117,9 @@ namespace DAO.Model
                 .IsUnicode(false);
 
             modelBuilder.Entity<Food>()
-                .HasMany(e => e.ComboFoodDetails)
-                .WithRequired(e => e.Food)
-                .WillCascadeOnDelete(false);
+                .HasMany(e => e.OrderDetails)
+                .WithOptional(e => e.Food)
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<Foundation>()
                 .HasMany(e => e.Orders)
