@@ -105,7 +105,7 @@ namespace webVegankitchen.Areas.Admin.Controllers
             Combo c = db.Comboes.Find(id);
             db.Comboes.Remove(c);
             db.SaveChanges();
-            return RedirectToAction("FoodIndex");
+            return RedirectToAction("ComboIndex");
         }
 
 

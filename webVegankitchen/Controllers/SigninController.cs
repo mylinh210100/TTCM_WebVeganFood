@@ -13,5 +13,15 @@ namespace webVegankitchen.Controllers
         {
             return View();
         }
+
+        public ActionResult Signup()
+        {
+            return View();
+        }
+
+        public ActionResult InfoAcc()
+        {
+            return View();
+        }
     }
 }

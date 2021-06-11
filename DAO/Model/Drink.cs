@@ -29,6 +29,7 @@ namespace DAO.Model
         public double DrinkPrice { get; set; }
 
         [StringLength(50, ErrorMessage = "maximum is 50 characters")]
+        [Required(ErrorMessage = "You must input to this field")]
         public string Drinkmaterial { get; set; }
 
         public long? Quantitysold { get; set; }

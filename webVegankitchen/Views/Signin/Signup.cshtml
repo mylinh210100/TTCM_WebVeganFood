@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Signout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="~/Content/css/bootstrap.css">
+<link href="~/Content/css/login.css" rel="stylesheet" />
+
+
+<div class="login-wrap mt-5 body">
+    <div class="text-center" style="font-family: 'Times New Roman'; color: #002f6c; font-size: 25px; padding: 50px 70px 40px 70px;">
+        <label>SIGN UP</label>
+    </div>
+    <div class="login-form">
+        <div class="group">
+            <label for="user" class="label">Username</label>
+            <input id="user" type="text" class="input">
+        </div>
+        <div class="group">
+            <label for="pass" class="label">Password</label>
+            <input id="pass" type="password" class="input" data-type="password">
+        </div>
+        <div class="group">
+            <label for="pass" class="label">Repeat Password</label>
+            <input id="pass" type="password" class="input" data-type="password">
+        </div>
+        <div class="group">
+            <input type="submit" class="button" value="Sign Up">
+        </div>
+        <div class="hr"></div>
+        <div class="text-center">
+            <a href="/Signin/Signin">
+                Already Member?
+            </a>
+        </div>
+    </div>
+</div>

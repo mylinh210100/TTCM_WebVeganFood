@@ -6,63 +6,81 @@
 }
 
 
-@using (Html.BeginForm("InsertDrink", "Drinks", FormMethod.Post)) 
+@using (Html.BeginForm("InsertDrink", "Drinks", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    @section titlepage{
-        Drink insert Page
-    }
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.IdDrink, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.IdDrink, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.IdDrink, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.DrinkName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.DrinkName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.DrinkName, "", new { @class = "text-danger" })
-        </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.DrinkPrice, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.DrinkPrice, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.DrinkPrice, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        @section titlepage{
+            Drink insert Page
+        }
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdDrink, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IdDrink, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IdDrink, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DrinkName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DrinkName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DrinkName, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Drinkmaterial, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Drinkmaterial, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Drinkmaterial, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.DrinkPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DrinkPrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DrinkPrice, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.ImgDrink, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ImgDrink, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.ImgDrink, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Drinkmaterial, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Drinkmaterial, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Drinkmaterial, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="row container">
-        <div class="col-md-1 text-center mt-2">
-            <input type="submit" value="Insert" class="btn btn-add" />
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImgDrink, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="container-fluid row">
+                <div class="col-md-3 mt-2">
+                    @Html.TextBoxFor(model => model.ImgDrink, new { htmlAttributes = new { @class = "form-control" }, id = "txtImg" })
+                    <br />
+                    @Html.ValidationMessageFor(model => model.ImgDrink, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-2 mt-2">
+                    <button class="btn btn-outline-success mt-2" type="button" id="btnselectImg" style="font-family:'Times New Roman'; font-size:15px;">Select Img</button>
+                </div>
+
+            </div>
         </div>
-        <div class="text-center col-md-2 mt-2">
-            <a href="@Url.Action("DrinkIndex", "Drinks")" class="btn btn-back"> Back</a>
+
+        <div class="row container">
+            <div class="col-md-1 text-center mt-2">
+                <input type="submit" value="Insert" class="btn btn-add" />
+            </div>
+            <div class="text-center col-md-2 mt-2">
+                <a href="@Url.Action("DrinkIndex", "Drinks")" class="btn btn-back"> Back</a>
+            </div>
         </div>
     </div>
-</div>
 }
 
+@section jsFooter{
+    <script>
+        $('#btnselectImg').on('click', function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (url) {
+                $('#txtImg').val(url);
+            };
+            finder.popup();
+        })
+    </script>
+}
