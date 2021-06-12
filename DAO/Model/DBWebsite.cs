@@ -8,7 +8,7 @@ namespace DAO.Model
     public partial class DBWebsite : DbContext
     {
         public DBWebsite()
-            : base("name=DBWebsite1")
+            : base("name=DBWebsite")
         {
         }
 
@@ -84,11 +84,6 @@ namespace DAO.Model
                 .Property(e => e.Phone)
                 .IsFixedLength()
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Customer>()
-                .HasMany(e => e.Accounts)
-                .WithOptional(e => e.Customer)
-                .WillCascadeOnDelete();
 
             modelBuilder.Entity<Customer>()
                 .HasMany(e => e.Orders)

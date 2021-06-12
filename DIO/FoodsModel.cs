@@ -16,6 +16,8 @@ namespace DIO
         {
             context = new DBWebsite();
         }
+
+        // for admin
         public IEnumerable<Food> ListAll(string search, int page, int pageSize)
         {
             IQueryable<Food> model = context.Foods;
@@ -26,6 +28,7 @@ namespace DIO
             return model.OrderBy(f => f.IdFood).ToPagedList(page, pageSize);
         }
 
+        
         public int Insert(string id, string name, double price, string material, string src)
         {
             object[] parameters =
@@ -63,6 +66,12 @@ namespace DIO
             return true;
         }
 
-        
+        // for Client
+        public IEnumerable<Food> ListFood(int page, int psize)
+        {
+            return context.Foods.OrderByDescending(f => f.Quantitysold).ToPagedList(page, psize);
+        }
+
+
     }
 }

@@ -12,11 +12,11 @@ namespace DAO.Model
         public int Id { get; set; }
 
         [Required(ErrorMessage = "You must input to this field")]
-        [StringLength(10, ErrorMessage = "maximum is 10 characters")]
+        [StringLength(10)]
         public string IdCombo { get; set; }
 
         [Required(ErrorMessage = "You must input to this field")]
-        [StringLength(50, ErrorMessage = "maximum is 50 characters")]
+        [StringLength(50)]
         public string IdDrink { get; set; }
 
         [Required(ErrorMessage = "You must input to this field")]

@@ -13,7 +13,7 @@ namespace DAO.Model
         [StringLength(50)]
         public string IdProduct { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "You must input to this field")]
         [StringLength(500)]
         public string Comments { get; set; }
 

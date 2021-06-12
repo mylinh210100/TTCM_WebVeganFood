@@ -18,11 +18,12 @@ namespace DAO.Model
         }
 
         [Key]
-        [StringLength(10, ErrorMessage = "maximum is 10 characters")]
+        [StringLength(10)]
+        [Required(ErrorMessage = "You must input to this field")]
         public string IdCombo { get; set; }
 
         [Required(ErrorMessage = "You must input to this field")]
-        [StringLength(50, ErrorMessage = "maximum is 50 characters")]
+        [StringLength(50)]
         public string ComboName { get; set; }
 
         public double? ComboPrice { get; set; }
@@ -37,7 +38,7 @@ namespace DAO.Model
         public long? Quantitysold { get; set; }
 
         [Required(ErrorMessage = "You must input to this field")]
-        [StringLength(500, ErrorMessage = "maximum is 500 characters")]
+        [StringLength(500)]
         public string ImgCombo { get; set; }
 
         public int? Status { get; set; }

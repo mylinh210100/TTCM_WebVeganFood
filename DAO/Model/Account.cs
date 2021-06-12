@@ -13,24 +13,24 @@ namespace DAO.Model
         public Account()
         {
             Comments = new HashSet<Comment>();
+            Customers = new HashSet<Customer>();
         }
 
         [Key]
         public long IdAcc { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "You must input to this field")]
         [StringLength(50)]
         public string Username { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "You must input to this field")]
         [StringLength(50)]
         public string PassWo { get; set; }
 
-        public int? IdCustomer { get; set; }
-
-        public virtual Customer Customer { get; set; }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Customer> Customers { get; set; }
     }
 }

@@ -132,8 +132,6 @@ BEGIN
 	JOIN inserted ON Combo.IdCombo = inserted.IdCombo
 END
 
---
-
 --UPDATE SUMOFPRODUCT FOR ORDER FROM ORDER_DETAIL
 CREATE TRIGGER trg_SumofProduct
 ON OrderDetail

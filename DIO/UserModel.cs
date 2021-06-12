@@ -52,7 +52,7 @@ namespace DIO
             IQueryable<Account> model = context.Accounts;
             if (!string.IsNullOrEmpty(search))
             {
-                model = model.Where(f => f.IdAcc.ToString().Contains(search) || f.IdCustomer.ToString().Contains(search));
+                model = model.Where(f => f.IdAcc.ToString().Contains(search));
             }
             return model.OrderBy(f => f.IdAcc).ToPagedList(page, pageSize);
         }
