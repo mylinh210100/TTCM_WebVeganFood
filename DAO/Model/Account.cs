@@ -27,6 +27,10 @@ namespace DAO.Model
         [StringLength(50)]
         public string PassWo { get; set; }
 
+        [Required(ErrorMessage = "You must input to this field")]
+        [StringLength(50)]
+        public string ConfirmPass { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
 

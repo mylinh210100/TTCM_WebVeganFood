@@ -1,6 +1,10 @@
 ﻿<!DOCTYPE html>
 <html lang="zxx">
 
+@{ 
+    var session1 = Session["username"] as DAO.Model.Account;
+    var session2 = Session["newinfo"] as DAO.Model.Customer;
+}
 <head>
     <title>VeganFood</title>
     <!-- Meta tag Keywords -->
@@ -33,11 +37,30 @@
                         <br />
                         <label class="h4" style="color:#ffffff; font-family:'Times New Roman'">Food for you, happiness for all</label>
                     </div>
-                    <div class="forms ml-auto">
-                        <a href="~/Signin/Signin" class="btn">
-                        <span class="fa fa-user-circle-o"></span> Sign in</a>
-                        <a href="~/Signin/Signup" class="btn"><span class="fa fa-pencil-square-o"></span> Sign up</a>
-                    </div>
+                    @if (session1 == null || session2 == null)
+                    {
+                        <div class="forms ml-auto">
+                            <a href="~/Signin/Signin" class="btn">
+                                <span class="fa fa-user-circle-o"></span> Sign in
+                            </a>
+                            <a href="~/Signin/Signup" class="btn">
+                                <span class="fa fa-pencil-square-o"></span> Sign up
+                            </a>
+                        </div>
+                    }
+                    else if (session1 == null && session2 != null)
+                    {
+                        <div class="forms ml-auto">
+                            <h3 style="font-family:'Times New Roman'; color: white;">Hello: @session2.FullName</h3>
+                        </div>
+                    }
+                    else if (session1 != null && session2 == null)
+                    {
+                        <div class="forms ml-auto">
+                            <h3 style="font-family:'Times New Roman'; color: white;">Hello: @session1.Username</h3>
+                        </div>
+                    }
+
                 </div>
                 <div class="nav-top-wthree">
                     <nav>
@@ -53,7 +76,7 @@
                         </ul>
                     </nav>
 
-                    <!-- //nav -->
+                    <!-- //search form -->
                     <div class="search-form ml-auto">
                         <div class="form-w3layouts-grid">
                             <form action="#" method="post" class="newsletter">
@@ -62,8 +85,9 @@
                             </form>
                         </div>
                     </div>
+                    
                     <div class="order mt-3 text-right">
-                        <a href="~/Login/LoginRegis" class="btn" style="color: white;">
+                        <a href="" class="btn" style="color: white;">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-check" viewBox="0 0 16 16">
                                     <path d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />

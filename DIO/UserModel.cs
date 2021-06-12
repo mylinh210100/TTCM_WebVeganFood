@@ -21,13 +21,8 @@ namespace DIO
             return context.Accounts.SingleOrDefault(a => a.Username == userName);
         }
 
-        public long InsertAcc(Account acc)
-        {
-            context.Accounts.Add(acc);
-            context.SaveChanges();
-            return acc.IdAcc;
-        }
-
+        
+        // for admin
         public int Login(string userName, string pass)
         {
             var rs = context.Accounts.SingleOrDefault(a => a.Username == userName);
@@ -56,5 +51,39 @@ namespace DIO
             }
             return model.OrderBy(f => f.IdAcc).ToPagedList(page, pageSize);
         }
+
+        // sign in for customer
+        public int Signin(string username, string pass)
+        {
+            var rs = context.Accounts.SingleOrDefault(a => a.Username == username);
+            if (rs == null)
+            {
+                return 0;
+            }
+            else
+            {
+                if (rs.PassWo == pass)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+
+        //public int GetUsername(string name)
+        //{
+        //    return
+        //}
+
+        public long InsertAcc(Account acc)
+        {
+            context.Accounts.Add(acc);
+            context.SaveChanges();
+            return acc.IdAcc;
+        }
+
     }
 }

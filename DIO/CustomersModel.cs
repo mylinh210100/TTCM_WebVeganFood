@@ -24,5 +24,14 @@ namespace DIO
             }
             return model.OrderBy(f => f.IdCustomer).ToPagedList(page, pageSize);
         }
+
+        public long Insert(Customer cus)
+        {
+            context.Customers.Add(cus);
+            context.SaveChanges();
+            return cus.IdCustomer;
+
+        }
+
     }
 }

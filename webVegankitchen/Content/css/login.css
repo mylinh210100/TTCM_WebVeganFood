@@ -106,7 +106,7 @@ a {
             padding: 15px 20px!important;
             border-radius: 25px;
             background: #fff;
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
         .login-form .group input[data-type="password"] {
@@ -118,7 +118,6 @@ a {
             color: #01579b;
             font-size: 20px;
             font-family: 'Times New Roman';
-            margin-top: 15px;
         }
 
         .login-form .group .button {
