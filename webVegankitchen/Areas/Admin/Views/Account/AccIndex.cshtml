@@ -18,15 +18,17 @@
     <div class="row mb-2">
         <div class="col-md-5"></div>
         <div class="col-md-7">
-            <form action="#" method="post" class="newsletter row">
-                <div class="col-md-5"></div>
-                <div class="col-md-5 input-group pt-1">
-                    <input class="w-50 form-control" type="search" placeholder="Search here..." required="">
+            @using (Html.BeginForm("AccIndex", "Account", FormMethod.Get))
+            {
+                <div class="row">
+                    <div class="col-md-5 input-group pt-1">
+                        <input class="w-50 form-control" type="search" placeholder="Search here..." required="" name="search">
+                    </div>
+                    <div class="col-md-2 pt-1">
+                        <button class="btn btn-outline-success" value="" type="submit">Search</button>
+                    </div>
                 </div>
-                <div class="col-md-2 pt-1">
-                    <button class="btn btn-outline-success" value="" type="submit">Search</button>
-                </div>
-            </form>
+            }
         </div>
     </div>
     <div class="row">

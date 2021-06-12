@@ -47,10 +47,14 @@ namespace DIO
         }
 
         //danh sach theo phan trang
-        public IEnumerable<Account> ListAccPaging(int page, int pageSize)
+        public IEnumerable<Account> ListAccPaging(string search, int page, int pageSize)
         {
-            //var listAcc = context.Database.SqlQuery<Account>("sp_Select_Account").ToList();
-            return context.Accounts.OrderBy(a=>a.IdAcc).ToPagedList(page, pageSize);
+            IQueryable<Account> model = context.Accounts;
+            if (!string.IsNullOrEmpty(search))
+            {
+                model = model.Where(f => f.IdAcc.ToString().Contains(search) || f.IdCustomer.ToString().Contains(search));
+            }
+            return model.OrderBy(f => f.IdAcc).ToPagedList(page, pageSize);
         }
     }
 }

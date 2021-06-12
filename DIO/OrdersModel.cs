@@ -15,10 +15,14 @@ namespace DIO
         {
             context = new DBWebsite();
         }
-        public IEnumerable<Order> ListAll(int page, int pSz)
+        public IEnumerable<Order> ListAll(string search, int page, int pSz)
         {
-            //var listall = context.Database.SqlQuery<Order>("sp_View_Order").ToList();
-            return context.Orders.OrderBy(o => o.IdOrder).ToPagedList(page, pSz);
+            IQueryable<Order> model = context.Orders;
+            if (!string.IsNullOrEmpty(search))
+            {
+                model = model.Where(f => f.IdFoundation.ToString().Contains(search) || f.IdCustomer.ToString().Contains(search));
+            }
+            return model.OrderBy(f => f.IdOrder).ToPagedList(page, pSz);
         }
 
     }

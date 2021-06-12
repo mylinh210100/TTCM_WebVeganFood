@@ -13,17 +13,17 @@ namespace webVegankitchen.Areas.Admin.Controllers
     {
         DBWebsite db = new DBWebsite();
         // GET: Admin/ComboDetail
-        public ActionResult ComboDrink(int page = 1, int pageSz = 5)
+        public ActionResult ComboDrink(string search,int page = 1, int pageSz = 10)
         {
             var list = new ComboDrinkModel();
-            var model = list.ListAll(page, pageSz);
+            var model = list.ListAll(search, page, pageSz);
             return View(model);
         }
 
-        public ActionResult ComboFood(int page = 1, int pageSz = 5)
+        public ActionResult ComboFood(string search, int page = 1, int pageSz = 10)
         {
             var list = new ComboFoodModel();
-            var model = list.ListAll(page, pageSz);
+            var model = list.ListAll(search, page, pageSz);
             return View(model);
         }
 

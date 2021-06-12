@@ -13,10 +13,10 @@ namespace webVegankitchen.Areas.Admin.Controllers
     {
         DBWebsite db = new DBWebsite();
         // GET: Admin/Combos
-        public ActionResult ComboIndex(int page = 1, int pageSz = 5)
+        public ActionResult ComboIndex(string search, int page = 1, int pageSz = 5)
         {
             var listcombo = new CombosModel();
-            var model = listcombo.ListAll(page, pageSz);
+            var model = listcombo.ListAll(search, page, pageSz);
             return View(model);
         }
 

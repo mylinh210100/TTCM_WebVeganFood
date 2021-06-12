@@ -28,15 +28,17 @@
             </div>
         </div>
         <div class="col-lg-7">
-            <form action="#" method="post" class="newsletter row">
-                <div class="col-lg-5"></div>
-                <div class="col-lg-5 input-group pt-1">
-                    <input class="w-50 form-control" type="search" placeholder="Search here..." required="">
+            @using (Html.BeginForm("FoodIndex", "Foods", FormMethod.Get))
+            {
+                <div class="row">
+                    <div class="col-md-5 input-group pt-1">
+                        <input class="w-50 form-control" type="search" placeholder="Search here..." required="" name="search">
+                    </div>
+                    <div class="col-md-2 pt-1">
+                        <button class="btn btn-outline-success" value="" type="submit">Search</button>
+                    </div>
                 </div>
-                <div class="col-lg-2 pt-1">
-                    <button class="btn btn-outline-success" value="" type="submit">Search</button>
-                </div>
-            </form>
+            }
         </div>
     </div>
     <div class="row">
@@ -59,7 +61,7 @@
                         <td>@item.FoodName</td>
                         <td>@item.FoodPrice</td>
                         <td>@item.Foodmaterial</td>
-                        <td><img src="@item.ImgFood" alt="" style="height:300px; width:300px;"/></td>
+                        <td><img src="@item.ImgFood" alt="" style="height:300px; width:300px;" /></td>
                         <td>
                             <a href="~/Admin/Foods/EditFood/@item.IdFood" class="btn" style="color: #000000; border-color: #33691e;">
                                 <span>
@@ -84,7 +86,14 @@
                 }
             </tbody>
         </table>
-        @Html.PagedListPager(Model, page => Url.Action("FoodIndex", new { page }))
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            @Html.PagedListPager(Model, page => Url.Action("FoodIndex", new { page }))
+        </div>
+        <div class="text-center col-md-2 p">
+            <a href="@Url.Action("FoodIndex", "Foods")" class="btn btn-back"> Back </a>
+        </div>
     </div>
 </div>
 

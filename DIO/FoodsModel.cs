@@ -16,10 +16,14 @@ namespace DIO
         {
             context = new DBWebsite();
         }
-        public IEnumerable<Food> ListAll(int page, int pageSize)
+        public IEnumerable<Food> ListAll(string search, int page, int pageSize)
         {
-            //var listall = context.Database.SqlQuery<Food>("sp_Select_Food").ToList();
-            return context.Foods.OrderBy(f => f.IdFood).ToPagedList(page, pageSize);
+            IQueryable<Food> model = context.Foods;
+            if (!string.IsNullOrEmpty(search))
+            {
+                model = model.Where(f => f.FoodName.Contains(search) || f.FoodPrice.ToString().Contains(search));
+            }
+            return model.OrderBy(f => f.IdFood).ToPagedList(page, pageSize);
         }
 
         public int Insert(string id, string name, double price, string material, string src)
