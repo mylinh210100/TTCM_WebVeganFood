@@ -23,7 +23,13 @@ namespace DAO.Model
         [StringLength(500)]
         public string FoundationName { get; set; }
 
+        public string ContentFound { get; set; }
+
         public double TotalCash { get; set; }
+
+        public string ImgFound { get; set; }
+
+        public string Link { get; set; }
 
         public int Status { get; set; }
 

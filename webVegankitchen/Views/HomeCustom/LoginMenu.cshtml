@@ -1,0 +1,56 @@
+﻿
+@{
+    var session1 = Session["login"] as webVegankitchen.Common.UserLogin;
+    var session2 = Session["newinfo"] as DAO.Model.Customer;
+}
+
+
+@if (session1 == null && session2 == null)
+{
+    <div class="forms ml-auto">
+        <a href="~/Signin/Signin" class="btn">
+            <span class="fa fa-user-circle-o"></span> Sign in
+        </a>
+        <a href="~/Signin/Signup" class="btn">
+            <span class="fa fa-pencil-square-o"></span> Sign up
+        </a>
+    </div>
+
+}
+else if (session2 != null)
+{
+    <div class="top-w3pvt d-flex">
+        <div id="logo">
+            <h1>
+                <a href="@Url.Action("CustomIndex","HomeCustom")">
+                    <span class="log-w3pvt" style="color:#1e9d2f">
+                        <img src="~/Content/images/vlogo.png" width="50" height="30" alt="">VeganFood
+                    </span>
+                </a>
+            </h1>
+            <br />
+            <label class="h4" style="color:#ffffff; font-family:'Times New Roman'">Food for you, happiness for all</label>
+        </div>
+        <div class="forms ml-auto">
+            <a style=" font-family: 'Times New Roman'; color: #ffffff; font-size: 18px;">
+                Hello: @session2.FullName
+            </a>
+            <a class="btn btn-outline-warning" style=" margin-left: 10px; font-family: 'Times New Roman'; color: #ffffff; font-size: 18px;">
+                Sign Out
+            </a>
+        </div>
+    </div>
+}
+else
+{
+    <div class="forms ml-auto">
+        <a class="btn btn-outline-info" style=" font-family: 'Times New Roman'; color: #ffffff; font-size: 18px;">
+            Hello: @session1.UserName
+        </a>
+        <a class="btn btn-outline-warning" style=" margin-left: 10px; font-family: 'Times New Roman'; color: #ffffff; font-size: 18px;">
+            Sign Out
+        </a>
+    </div>
+
+}
+

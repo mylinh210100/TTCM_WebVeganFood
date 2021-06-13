@@ -13,57 +13,80 @@ namespace webVegankitchen
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "HomeCustom", action = "Index", id = UrlParameter.Optional }
-            );
             //signinpage
             routes.MapRoute(
-               name: "Signin",
-               url: "signin",
-               defaults: new { controller = "Signin", action = "Signin" }
+               name: "Sign In",
+               url: "sign-in",
+               defaults: new { controller = "Signin", action = "Signin" },
+               namespaces: new[] { "webVegankitchen.Controllers" }
            );
 
             //Food page
             routes.MapRoute(
-               name: "FoodView",
+               name: "Food View",
                url: "food",
-               defaults: new { controller = "Food", action = "FoodView" }
+               defaults: new { controller = "Food", action = "FoodView" },
+               namespaces: new[] { "webVegankitchen.Controllers" }
            );
 
             //food detail
             routes.MapRoute(
-               name: "FoodDetail",
-               url: "fooddetail",
-               defaults: new { controller = "Food", action = "FoodDetail" }
+               name: "Food-Detail",
+               url: "food-detail/{metatitle}-{id}",
+               defaults: new { controller = "Food", action = "FoodDetail" },
+               namespaces: new[] { "webVegankitchen.Controllers" }
            );
 
             //drink page
             routes.MapRoute(
               name: "Drink",
               url: "drink",
-              defaults: new { controller = "Drink", action = "Drink" }
+              defaults: new { controller = "Drink", action = "Drink" },
+              namespaces: new[] { "webVegankitchen.Controllers" }
           );
             //drink detail
             routes.MapRoute(
              name: "DrinkDetail",
-             url: "drinkdetail",
-             defaults: new { controller = "Drink", action = "DrinkDetail" }
+             url: "drink-detail/{metatitle}-{id}",
+             defaults: new { controller = "Drink", action = "DrinkDetail" },
+             namespaces: new[] { "webVegankitchen.Controllers" }
          );
             //Combo page
             routes.MapRoute(
             name: "Combo",
             url: "combo",
-            defaults: new { controller = "Combo", action = "Combo" }
+            defaults: new { controller = "Combo", action = "Combo" },
+            namespaces: new[] { "webVegankitchen.Controllers" }
         );
             //combo detail
             routes.MapRoute(
             name: "ComboDetail",
-            url: "combodetail",
-            defaults: new { controller = "Combo", action = "ComboDetail" }
+            url: "Combo-detail/{metatitle}-{id}",
+            defaults: new { controller = "Combo", action = "ComboDetail" },
+            namespaces: new[] { "webVegankitchen.Controllers" }
+        );
+            //
+            routes.MapRoute(
+            name: "SignUp",
+            url: "sign-up",
+            defaults: new { controller = "Signin", action = "Signup" },
+            namespaces: new[] { "webVegankitchen.Controllers" }
         );
 
+
+
+
+
+            routes.MapRoute(
+                name: "Default",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "HomeCustom", action = "CustomIndex", id = UrlParameter.Optional },
+                namespaces: new[] {"webVegankitchen.Controllers"}
+            );
+
+
+
+            
 
 
         }

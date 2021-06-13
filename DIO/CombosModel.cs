@@ -62,6 +62,18 @@ namespace DIO
             return true;
         }
 
-        
+        // for client
+        public IEnumerable<Combo> ListCombo(int page, int pSz)
+        {
+            return context.Comboes.OrderBy(c => c.IdCombo).ToPagedList(page, pSz);
+        }
+
+
+        public Combo Top()
+        {
+            return context.Comboes.OrderByDescending(c => c.Quantitysold).FirstOrDefault();
+        }
+
+
     }
 }

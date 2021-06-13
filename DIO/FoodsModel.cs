@@ -69,9 +69,13 @@ namespace DIO
         // for Client
         public IEnumerable<Food> ListFood(int page, int psize)
         {
-            return context.Foods.OrderByDescending(f => f.Quantitysold).ToPagedList(page, psize);
+            return context.Foods.OrderBy(f=>f.IdFood).ToPagedList(page, psize);
         }
 
+        public Food Top()
+        {
+            return context.Foods.OrderByDescending(f => f.Quantitysold).FirstOrDefault();
+        }
 
     }
 }

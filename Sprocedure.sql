@@ -115,7 +115,7 @@ ON OrderDetail
 AFTER INSERT AS
 BEGIN
 	UPDATE Drink
-	SET Quantitysold = Quantitysold + (SELECT SUM(a.Amount) FROM inserted a
+	SET Quantitysold = Drink.Quantitysold + (SELECT SUM(a.Amount) FROM inserted a
 							WHERE a.IdFood = Drink.IdDrink)
 	FROM Drink
 	JOIN inserted ON Drink.IdDrink = inserted.IdDrink
@@ -133,7 +133,7 @@ BEGIN
 END
 
 --UPDATE SUMOFPRODUCT FOR ORDER FROM ORDER_DETAIL
-CREATE TRIGGER trg_SumofProduct
+ALTER TRIGGER trg_SumofProduct
 ON OrderDetail
 AFTER INSERT AS
 BEGIN
@@ -141,16 +141,16 @@ BEGIN
 	SET SumOfProduct = SumOfProduct + (SELECT SUM(a.Amount) FROM inserted a
 							WHERE a.IdOrder = [Order].IdOrder)
 	FROM [Order]
-	JOIN inserted ON [Order].IdOrder = inserted.IdCombo
+	JOIN inserted ON [Order].IdOrder = inserted.IdOrder
 END
 
 --UPDATE TOTAL_CASH FOR FOUNDATION FROM ORDER
-CREATE TRIGGER trg_TotalCashFoundation
+ALTER TRIGGER trg_TotalCashFoundation
 ON [Order]
 AFTER INSERT AS
 BEGIN
 	UPDATE Foundation
-	SET TotalCash = Foundation.TotalCash + (SELECT COUNT(a.TotalCash)  FROM inserted a WHERE a.IdFoundation = Foundation.IdFound)
+	SET TotalCash = Foundation.TotalCash + (SELECT COUNT(a.TotalCash)  FROM inserted a WHERE a.IdFoundation = Foundation.IdFound)*0.1
 	FROM Foundation
 	JOIN inserted ON Foundation.IdFound = inserted.IdFoundation
 

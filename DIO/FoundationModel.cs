@@ -20,5 +20,10 @@ namespace DIO
             //var listall = context.Database.SqlQuery<Foundation>("sp_Select_Foundation").ToList();
             return context.Foundations.OrderBy(f => f.IdFound).ToPagedList(page, pageSz);
         }
+
+        public List<Foundation> List()
+        {
+            return context.Foundations.ToList();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DIO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,9 +10,11 @@ namespace webVegankitchen.Controllers
     public class ComboController : Controller
     {
         // GET: Combo
-        public ActionResult Combo()
+        public ActionResult Combo(int page = 1, int pSz = 4)
         {
-            return View();
+            var list = new CombosModel();
+            var model = list.ListCombo(page, pSz);
+            return View(model);
         }
 
         public ActionResult ComboDetail()

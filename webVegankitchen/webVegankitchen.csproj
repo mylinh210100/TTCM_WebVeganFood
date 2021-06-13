@@ -168,7 +168,6 @@
     <Compile Include="Areas\Admin\Model\LoginModel.cs" />
     <Compile Include="Common\ComConstants.cs" />
     <Compile Include="Common\Encryptor.cs" />
-    <Compile Include="Controllers\BaseClientController.cs" />
     <Compile Include="Controllers\ComboController.cs" />
     <Compile Include="Controllers\DrinkController.cs" />
     <Compile Include="Controllers\FoodController.cs" />
@@ -955,12 +954,11 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\HomeCustom\Index.cshtml" />
+    <Content Include="Views\HomeCustom\CustomIndex.cshtml" />
     <Content Include="Views\HomeCustom\About.cshtml" />
     <Content Include="Views\HomeCustom\Contact.cshtml" />
     <Content Include="Views\Food\FoodView.cshtml" />
     <Content Include="Views\Food\FoodDetail.cshtml" />
-    <Content Include="Views\Drink\Drink.cshtml" />
     <Content Include="Views\Drink\DrinkDetail.cshtml" />
     <Content Include="Views\Combo\ComboDetail.cshtml" />
     <Content Include="Views\Combo\Combo.cshtml" />
@@ -973,6 +971,10 @@
     <Content Include="Views\Signin\Signin.cshtml" />
     <Content Include="Views\Signin\Signup.cshtml" />
     <Content Include="Views\Signin\InfoAcc.cshtml" />
+    <Content Include="Views\HomeCustom\LoginMenu.cshtml" />
+    <Content Include="Views\HomeCustom\Drink.cshtml" />
+    <Content Include="Views\Drink\DrinkView.cshtml" />
+    <Content Include="Views\HomeCustom\ComboTop.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

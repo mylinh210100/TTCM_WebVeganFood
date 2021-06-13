@@ -20,21 +20,21 @@ namespace webVegankitchen.Controllers
         }
 
         [HttpPost]
-        public ActionResult Signin(Account model)
+        public ActionResult Signin(UserLoginModel model)
         {
             if (ModelState.IsValid)
             {
                 var dao = new UserModel();
-                int result = dao.Login(model.Username, Encryptor.MD5Hash(model.PassWo));
-
+                int result = dao.Login(model.UserName, Encryptor.MD5Hash(model.PassWord));
+                
                 if (result == 1)
                 {
-                    var user = dao.GetByName(model.Username);
-                    var usession = new UserLoginModel();
+                    var user = dao.GetByName(model.UserName);
+                    var usession = new UserLogin();
                     usession.UserName = user.Username;
-
-                    Session["username"] = usession;
-                    return RedirectToAction("Index", "HomeAdmin");
+                    usession.Id = user.IdAcc;
+                    Session["login"] = usession;
+                    return Redirect("/");
                 }
                 else if (result == 0)
                 {
@@ -46,7 +46,7 @@ namespace webVegankitchen.Controllers
                 }
             }
 
-            return View("Signin");
+            return View(model);
         }
 
 
@@ -122,7 +122,7 @@ namespace webVegankitchen.Controllers
                     if (rs > 0)
                     {
                         Session["newinfo"] = customer;
-                        return RedirectToAction("Index", "HomeCustom");
+                        return Redirect("/");
                     }
                     else
                     {

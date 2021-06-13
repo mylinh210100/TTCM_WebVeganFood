@@ -10,7 +10,7 @@ namespace webVegankitchen.Controllers
     public class FoodController : Controller
     {
         // GET: Food
-        public ActionResult FoodView(int page, int pSz)
+        public ActionResult FoodView(int page = 1, int pSz = 4)
         {
             var list = new FoodsModel();
             var model = list.ListFood(page, pSz);

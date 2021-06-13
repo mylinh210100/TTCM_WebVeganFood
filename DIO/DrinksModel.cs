@@ -62,5 +62,16 @@ namespace DIO
             }
             return true;
         }
+
+        // for client
+        public IEnumerable<Drink> ListDrink(int page, int pSz)
+        {
+            return context.Drinks.OrderBy(d => d.IdDrink).ToPagedList(page, pSz);
+        }
+
+        public Drink Top()
+        {
+            return context.Drinks.OrderByDescending(d => d.Quantitysold).FirstOrDefault();
+        }
     }
 }

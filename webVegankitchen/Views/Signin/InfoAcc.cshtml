@@ -1,4 +1,4 @@
-﻿
+﻿@model DAO.Model.Customer
 @{
     ViewBag.Title = "InfoAcc";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,44 +8,52 @@
 <link rel="stylesheet" href="~/Content/css/bootstrap.css">
 <link href="~/Content/css/login.css" rel="stylesheet" />
 
+@{
+    var session = Session["IDaccount"] as DAO.Model.Account;
+}
 
 <div class="login-wrap mt-5 body">
     <div class="text-center" style="font-family: 'Times New Roman'; color: #002f6c; font-size: 30px; padding: 20px 70px 10px 70px;">
         <label>Your Infomation</label>
     </div>
-    <div class="login-form">
-        <div class="group">
-            <label for="name" class="label">Full name</label>
-            <input id="fullname" type="text" class="input">
-        </div>
-        <div class="group">
-            <label for="address" class="label">Address</label>
-            <input id="address" type="text" class="input">
-        </div>
-        <div class="group">
-            <label for="phone" class="label">Phone</label>
-            <input id="phone" type="text" class="input">
-        </div>
-        <div class="group">
-            <label for="email" class="label">Email</label>
-            <input id="email" type="email" class="input">
-        </div>
-        @{ 
-            var session = Session["IDaccount"] as DAO.Model.Account;
-        }
-        <div>
-            <label style="font-family: 'Times New Roman'; padding: 5px 70px 5px 70px; font-size: 15px; color: #01579b;" class="text-center">
-            your id account: @session.IdAcc
-            </label>
-        </div>
-        <div class="group">
-            <label for="email" class="label">Your ID Account</label>
-            <input id="email" type="email" class="input">
-        </div>
-        <div class="group">
-            <input type="submit" class="button" value="Done">
-        </div>
 
-    </div>
-    
+    @using (Html.BeginForm("InfoAcc", "Signin", FormMethod.Post))
+    {
+        <div class="login-form">
+            <div class="group">
+                <label for="name" class="label">Full name</label>
+                @Html.TextBoxFor(model => model.FullName, new { @class = "input" })
+                @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+            </div>
+            <div class="group">
+                <label for="address" class="label">Address</label>
+                @Html.TextBoxFor(model => model.Address, new { @class = "input" })
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+            </div>
+            <div class="group">
+                <label for="phone" class="label">Phone</label>
+                @Html.TextBoxFor(model => model.Phone, new { @class = "input" })
+                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+            </div>
+            <div class="group">
+                <label for="email" class="label">Email</label>
+                @Html.TextBoxFor(model => model.Email, new { @class = "input" })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+            <div>
+                <a style="font-family: 'Times New Roman'; padding: 5px 70px 5px 70px; font-size: 20px; color: #01579b;" class="text-center">
+                    Your id account: @session.IdAcc
+                </a>
+            </div>
+            <div class="group">
+                <label for="email" class="label">Your ID Account</label>
+                @Html.TextBoxFor(model => model.IdAcc, new { @class = "input" })
+                @Html.ValidationMessageFor(model => model.IdAcc, "", new { @class = "text-danger" })
+            </div>
+            <div class="group">
+                <input type="submit" class="button" value="Done">
+            </div>
+
+        </div>
+    }
 </div>

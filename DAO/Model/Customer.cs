@@ -34,6 +34,7 @@ namespace DAO.Model
         [Required(ErrorMessage = "You must input to this field")]
         public string Email { get; set; }
 
+        [Required(ErrorMessage = "You must input to this field")]
         public long? IdAcc { get; set; }
 
         public virtual Account Account { get; set; }

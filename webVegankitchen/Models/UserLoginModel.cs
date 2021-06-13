@@ -8,10 +8,12 @@ namespace webVegankitchen.Models
 {
     public class UserLoginModel
     {
-        [Required(ErrorMessage = "You have to in put this field")]
+        [Required(ErrorMessage = "You must input this field")]
         public string UserName { get; set; }
 
-        [Required(ErrorMessage = "You have to in put this field")]
-        public string Pass { get; set; }
+        [Required(ErrorMessage = "You must input this field")]
+        public string PassWord { get; set; }
+        public bool RememberMe { get; set; }
+
     }
 }
