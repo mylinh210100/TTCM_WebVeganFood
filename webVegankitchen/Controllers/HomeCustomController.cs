@@ -18,6 +18,7 @@ namespace webVegankitchen.Controllers
             return View(food);
         }
 
+
         [HttpGet]
         public ActionResult Drink()
         {

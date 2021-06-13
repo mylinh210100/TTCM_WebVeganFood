@@ -133,5 +133,13 @@ namespace webVegankitchen.Controllers
             
                 return View();
         }
+
+
+        public ActionResult Signout()
+        {
+            Session.Clear();
+            return Redirect("/");
+        }
+
     }
 }
