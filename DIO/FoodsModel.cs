@@ -77,5 +77,9 @@ namespace DIO
             return context.Foods.OrderByDescending(f => f.Quantitysold).FirstOrDefault();
         }
 
+        public IEnumerable<Food> ListOther(string id, int p, int pSz)
+        {
+            return context.Foods.Where(f => f.IdFood != id).OrderBy(f => f.IdFood).ToPagedList(p, pSz);
+        }
     }
 }

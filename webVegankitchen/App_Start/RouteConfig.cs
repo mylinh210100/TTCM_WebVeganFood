@@ -32,7 +32,7 @@ namespace webVegankitchen
             //food detail
             routes.MapRoute(
                name: "Food-Detail",
-               url: "food-detail/{metatitle}-{id}",
+               url: "food-detail/{id}",
                defaults: new { controller = "Food", action = "FoodDetail" },
                namespaces: new[] { "webVegankitchen.Controllers" }
            );
@@ -41,13 +41,13 @@ namespace webVegankitchen
             routes.MapRoute(
               name: "Drink",
               url: "drink",
-              defaults: new { controller = "Drink", action = "Drink" },
+              defaults: new { controller = "Drink", action = "DrinkView" },
               namespaces: new[] { "webVegankitchen.Controllers" }
           );
             //drink detail
             routes.MapRoute(
              name: "DrinkDetail",
-             url: "drink-detail/{metatitle}-{id}",
+             url: "drink-detail/{id}",
              defaults: new { controller = "Drink", action = "DrinkDetail" },
              namespaces: new[] { "webVegankitchen.Controllers" }
          );
@@ -61,18 +61,32 @@ namespace webVegankitchen
             //combo detail
             routes.MapRoute(
             name: "ComboDetail",
-            url: "Combo-detail/{metatitle}-{id}",
+            url: "combo-detail/{id}",
             defaults: new { controller = "Combo", action = "ComboDetail" },
             namespaces: new[] { "webVegankitchen.Controllers" }
         );
-            //
+            //sign up
             routes.MapRoute(
             name: "SignUp",
             url: "sign-up",
             defaults: new { controller = "Signin", action = "Signup" },
             namespaces: new[] { "webVegankitchen.Controllers" }
         );
+            //About us
+            routes.MapRoute(
+            name: "About us",
+            url: "about-us",
+            defaults: new { controller = "HomeCustom", action = "About" },
+            namespaces: new[] { "webVegankitchen.Controllers" }
+        );
 
+            // contact us
+            routes.MapRoute(
+            name: "Contact us",
+            url: "contact",
+            defaults: new { controller = "HomeCustom", action = "Contact" },
+            namespaces: new[] { "webVegankitchen.Controllers" }
+        );
 
 
 

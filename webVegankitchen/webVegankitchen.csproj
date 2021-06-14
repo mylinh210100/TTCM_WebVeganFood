@@ -169,6 +169,8 @@
     <Compile Include="Common\ComConstants.cs" />
     <Compile Include="Common\Encryptor.cs" />
     <Compile Include="Controllers\ComboController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DrinkController.cs" />
     <Compile Include="Controllers\FoodController.cs" />
     <Compile Include="Controllers\HomeCustomController.cs" />
@@ -963,12 +965,6 @@
     <Content Include="Views\Drink\DrinkDetail.cshtml" />
     <Content Include="Views\Combo\ComboDetail.cshtml" />
     <Content Include="Views\Combo\Combo.cshtml" />
-    <Content Include="Views\Combo\_CommentCombo.cshtml" />
-    <None Include="Views\Combo\_OrtherCombo.cshtml" />
-    <Content Include="Views\Drink\_CommentDrink.cshtml" />
-    <Content Include="Views\Drink\_OrtherDrink.cshtml" />
-    <Content Include="Views\Food\_OrtherFood.cshtml" />
-    <Content Include="Views\Food\_CommentFood.cshtml" />
     <Content Include="Views\Signin\Signin.cshtml" />
     <Content Include="Views\Signin\Signup.cshtml" />
     <Content Include="Views\Signin\InfoAcc.cshtml" />
@@ -976,10 +972,12 @@
     <Content Include="Views\HomeCustom\Drink.cshtml" />
     <Content Include="Views\Drink\DrinkView.cshtml" />
     <Content Include="Views\HomeCustom\ComboTop.cshtml" />
+    <Content Include="Views\Customer\EditInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
+    <Folder Include="Views\Comment\" />
     <Folder Include="Views\Order\" />
   </ItemGroup>
   <ItemGroup>

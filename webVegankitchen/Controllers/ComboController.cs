@@ -17,19 +17,14 @@ namespace webVegankitchen.Controllers
             return View(model);
         }
 
-        public ActionResult ComboDetail()
+        public ActionResult ComboDetail(string id, int p = 1, int pSz = 4)
         {
+            var combo = new CombosModel().ViewDetail(id);
+            ViewBag.othercombo = new CombosModel().ListOther(id, p, pSz);
             return View();
         }
 
-        public ActionResult OrtherCombo()
-        {
-            return PartialView("_OrtherCombo");
-        }
-        public ActionResult CommentrCombo()
-        {
-            return PartialView("_CommentCombo");
-        }
+
 
 
     }

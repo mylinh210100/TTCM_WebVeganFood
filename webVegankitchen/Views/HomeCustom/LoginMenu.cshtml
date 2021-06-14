@@ -31,7 +31,7 @@ else if (session2 != null)
 else
 {
     <div class="forms ml-auto">
-        <a class="btn btn-outline-info" style=" font-family: 'Times New Roman'; color: #ffffff; font-size: 18px;">
+        <a href="@Url.Action("EditInfo", "Customer")" class="btn btn-outline-info" style=" font-family: 'Times New Roman'; color: #ffffff; font-size: 18px;">
             Hello: @session1.UserName
         </a>
         <a href="@Url.Action("Signout", "Signin")" class="btn btn-outline-warning" style=" margin-left: 10px; font-family: 'Times New Roman'; color: #ffffff; font-size: 18px;">

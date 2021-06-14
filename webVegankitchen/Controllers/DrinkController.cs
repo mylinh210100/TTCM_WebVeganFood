@@ -17,19 +17,12 @@ namespace webVegankitchen.Controllers
             return View(model);
         }
 
-        public ActionResult DrinkDetail()
+        public ActionResult DrinkDetail(string id, int page = 1, int pageSz = 4)
         {
-            return View();
+            var drink = new DrinksModel().ViewDetail(id);
+            ViewBag.otherdrink = new DrinksModel().ListOther(id, page, pageSz);
+            return View(drink);
         }
 
-        public ActionResult OrtherDrink()
-        {
-            return PartialView("_OrtherDrink");
-        }
-
-        public ActionResult DrinkCmt()
-        {
-            return PartialView("_CommentDrink");
-        }    
     }
 }
