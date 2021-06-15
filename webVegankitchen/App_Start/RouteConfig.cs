@@ -13,6 +13,15 @@ namespace webVegankitchen
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //sign out
+               routes.MapRoute(
+               name: "Sign Out",
+               url: "sign-out",
+               defaults: new { controller = "Signin", action = "Singout" },
+               namespaces: new[] { "webVegankitchen.Controllers" }
+           );
+
+
             //signinpage
             routes.MapRoute(
                name: "Sign In",
@@ -88,7 +97,20 @@ namespace webVegankitchen
             namespaces: new[] { "webVegankitchen.Controllers" }
         );
 
-
+            //edit info customer
+            routes.MapRoute(
+            name: "Edit info customer",
+            url: "edit-info/{id}",
+            defaults: new { controller = "Customer", action = "EditInfo" },
+            namespaces: new[] { "webVegankitchen.Controllers" }
+        );
+            //view info
+            routes.MapRoute(
+            name: "View info customer",
+            url: "view-info/{id}",
+            defaults: new { controller = "Customer", action = "ViewInfo" },
+            namespaces: new[] { "webVegankitchen.Controllers" }
+        );
 
 
             routes.MapRoute(

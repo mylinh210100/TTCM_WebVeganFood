@@ -15,15 +15,27 @@ namespace DIO
         {
             context = new DBWebsite();
         }
-        public IEnumerable<Comment> ListAll(string search, int page, int pageSize)
+        public IEnumerable<Comment> ListAll(string search, int? page)
         {
-            IQueryable<Comment> model = context.Comments;
-            if (!string.IsNullOrEmpty(search))
+
+            int recordsPage = 5;
+            if (!page.HasValue)
             {
-                model = model.Where(f => f.Comments.Contains(search) || f.IdProduct.Contains(search) ||
-                                    f.IdAcc.ToString().Contains(search));
+                page = 1;
             }
-            return model.OrderBy(f => f.IdProduct).ToPagedList(page, pageSize);
+            IQueryable<Comment> drink = context.Comments;
+            try
+            {
+                if (!string.IsNullOrEmpty(search))
+                {
+                    drink = drink.Where(f => f.IdAcc.ToString().Contains(search) || f.IdProduct.Contains(search) || f.Comments.Contains(search));
+
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return drink.OrderBy(f => f.IdProduct).ToPagedList(page.Value, recordsPage);
         }
     }
 }

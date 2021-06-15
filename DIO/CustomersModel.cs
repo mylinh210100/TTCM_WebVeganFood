@@ -15,14 +15,28 @@ namespace DIO
         {
             context = new DBWebsite();
         }
-        public IEnumerable<Customer> ListAll(string search, int page, int pageSize)
+        public IEnumerable<Customer> ListAll(string search, int? page)
         {
-            IQueryable<Customer> model = context.Customers;
-            if (!string.IsNullOrEmpty(search))
+
+            int recordsPage = 5;
+            if (!page.HasValue)
             {
-                model = model.Where(f => f.FullName.Contains(search) || f.Phone.ToString().Contains(search));
+                page = 1;
             }
-            return model.OrderBy(f => f.IdCustomer).ToPagedList(page, pageSize);
+            IQueryable<Customer> drink = context.Customers;
+            try
+            {
+                if (!string.IsNullOrEmpty(search))
+                {
+                    drink = drink.Where(f => f.IdAcc.ToString().Contains(search) || f.FullName.Contains(search)
+                                    || f.Phone.Contains(search) || f.Address.Contains(search));
+
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return drink.OrderBy(f => f.IdCustomer).ToPagedList(page.Value, recordsPage);
         }
 
         public long Insert(Customer cus)
@@ -31,6 +45,35 @@ namespace DIO
             context.SaveChanges();
             return cus.IdCustomer;
 
+        }
+
+        public Customer ViewDetail(int id)
+        {
+            return context.Customers.SingleOrDefault(c => c.IdAcc == id);
+        }
+
+        public Customer EditDetail(int id)
+        {
+            return context.Customers.SingleOrDefault(c => c.IdCustomer == id);
+        }
+
+        public bool Update(Customer customer)
+        {
+            try
+            {
+                var c = context.Customers.Find(customer.IdCustomer);
+                c.FullName = customer.FullName;
+                c.Phone = customer.Phone;
+                c.Address = customer.Address;
+                c.Email = customer.Email;
+                context.SaveChanges();
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            return true;
         }
 
     }

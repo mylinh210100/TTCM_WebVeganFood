@@ -20,7 +20,7 @@
             {
                 <div class="row">
                     <div class="col-md-5 input-group pt-1">
-                        <input class="w-50 form-control" type="search" placeholder="Search here..." required="" name="search">
+                        <input class="w-50 form-control" type="search" placeholder="Search here..." required="" name="search" value="@ViewBag.keyword">
                     </div>
                     <div class="col-md-2 pt-1">
                         <button class="btn btn-outline-success" value="" type="submit">Search</button>
@@ -39,6 +39,7 @@
                     <th>Sum of Product (dishes)</th>
                     <th>Id Foundation</th>
                     <th>Total Payment ($)</th>
+                    <th>Acttion</th>
                 </tr>
             </thead>
             <tbody>
@@ -51,11 +52,14 @@
                         <td>@item.SumOfProduct</td>
                         <td>@item.IdFoundation</td>
                         <td>@item.TotalCash</td>
+                        <td>
+                            <a href="/Admin/Orders/OrderDetail/@item.IdOrder" class="btn btn-outline-info">Detail</a>
+                        </td>
                     </tr>
                 }
             </tbody>
         </table>
-        @Html.PagedListPager(Model, page => Url.Action("ViewOrder", new { page }))
+        @Html.PagedListPager(Model, page => Url.Action("ViewOrder", new { page, search = ViewBag.keyword }))
     </div>
 </div>
 

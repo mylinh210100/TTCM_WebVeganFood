@@ -10,10 +10,10 @@ namespace webVegankitchen.Areas.Admin.Controllers
     public class CustomersController : BaseController
     {
         // GET: Admin/Customers
-        public ActionResult ViewCustomer(string search, int page = 1, int pageSz = 10)
+        public ActionResult ViewCustomer(string search, int? page)
         {
-            var listcus = new CustomersModel();
-            var model = listcus.ListAll(search, page, pageSz);
+            var model = new CustomersModel().ListAll(search, page);
+            ViewBag.keyword = search;
             return View(model);
         }
     }

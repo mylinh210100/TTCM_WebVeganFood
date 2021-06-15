@@ -935,6 +935,7 @@
     <Content Include="Content\ckfinder\userfiles\.htaccess" />
     <Content Include="Areas\Admin\Views\ComboDetail\DeleteFood.cshtml" />
     <Content Include="Areas\Admin\Views\ComboDetail\DeleteDrink.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\OrderDetail.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -973,6 +974,7 @@
     <Content Include="Views\Drink\DrinkView.cshtml" />
     <Content Include="Views\HomeCustom\ComboTop.cshtml" />
     <Content Include="Views\Customer\EditInfo.cshtml" />
+    <Content Include="Views\Customer\ViewInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

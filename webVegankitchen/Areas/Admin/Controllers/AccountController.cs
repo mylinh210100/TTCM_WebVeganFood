@@ -10,10 +10,10 @@ namespace webVegankitchen.Areas.Admin.Controllers
     public class AccountController : BaseController
     {
         // GET: Admin/Account
-        public ActionResult AccIndex(string search, int page = 1, int pageSize = 10)
+        public ActionResult AccIndex(string search, int? page)
         {
-            var listacc = new UserModel();
-            var model = listacc.ListAccPaging(search, page, pageSize);
+            var model = new UserModel().ListAccPaging(search, page);
+            ViewBag.keyword = search;
             return View(model);
         }
 

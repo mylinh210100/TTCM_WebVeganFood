@@ -1,19 +1,24 @@
-﻿using DIO;
+﻿using DAO.Model;
+using DIO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace webVegankitchen.Controllers
 {
     public class FoodController : Controller
     {
+        DBWebsite db = new DBWebsite();
         // GET: Food
-        public ActionResult FoodView(int page = 1, int pSz = 4)
+        [HttpGet]
+        public ActionResult FoodView(string search, int? page)
         {
-            var list = new FoodsModel();
-            var model = list.ListFood(page, pSz);
+
+            var model = new FoodsModel().ListFood(search, page);
+            ViewBag.keyword = search;
             return View(model);
         }
 

@@ -10,10 +10,11 @@ namespace webVegankitchen.Controllers
     public class ComboController : Controller
     {
         // GET: Combo
-        public ActionResult Combo(int page = 1, int pSz = 4)
+        [HttpGet]
+        public ActionResult Combo(string search, int? page)
         {
-            var list = new CombosModel();
-            var model = list.ListCombo(page, pSz);
+            var model = new CombosModel().ListAll(search, page);
+            ViewBag.keyword = search;
             return View(model);
         }
 
@@ -21,7 +22,7 @@ namespace webVegankitchen.Controllers
         {
             var combo = new CombosModel().ViewDetail(id);
             ViewBag.othercombo = new CombosModel().ListOther(id, p, pSz);
-            return View();
+            return View(combo);
         }
 
 

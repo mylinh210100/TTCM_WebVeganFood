@@ -17,18 +17,7 @@ namespace DIO
             context = new DBWebsite();
         }
 
-        // for admin
-        public IEnumerable<Food> ListAll(string search, int page, int pageSize)
-        {
-            IQueryable<Food> model = context.Foods;
-            if (!string.IsNullOrEmpty(search))
-            {
-                model = model.Where(f => f.FoodName.Contains(search) || f.FoodPrice.ToString().Contains(search));
-            }
-            return model.OrderBy(f => f.IdFood).ToPagedList(page, pageSize);
-        }
-
-        
+        // for admin        
         public int Insert(string id, string name, double price, string material, string src)
         {
             object[] parameters =
@@ -67,9 +56,27 @@ namespace DIO
         }
 
         // for Client
-        public IEnumerable<Food> ListFood(int page, int psize)
+        public IEnumerable<Food> ListFood(string search, int? page)
         {
-            return context.Foods.OrderBy(f=>f.IdFood).ToPagedList(page, psize);
+            int recordsPage = 5;
+            if (!page.HasValue)
+            {
+                page = 1;
+            }
+            IQueryable<Food> food = context.Foods;
+            try
+            {
+                if (!string.IsNullOrEmpty(search))
+                {
+                    food = food.Where(f => f.FoodName.Contains(search) || f.FoodPrice.ToString().Contains(search) || f.Quantitysold.ToString().Contains(search));
+
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return food.OrderByDescending(f=>f.Quantitysold).ToPagedList(page.Value, recordsPage);
+            
         }
 
         public Food Top()

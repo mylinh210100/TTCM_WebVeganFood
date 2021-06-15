@@ -1,0 +1,49 @@
+﻿@model IEnumerable<DAO.Model.OrderDetail>
+
+@{
+    ViewBag.Title = "OrderDetail";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Areas/ContentAdmin/admin.css" rel="stylesheet" />
+
+<div>
+    @section titlepage{
+        Order detail Page
+    }
+    <hr />
+    <div class="container-fluid">
+        <table class="table table-bordered">
+            <thead class="text-center">
+                <tr>
+                    <th>id order</th>
+                    <th>serial</th>
+                    <th>id food</th>
+                    <th>id drink</th>
+                    <th>id combo</th>
+                    <th>amount</th>
+                    <th>price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.IdOrder</td>
+                        <td>@item.Serial</td>
+                        <td>@item.IdFood</td>
+                        <td>@item.IdDrink</td>
+                        <td>@item.IdCombo</td>
+                        <td>
+                            @item.Amount
+                        </td>
+                        <td>@item.Price</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center col-md-2 p">
+        <a href="@Url.Action("ViewOrder", "Orders")" class="btn btn-back"> Back </a>
+    </div>
+</div>

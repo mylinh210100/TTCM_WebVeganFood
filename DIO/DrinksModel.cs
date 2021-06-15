@@ -16,14 +16,26 @@ namespace DIO
         {
             context = new DBWebsite();
         }
-        public IEnumerable<Drink> ListAll(string search, int page, int pageSz)
+        public IEnumerable<Drink> ListAll(string search, int? page)
         {
-            IQueryable<Drink> model = context.Drinks;
-            if (!string.IsNullOrEmpty(search))
+            int recordsPage = 5;
+            if (!page.HasValue)
             {
-                model = model.Where(f => f.DrinkName.Contains(search) || f.DrinkPrice.ToString().Contains(search));
+                page = 1;
             }
-            return model.OrderBy(f => f.IdDrink).ToPagedList(page, pageSz);
+            IQueryable<Drink> drink = context.Drinks;
+            try
+            {
+                if (!string.IsNullOrEmpty(search))
+                {
+                    drink = drink.Where(f => f.DrinkName.Contains(search) || f.DrinkPrice.ToString().Contains(search));
+
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return drink.OrderByDescending(f => f.Quantitysold).ToPagedList(page.Value, recordsPage);
         }
 
         public int InsertDrink(string id, string name, double price, string material, string src)
@@ -64,11 +76,6 @@ namespace DIO
         }
 
         // for client
-        public IEnumerable<Drink> ListDrink(int page, int pSz)
-        {
-            return context.Drinks.OrderBy(d => d.IdDrink).ToPagedList(page, pSz);
-        }
-
         public Drink Top()
         {
             return context.Drinks.OrderByDescending(d => d.Quantitysold).FirstOrDefault();

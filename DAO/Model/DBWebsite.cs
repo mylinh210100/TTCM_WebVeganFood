@@ -140,5 +140,7 @@ namespace DAO.Model
                 .IsFixedLength()
                 .IsUnicode(false);
         }
+
+        public System.Data.Entity.DbSet<DAO.ViewDetail.OrderViewDetail> OrderViewDetails { get; set; }
     }
 }

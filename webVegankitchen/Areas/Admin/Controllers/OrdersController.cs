@@ -10,10 +10,16 @@ namespace webVegankitchen.Areas.Admin.Controllers
     public class OrdersController : BaseController
     {
         // GET: Admin/Orders
-        public ActionResult ViewOrder(string search, int page = 1, int pageSz = 10)
+        public ActionResult ViewOrder(string search, int? page)
         {
-            var listorder = new OrdersModel();
-            var model = listorder.ListAll(search, page, pageSz);
+            var model = new OrdersModel().ListAll(search, page);
+            ViewBag.keyword = search;
+            return View(model);
+        }
+
+        public ActionResult OrderDetail(int id)
+        {
+            var model = new OrdersModel().ViewDetailOrder(id);
             return View(model);
         }
     }

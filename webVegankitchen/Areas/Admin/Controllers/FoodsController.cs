@@ -13,10 +13,10 @@ namespace webVegankitchen.Areas.Admin.Controllers
     {
         DBWebsite db = new DBWebsite();
         // GET: Admin/Foods
-        public ActionResult FoodIndex(string search, int page = 1, int pageSz = 10)
+        public ActionResult FoodIndex(string search, int? page)
         {
-            var listfood = new FoodsModel();
-            var model = listfood.ListAll(search, page, pageSz);
+            var model = new FoodsModel().ListFood(search, page);
+            ViewBag.keyword = search;
             return View(model);
         }
         [HttpGet]

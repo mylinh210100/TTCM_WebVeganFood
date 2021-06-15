@@ -16,14 +16,27 @@ namespace DIO
         {
             context = new DBWebsite();
         }
-        public IEnumerable<Combo> ListAll(string search, int page, int pSz)
+        public IEnumerable<Combo> ListAll(string search, int? page)
         {
-            IQueryable<Combo> model = context.Comboes;
-            if (!string.IsNullOrEmpty(search))
+            int recordsPage = 5;
+            if (!page.HasValue)
             {
-                model = model.Where(f => f.ComboName.Contains(search) || f.ComboPrice.ToString().Contains(search));
+                page = 1;
             }
-            return model.OrderBy(f => f.IdCombo).ToPagedList(page, pSz);
+            IQueryable<Combo> drink = context.Comboes;
+            try
+            {
+                if (!string.IsNullOrEmpty(search))
+                {
+                    drink = drink.Where(f => f.ComboName.Contains(search) || f.ComboPrice.ToString().Contains(search) ||
+                                        f.IdCombo.Contains(search));
+
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return drink.OrderByDescending(f => f.Quantitysold).ToPagedList(page.Value, recordsPage);
         }
 
         public int Insert(string id, string name, int numofperson, string src)
@@ -63,10 +76,6 @@ namespace DIO
         }
 
         // for client
-        public IEnumerable<Combo> ListCombo(int page, int pSz)
-        {
-            return context.Comboes.OrderBy(c => c.IdCombo).ToPagedList(page, pSz);
-        }
 
         public Combo Top()
         {

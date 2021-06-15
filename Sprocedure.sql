@@ -192,3 +192,14 @@ BEGIN
 	values (@id, @name, @numofperson, @src) 
 END
 
+--view detail order
+
+ALTER	PROCEDURE sp_viewdetail
+@id int 
+AS
+BEGIN
+	SELECT *
+	FROM  OrderDetail b
+	WHERE b.IdOrder = @id 
+END
+

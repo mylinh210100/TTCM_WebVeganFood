@@ -10,10 +10,11 @@ namespace webVegankitchen.Controllers
     public class DrinkController : Controller
     {
         // GET: Drink
-        public ActionResult DrinkView(int page = 1, int pSz = 4)
+        [HttpGet]
+        public ActionResult DrinkView(string search, int? page)
         {
-            var list = new DrinksModel();
-            var model = list.ListDrink(page, pSz);
+            var model = new DrinksModel().ListAll(search, page);
+            ViewBag.keyword = search;
             return View(model);
         }
 

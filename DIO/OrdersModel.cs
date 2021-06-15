@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using PagedList;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
+using System.Data.SqlClient;
 
 namespace DIO
 {
@@ -15,14 +17,33 @@ namespace DIO
         {
             context = new DBWebsite();
         }
-        public IEnumerable<Order> ListAll(string search, int page, int pSz)
+        public IEnumerable<Order> ListAll(string search, int? page)
         {
-            IQueryable<Order> model = context.Orders;
-            if (!string.IsNullOrEmpty(search))
+            int recordsPage = 5;
+            if (!page.HasValue)
             {
-                model = model.Where(f => f.IdFoundation.ToString().Contains(search) || f.IdCustomer.ToString().Contains(search));
+                page = 1;
             }
-            return model.OrderBy(f => f.IdOrder).ToPagedList(page, pSz);
+            IQueryable<Order> drink = context.Orders;
+            try
+            {
+                if (!string.IsNullOrEmpty(search))
+                {
+                    drink = drink.Where(f => f.IdCustomer.ToString().Contains(search) || f.IdFoundation.ToString().Contains(search)
+                                           || f.TotalCash.ToString().Contains(search) || f.Date.ToString().Contains(search) );
+
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return drink.OrderBy(f => f.IdOrder).ToPagedList(page.Value, recordsPage);
+        }
+        
+        public List<OrderDetail> ViewDetailOrder(int id)
+        {
+            return context.OrderDetails.Where(c => c.IdOrder == id).ToList();
+            
         }
 
     }

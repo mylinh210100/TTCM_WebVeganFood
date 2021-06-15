@@ -10,10 +10,10 @@ namespace webVegankitchen.Areas.Admin.Controllers
     public class CommentsController : BaseController
     {
         // GET: Admin/Comments
-        public ActionResult ViewComment(string search, int page = 1, int pageSz = 10)
+        public ActionResult ViewComment(string search, int? page)
         {
-            var listcmt = new CommentsModel();
-            var model = listcmt.ListAll(search, page, pageSz);
+            var model = new CommentsModel().ListAll(search, page);
+            ViewBag.keyword = search;
             return View(model);
         }
     }

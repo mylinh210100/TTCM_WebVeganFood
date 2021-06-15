@@ -16,14 +16,26 @@ namespace DIO
         {
            context = new DBWebsite();
         }
-        public IEnumerable<ComboDrinkDetail> ListAll(string search, int page, int pageSize)
+        public IEnumerable<ComboDrinkDetail> ListAll(string search, int? page)
         {
-            IQueryable<ComboDrinkDetail> model = context.ComboDrinkDetails;
-            if (!string.IsNullOrEmpty(search))
+            int recordsPage = 5;
+            if (!page.HasValue)
             {
-                model = model.Where(f => f.IdCombo.Contains(search) || f.IdDrink.Contains(search));
+                page = 1;
             }
-            return model.OrderBy(f => f.Id).ToPagedList(page, pageSize);
+            IQueryable<ComboDrinkDetail> drink = context.ComboDrinkDetails;
+            try
+            {
+                if (!string.IsNullOrEmpty(search))
+                {
+                    drink = drink.Where(f => f.IdDrink.Contains(search) || f.IdCombo.Contains(search));
+
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return drink.OrderBy(f => f.IdCombo).ToPagedList(page.Value, recordsPage);
         }
 
         public string Insert(ComboDrinkDetail detail)
