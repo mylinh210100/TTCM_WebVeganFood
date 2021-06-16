@@ -34,11 +34,15 @@ namespace DAO.Model
             modelBuilder.Entity<Account>()
                 .Property(e => e.PassWo)
                 .IsUnicode(false);
+            modelBuilder.Entity<Account>()
+                .Property(e => e.ConfirmPass)
+                .IsUnicode(false);
 
             modelBuilder.Entity<Account>()
                 .HasMany(e => e.Comments)
                 .WithRequired(e => e.Account)
                 .WillCascadeOnDelete(false);
+
 
             modelBuilder.Entity<Combo>()
                 .Property(e => e.IdCombo)
@@ -117,6 +121,14 @@ namespace DAO.Model
                 .WillCascadeOnDelete();
 
             modelBuilder.Entity<Foundation>()
+                .Property(e => e.Link)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Foundation>()
+                .Property(e => e.ImgFound)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Foundation>()
                 .HasMany(e => e.Orders)
                 .WithRequired(e => e.Foundation)
                 .HasForeignKey(e => e.IdFoundation)
@@ -141,6 +153,5 @@ namespace DAO.Model
                 .IsUnicode(false);
         }
 
-        public System.Data.Entity.DbSet<DAO.ViewDetail.OrderViewDetail> OrderViewDetails { get; set; }
     }
 }

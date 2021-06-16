@@ -18,10 +18,10 @@ namespace webVegankitchen.Controllers
             return View(model);
         }
 
-        public ActionResult ComboDetail(string id, int p = 1, int pSz = 4)
+        public ActionResult ComboDetail(string id, int page = 1, int pSz = 4)
         {
             var combo = new CombosModel().ViewDetail(id);
-            ViewBag.othercombo = new CombosModel().ListOther(id, p, pSz);
+            ViewBag.othercombo = new CombosModel().ListOther(id, page, pSz);
             return View(combo);
         }
 

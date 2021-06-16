@@ -27,8 +27,10 @@ namespace DAO.Model
 
         public double TotalCash { get; set; }
 
+        [StringLength(500)]
         public string ImgFound { get; set; }
 
+        [StringLength(500)]
         public string Link { get; set; }
 
         public int Status { get; set; }

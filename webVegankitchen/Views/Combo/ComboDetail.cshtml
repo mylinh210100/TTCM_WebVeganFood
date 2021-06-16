@@ -1,11 +1,15 @@
 ﻿@using PagedList.Mvc;
-@model DAO.Model.Combo 
+
+@model DAO.Model.Combo
 
 @{
     ViewBag.Title = "ComboDetail";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     var otherCombo = (PagedList.PagedList<DAO.Model.Combo>)ViewBag.othercombo;
+
+    var session1 = Session["login"] as webVegankitchen.Common.UserLogin;
+    var session2 = Session["newinfo"] as DAO.Model.Customer;
 }
 
 <link rel="stylesheet" href="~/Content/css/food.css">
@@ -27,9 +31,22 @@
                         <p class="material">Number of Drinks: <span>@Model.NumberOfDinks</span></p>
                         <p class="material">Number of people: <span>@Model.NumberOfPerson</span></p>
                     </div>
-                    <div>
-                        <button class="btn-select btn">Select</button>
-                    </div>
+                    @if (session1 == null && session2 == null)
+                    {
+                        <div class=" mt-2 text-right">
+                            <a href="/sign-in/" class="btn btn-outline-primary">
+                                Buy
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div>
+                            <a href="/add-item?id=@Model.IdCombo&amount=1&name=@Model.ComboName&price=@Model.ComboPrice" class="btn-select btn">
+                                Buy
+                            </a>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
@@ -45,13 +62,12 @@
             <div class="col-md-3 gal-img mt-2">
                 <div class="food-info">
                     <div class="men-thumb-item">
-                        <a href="/food-detail/@item.IdCombo"><img src="@item.ImgCombo" class="img-fluid" alt="" style="height: 300px;"></a>
+                        <a href="/food-detail/@item.IdCombo"><img src="@item.ImgCombo" class="img-fluid" alt="" style="height: 250px;"></a>
                     </div>
                     <div class="text-center">
                         <h4 class="cate">
                             <a href="/food-detail/@item.IdCombo">
-                                @item.ComboName'
-                                '
+                                @item.ComboName
                             </a>
                         </h4>
                         <div class="product_price">

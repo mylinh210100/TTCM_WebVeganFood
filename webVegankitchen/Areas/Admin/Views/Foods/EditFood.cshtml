@@ -17,12 +17,12 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @*<div class="form-group">
-            @Html.LabelFor(model => model.IdFood, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IdFood, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IdFood, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+                @Html.LabelFor(model => model.IdFood, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.IdFood, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IdFood, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
         <div class="form-group">
             @Html.LabelFor(model => model.FoodName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -50,17 +50,33 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ImgFood, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ImgFood, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBoxFor(model => model.ImgFood, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ImgFood, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-outline-success mt-2" type="button" id="btnselectImg" style="font-family:'Times New Roman'; font-size:15px;">
+                    Select Img
+                </button>
             </div>
         </div>
         <div class="row container">
-        <div class="col-md-1 text-center mt-2">
-            <input type="submit" value="Update" class="btn btn-add"/>
-        </div>
-        <div class="text-center col-md-2 mt-2">
-            <a href="@Url.Action("FoodIndex", "Foods")" class="btn btn-back"> Back</a>
-        </div>
+            <div class="col-md-2 text-center mt-2">
+                <input type="submit" value="Update" class="btn btn-add" />
+            </div>
+            <div class="col-md-2 mt-2">
+                <a href="@Url.Action("FoodIndex", "Foods")" class="btn btn-back"> Back</a>
+            </div>
         </div>
     </div>
+}
+@section jsFooter{
+    <script>
+        $('#btnselectImg').on('click', function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (url) {
+                $('#txtImg').val(url);
+            };
+            finder.popup();
+        })
+    </script>
 }

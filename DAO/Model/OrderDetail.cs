@@ -9,15 +9,12 @@ namespace DAO.Model
     [Table("OrderDetail")]
     public partial class OrderDetail
     {
-        [Key]
-        [Column(Order = 0)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int IdOrder { get; set; }
+        
 
         [Key]
-        [Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Serial { get; set; }
+
+        public int IdOrder { get; set; }
 
         [StringLength(50)]
         public string IdFood { get; set; }
@@ -31,6 +28,8 @@ namespace DAO.Model
         public int Amount { get; set; }
 
         public double Price { get; set; }
+
+        public double? IntoMoney { get; set; }
 
         public virtual Combo Combo { get; set; }
 

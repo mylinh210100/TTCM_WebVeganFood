@@ -8,6 +8,11 @@
     var otherfood = (PagedList.PagedList<DAO.Model.Food>)ViewBag.OtherFood;
 }
 
+@{
+    var session1 = Session["login"] as webVegankitchen.Common.UserLogin;
+    var session2 = Session["newinfo"] as DAO.Model.Customer;
+}
+
 <link rel="stylesheet" href="~/Content/css/food.css">
 <link rel="stylesheet" href="~/Content/css/style.css">
 <link href="~/Content/PagedList.css" rel="stylesheet" />
@@ -26,9 +31,23 @@
                     <div class="available mt-3">
                         <p class="material">Material: @Model.Foodmaterial</p>
                     </div>
-                    <div>
-                        <button class="btn-select btn">Select</button>
-                    </div>
+                    @if (session1 == null && session2 == null)
+                    {
+                        <div class=" mt-2 text-right">
+                            <a href="/sign-in/" class="btn btn-outline-primary">
+                                Buy
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div>
+                            <a href="/add-item?id=@Model.IdFood&amount=1&name=@Model.FoodName&price=@Model.FoodPrice" class="btn-select btn">
+                                Buy
+                            </a>
+                        </div>
+                    }
+
                 </div>
             </div>
 

@@ -6,6 +6,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@{
+    var session1 = Session["login"] as webVegankitchen.Common.UserLogin;
+    var session2 = Session["newinfo"] as DAO.Model.Customer;
+}
+
 <link rel="stylesheet" href="~/Content/css/food.css">
 <link rel="stylesheet" href="~/Content/css/style.css">
 <link href="~/Content/PagedList.css" rel="stylesheet" />
@@ -45,9 +50,23 @@
                                     <div>
                                         <span class="price">$ @item.FoodPrice</span>
                                     </div>
-                                    <div class=" mt-2">
-                                        <a class="btn btn-outline-primary">Select</a>
-                                    </div>
+                                    <!--btn buy-->
+                                    @if (session1 == null && session2 == null)
+                                    {
+                                        <div class=" mt-2">
+                                            <a href="/sign-in/" class="btn btn-outline-primary">
+                                                Buy
+                                            </a>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class=" mt-2">
+                                            <a href="/add-item?id=@item.IdFood&amount=1&name=@item.FoodName&price=@item.FoodPrice" class="btn btn-outline-primary">
+                                                Buy
+                                            </a>
+                                        </div>
+                                    }
                                 </div>
                             </div>
 

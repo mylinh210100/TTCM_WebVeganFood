@@ -46,5 +46,11 @@ namespace DIO
             
         }
 
+
+        public Order ViewID()
+        {
+            return context.Orders.OrderByDescending(o => o.IdOrder).FirstOrDefault();
+        }
+
     }
 }

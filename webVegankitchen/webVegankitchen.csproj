@@ -179,6 +179,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\UserLoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Common\UserLogin.cs" />
@@ -975,12 +976,13 @@
     <Content Include="Views\HomeCustom\ComboTop.cshtml" />
     <Content Include="Views\Customer\EditInfo.cshtml" />
     <Content Include="Views\Customer\ViewInfo.cshtml" />
+    <Content Include="Views\Order\Order.cshtml" />
+    <Content Include="Views\Order\OrderMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Views\Comment\" />
-    <Folder Include="Views\Order\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

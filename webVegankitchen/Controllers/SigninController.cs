@@ -74,7 +74,7 @@ namespace webVegankitchen.Controllers
                 {
                     if (acc.PassWo != acc.ConfirmPass)
                     {
-                        ModelState.AddModelError("", "Your confirm password incorrect!");
+                        ModelState.AddModelError("", "Your confirmpassword incorrect!");
                     }
                     else
                     {

@@ -16,21 +16,24 @@
         <table class="table table-bordered">
             <thead class="text-center">
                 <tr>
-                    <th>id order</th>
-                    <th>serial</th>
-                    <th>id food</th>
-                    <th>id drink</th>
-                    <th>id combo</th>
-                    <th>amount</th>
-                    <th>price</th>
+
+                    <th>Serial</th>
+                    <th>Id order</th>
+                    <th>Id food</th>
+                    <th>Id drink</th>
+                    <th>Id combo</th>
+                    <th>Amount</th>
+                    <th>Price</th>
+                    <th>Into Money</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.IdOrder</td>
+
                         <td>@item.Serial</td>
+                        <td>@item.IdOrder</td>
                         <td>@item.IdFood</td>
                         <td>@item.IdDrink</td>
                         <td>@item.IdCombo</td>
@@ -38,6 +41,9 @@
                             @item.Amount
                         </td>
                         <td>@item.Price</td>
+                        <td>
+                            @item.IntoMoney
+                        </td>
                     </tr>
                 }
             </tbody>

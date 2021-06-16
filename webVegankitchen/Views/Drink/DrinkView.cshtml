@@ -4,6 +4,9 @@
 @{
     ViewBag.Title = "DrinkView";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var session1 = Session["login"] as webVegankitchen.Common.UserLogin;
+    var session2 = Session["newinfo"] as DAO.Model.Customer;
 }
 
 <link rel="stylesheet" href="~/Content/css/food.css">
@@ -46,9 +49,23 @@
                                     <div>
                                         <span class="price">$ @item.DrinkPrice</span>
                                     </div>
-                                    <div class=" mt-2">
-                                        <button class="btn btn-outline-primary">Select</button>
-                                    </div>
+                                    <!--btn buy-->
+                                    @if (session1 == null && session2 == null)
+                                    {
+                                        <div class=" mt-2">
+                                            <a href="/sign-in/" class="btn btn-outline-primary">
+                                                Buy
+                                            </a>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class=" mt-2">
+                                            <a href="/add-item?id=@item.IdDrink&amount=1&name=@item.DrinkName&price=@item.DrinkPrice" class="btn btn-outline-primary">
+                                                Buy
+                                            </a>
+                                        </div>
+                                    }
                                 </div>
                             </div>
 
@@ -59,7 +76,7 @@
             }
         </table>
         <div class="mt-3 container-fluid">
-            @Html.PagedListPager(Model, page => Url.Action("DrinkView", new { page , search = ViewBag.keyword }))
+            @Html.PagedListPager(Model, page => Url.Action("DrinkView", new { page, search = ViewBag.keyword }))
         </div>
     </div>
 </div>

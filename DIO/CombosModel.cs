@@ -84,7 +84,7 @@ namespace DIO
 
         public IEnumerable<Combo> ListOther(string id, int page, int pageSz)
         {
-            return context.Comboes.Where(c => c.IdCombo != id).OrderBy(c => c.IdCombo).ToPagedList(page, pageSz);
+            return context.Comboes.Where(c => c.IdCombo != id).OrderByDescending(c => c.IdCombo).ToPagedList(page, pageSz);
         }
     }
 }

@@ -4,6 +4,9 @@
 @{
     ViewBag.Title = "Combo";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var session1 = Session["login"] as webVegankitchen.Common.UserLogin;
+    var session2 = Session["newinfo"] as DAO.Model.Customer;
 }
 
 
@@ -46,9 +49,22 @@
                                     <div>
                                         <span class="price">$ @item.ComboPrice</span>
                                     </div>
-                                    <div class=" mt-2">
-                                        <button class="btn btn-outline-primary">Select</button>
-                                    </div>
+                                    @if (session1 == null && session2 == null)
+                                    {
+                                        <div class=" mt-2">
+                                            <a href="/sign-in/" class="btn btn-outline-primary">
+                                                Buy
+                                            </a>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class=" mt-2">
+                                            <a href="/add-item?id=@item.IdCombo&amount=1&name=@item.ComboName&price=@item.ComboPrice" class="btn btn-outline-primary">
+                                                Buy
+                                            </a>
+                                        </div>
+                                    }
                                 </div>
                             </div>
 

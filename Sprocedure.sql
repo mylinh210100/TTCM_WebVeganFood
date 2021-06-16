@@ -88,15 +88,16 @@ BEGIN
 END
 
 --7 UPDATE TOTALCASH FOR ORDER FROM ORDER_DETAIL
-CREATE TRIGGER trg_TotalCashOrder
+ALTER TRIGGER trg_TotalCashOrder
 ON OrderDetail
 AFTER INSERT AS
 BEGIN
 	UPDATE [Order]
-	SET TotalCash = TotalCash + (SELECT SUM(a.Price) FROM inserted a WHERE a.IdOrder = [Order].IdOrder) 
+	SET TotalCash = TotalCash + (SELECT SUM(a.IntoMoney) FROM inserted a WHERE a.IdOrder = [Order].IdOrder) 
 	FROM [Order]
 	JOIN inserted ON [Order].IdOrder = inserted.IdOrder
 END
+
 
 --8  UPDATE QUANTITYSOLD FOR FOOD, DRINK, COMBO FROM OERDER_DETAIL
 ALTER TRIGGER trg_updateQuantitysoldFood
@@ -168,6 +169,8 @@ BEGIN
 	insert into Food(IdFood, FoodName, FoodPrice, Foodmaterial, ImgFood)
 	values (@id, @name, @price, @material, @src) 
 END
+
+
 --12
 CREATE PROCEDURE sp_Drink_Insert
 	@id varchar(50),
