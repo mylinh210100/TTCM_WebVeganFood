@@ -885,6 +885,7 @@
     <Content Include="Content\images\traitimchoem.png" />
     <Content Include="Content\images\vlogo.png" />
     <Content Include="Content\images\watermelonjuice.jpg" />
+    <Content Include="Content\js\orderController.js" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -978,6 +979,8 @@
     <Content Include="Views\Customer\ViewInfo.cshtml" />
     <Content Include="Views\Order\Order.cshtml" />
     <Content Include="Views\Order\OrderMenu.cshtml" />
+    <Content Include="Views\Food\AddComment.cshtml" />
+    <Content Include="Views\Food\BtnBuy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

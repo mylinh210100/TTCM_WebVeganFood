@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DIO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,9 +10,17 @@ namespace webVegankitchen.Controllers
     public class CommentController : Controller
     {
         // GET: Comment
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult ViewComment()
         {
+            
             return View();
         }
+
+        //[HttpPost]
+        //public ActionResult ViewComment()
+        //{
+
+        //}
     }
 }

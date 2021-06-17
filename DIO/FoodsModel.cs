@@ -32,6 +32,9 @@ namespace DIO
             return add;
         }
 
+
+
+
         public Food ViewDetail(string id)
         {
             return context.Foods.SingleOrDefault(f => f.IdFood == id);

@@ -18,6 +18,7 @@
 <div class="search-form ml-auto mt-2">
     @using (Html.BeginForm("FoodView", "Food", FormMethod.Get))
     {
+        <!--search form-->
         <div class="row">
             <div class="col-md-6 input-group pt-1">
                 <input class="w-50 form-control" type="search" placeholder="Search here..." required="" name="search" value="@ViewBag.keyword">
@@ -30,6 +31,7 @@
 </div>
 <div class="container-fluid py-lg-3  text-center">
     <div>
+        <!--list product-->
         <table style="display:inline-block">
             @foreach (var item in Model)
             {
@@ -62,7 +64,7 @@
                                     else
                                     {
                                         <div class=" mt-2">
-                                            <a href="/add-item?id=@item.IdFood&amount=1&name=@item.FoodName&price=@item.FoodPrice" class="btn btn-outline-primary">
+                                            <a href="/add-item?id=@item.IdFood&amount=1&name=@item.FoodName&price=@item.FoodPrice" class="btn btn-outline-primary" >
                                                 Buy
                                             </a>
                                         </div>

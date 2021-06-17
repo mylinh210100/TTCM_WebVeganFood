@@ -20,7 +20,13 @@ namespace webVegankitchen
             defaults: new { controller = "Order", action = "AddItem" },
             namespaces: new[] { "webVegankitchen.Controllers" }
         );
-
+            //add cmt
+            routes.MapRoute(
+            name: "Add Comment",
+            url: "comment-food",
+            defaults: new { controller = "Food", action = "CommentFood" },
+            namespaces: new[] { "webVegankitchen.Controllers" }
+        );
 
             //sign out
             routes.MapRoute(

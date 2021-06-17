@@ -10,6 +10,8 @@ namespace DAO.Model
     public partial class Comment
     {
         [Key]
+        public int IdComment { get; set; }
+
         [StringLength(50)]
         public string IdProduct { get; set; }
 

@@ -1,0 +1,23 @@
+﻿@model DAO.Model.Food
+@{
+
+    var session1 = Session["login"] as webVegankitchen.Common.UserLogin;
+    var session2 = Session["newinfo"] as DAO.Model.Customer;
+    var idproduct = Session["idf"] as DAO.Model.Food;
+}
+@if (session1 == null && session2 == null)
+{
+    <div class=" mt-2 text-right">
+        <a href="/sign-in/" class="btn btn-outline-primary">
+            Buy
+        </a>
+    </div>
+}
+else if (session1 != null)
+{
+    <div>
+        <a href="/add-item?id=@Model.IdFood&amount=1&name=@Model.FoodName&price=@Model.FoodPrice" class="btn-select btn">
+            Buy
+        </a>
+    </div>
+}

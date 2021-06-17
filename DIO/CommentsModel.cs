@@ -35,7 +35,20 @@ namespace DIO
             catch (Exception ex)
             {
             }
-            return drink.OrderBy(f => f.IdProduct).ToPagedList(page.Value, recordsPage);
+            return drink.OrderBy(f => f.IdComment).ToPagedList(page.Value, recordsPage);
+        }
+
+        public IEnumerable<Comment> ViewComment(string id)
+        {
+            return context.Comments.Where(c => c.IdProduct == id).ToList();
+        }
+
+
+        public int InsertCmt(Comment comment)
+        {
+            context.Comments.Add(comment);
+            context.SaveChanges();
+            return comment.IdComment;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<webVegankitchen.Models.CartItem>
+﻿@model List<webVegankitchen.Models.CartItem>
 
 @{
     ViewBag.Title = "Order";
@@ -7,8 +7,12 @@
     var idorder = Session["idOrder"] as DAO.Model.Order;
     var session1 = Session["login"] as webVegankitchen.Common.UserLogin;
     var session2 = Session["newinfo"] as DAO.Model.Customer;
-}
 
+    double totalpayment = 0;
+}
+@section jsfooter{
+    <script src="~/Content/js/orderController.js"></script>
+    }
 
 <div class="text-center mt-2 mb-2">
     <h2 style="font-family:'Times New Roman'; color:#0094ff">Order detail</h2>
@@ -18,9 +22,8 @@
     <div class="container">
         <div>
             <h5 style="font-family:'Times New Roman'; font-size:20px; color:#1228a3">Customer: @session1.UserName </h5>
-            <h5 style="font-family:'Times New Roman'; font-size:20px;" class="mt-2">Date: </h5>
         </div>
-        <div class="mt-5">
+        <div class="mt-4">
             <table class="table text-center" style="font-family:'Times New Roman'">
                 <thead>
                     <tr>
@@ -36,7 +39,8 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-
+                        <lable hidden="@(totalpayment += item.Price * item.Amount)"></lable>
+                        
                         <tr>
                             <td>@(idorder.IdCustomer + 1)</td>
                             <td>@item.IdProduct</td>
@@ -56,31 +60,38 @@
                             </td>
                         </tr>
                     }
-
                 </tbody>
             </table>
         </div>
         <div class="row mt-4">
             <div class="col-md-10 text-right">
                 <a style="font-family:'Times New Roman';font-size:25px; ">Total Money: </a>
-                <a style="font-family: 'Times New Roman'; color: #ff0000; font-size: 30px; "> $5</a>
+                <a style="font-family: 'Times New Roman'; color: #ff0000; font-size: 30px; "> $@totalpayment</a>
             </div>
             <div class="col-md-2 text-right">
                 <a href="" class="btn" style="font-family:'Times New Roman'; color:white;  background:#ff6a00; border-width:2px;">
-                    Order
+                    Payment
                 </a>
             </div>
+        </div>
+        <div class="container text-center mt-5">
+            <a href="/" class="btn" style="font-family:'Times New Roman'; color:white;  background:#1228a3; border-width:2px;" id="btnContinue">
+                Continue buying
+            </a>
+            <a href="/" class="btn ml-3" style="font-family:'Times New Roman'; color:white;  background:#1228a3; border-width:2px;" id="btnContinue">
+                Update Order
+            </a>
         </div>
     </div>
 }
 else
 {
     <div class="container text-center">
-        <h3 style="font-family:'Times New Roman'">Empty Cart</h3>
+        <h3 style="font-family:'Times New Roman'">Empty Order</h3>
     </div>
     <div class="container text-center mt-5">
         <a href="/" class="btn" style="font-family:'Times New Roman'; color:white;  background:#ff6a00; border-width:2px;">
-            Go on buying
+            Continue buying
         </a>
     </div>
 }
