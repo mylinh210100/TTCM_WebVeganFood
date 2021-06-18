@@ -46,7 +46,10 @@ namespace DIO
             
         }
 
-
+        public List<Foundation> ListID()
+        {
+            return context.Foundations.Where(f => f.Status == 1).ToList();
+        }
         public Order ViewID()
         {
             return context.Orders.OrderByDescending(o => o.IdOrder).FirstOrDefault();

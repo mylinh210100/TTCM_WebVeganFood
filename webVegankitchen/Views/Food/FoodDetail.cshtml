@@ -10,6 +10,10 @@
     var cmt = (IEnumerable<DAO.Model.Comment>)ViewBag.comment;
 
 }
+@{
+    var session1 = Session["login"] as webVegankitchen.Common.UserLogin;
+    var session2 = Session["newinfo"] as DAO.Model.Customer;
+}
 
 <link rel="stylesheet" href="~/Content/css/food.css">
 <link rel="stylesheet" href="~/Content/css/style.css">
@@ -29,7 +33,23 @@
                     <div class="available mt-3">
                         <p class="material">Material: @Model.Foodmaterial</p>
                     </div>
-                    @{ Html.RenderAction("BtnBuy", "Food");}
+
+                    @if (session1 == null && session2 == null)
+                    {
+                        <div class=" mt-2 text-right">
+                            <a href="/sign-in/" class="btn btn-outline-primary">
+                                Buy
+                            </a>
+                        </div>
+                    }
+                    else if (session1 != null)
+                    {
+                        <div>
+                            <a href="/add-item?id=@Model.IdFood&amount=1&name=@Model.FoodName&price=@Model.FoodPrice" class="btn-select btn">
+                                Buy
+                            </a>
+                        </div>
+                    }
 
                 </div>
             </div>
@@ -68,10 +88,6 @@
     <!--Comment-->
     <hr />
     <div class="mt-4 container">
-        <div>
-            <h3>You can add your comment here:</h3>
-        </div>
-        @{ Html.RenderAction("AddComment", "Food");}
         <div class="mt-3">
             <h3>Comment:</h3>
         </div>
@@ -91,9 +107,6 @@
                 </div>
             </div>
         }
-
-
-
     </div>
     <!--//Comment-->
 </section>

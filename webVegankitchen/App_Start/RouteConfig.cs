@@ -13,18 +13,18 @@ namespace webVegankitchen
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            //order
+            //add to cart
             routes.MapRoute(
             name: "Add Order",
             url: "add-item",
             defaults: new { controller = "Order", action = "AddItem" },
             namespaces: new[] { "webVegankitchen.Controllers" }
         );
-            //add cmt
+            //cart
             routes.MapRoute(
-            name: "Add Comment",
-            url: "comment-food",
-            defaults: new { controller = "Food", action = "CommentFood" },
+            name: "Order",
+            url: "order",
+            defaults: new { controller = "Order", action = "Order" },
             namespaces: new[] { "webVegankitchen.Controllers" }
         );
 

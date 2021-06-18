@@ -1,5 +1,4 @@
 ﻿@using PagedList.Mvc;
-
 @model DAO.Model.Drink
 
 @{
@@ -61,11 +60,11 @@
             <div class="col-md-3 gal-img mt-2">
                 <div class="food-info">
                     <div class="men-thumb-item">
-                        <a href="/food-detail/@item.IdDrink"><img src="@item.ImgDrink" class="img-fluid" alt="" style="height: 250px;"></a>
+                        <a href="/drink-detail/@item.IdDrink"><img src="@item.ImgDrink" class="img-fluid" alt="" style="height: 250px;"></a>
                     </div>
                     <div class="text-center">
                         <h4 class="cate">
-                            <a href="/food-detail/@item.IdDrink">
+                            <a href="/drink-detail/@item.IdDrink">
                                 @item.DrinkName
                             </a>
                         </h4>

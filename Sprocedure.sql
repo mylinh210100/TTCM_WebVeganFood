@@ -117,18 +117,18 @@ AFTER INSERT AS
 BEGIN
 	UPDATE Drink
 	SET Quantitysold = Drink.Quantitysold + (SELECT SUM(a.Amount) FROM inserted a
-							WHERE a.IdFood = Drink.IdDrink)
+							WHERE a.IdDrink = Drink.IdDrink)
 	FROM Drink
 	JOIN inserted ON Drink.IdDrink = inserted.IdDrink
 END
 --10
-CREATE TRIGGER trg_updateQuantitysoldCombo
+ALTER TRIGGER trg_updateQuantitysoldCombo
 ON OrderDetail
 AFTER INSERT AS
 BEGIN
 	UPDATE Combo
 	SET Quantitysold = Quantitysold + (SELECT SUM(a.Amount) FROM inserted a
-							WHERE a.IdFood = Combo.IdCombo)
+							WHERE a.IdCombo = Combo.IdCombo)
 	FROM Combo
 	JOIN inserted ON Combo.IdCombo = inserted.IdCombo
 END

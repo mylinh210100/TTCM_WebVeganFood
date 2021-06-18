@@ -4,9 +4,7 @@
 @{
     ViewBag.Title = "FoodView";
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
 
-@{
     var session1 = Session["login"] as webVegankitchen.Common.UserLogin;
     var session2 = Session["newinfo"] as DAO.Model.Customer;
 }
@@ -64,7 +62,7 @@
                                     else
                                     {
                                         <div class=" mt-2">
-                                            <a href="/add-item?id=@item.IdFood&amount=1&name=@item.FoodName&price=@item.FoodPrice" class="btn btn-outline-primary" >
+                                            <a href="/add-item?id=@item.IdFood&amount=1&name=@item.FoodName&price=@item.FoodPrice" class="btn btn-outline-primary">
                                                 Buy
                                             </a>
                                         </div>

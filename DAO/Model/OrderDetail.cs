@@ -22,14 +22,14 @@ namespace DAO.Model
         [StringLength(50)]
         public string IdDrink { get; set; }
 
-        [StringLength(10)]
+        [StringLength(50)]
         public string IdCombo { get; set; }
 
         public int Amount { get; set; }
 
         public double Price { get; set; }
 
-        public double? IntoMoney { get; set; }
+        public double IntoMoney { get; set; }
 
         public virtual Combo Combo { get; set; }
 

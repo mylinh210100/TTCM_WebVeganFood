@@ -7,12 +7,16 @@
     var idorder = Session["idOrder"] as DAO.Model.Order;
     var session1 = Session["login"] as webVegankitchen.Common.UserLogin;
     var session2 = Session["newinfo"] as DAO.Model.Customer;
+    var idfound = (IEnumerable<DAO.Model.Foundation>)ViewBag.idFound;
 
     double totalpayment = 0;
 }
 @section jsfooter{
     <script src="~/Content/js/orderController.js"></script>
-    }
+}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="~/Content/css/bootstrap.css">
 
 <div class="text-center mt-2 mb-2">
     <h2 style="font-family:'Times New Roman'; color:#0094ff">Order detail</h2>
@@ -21,7 +25,17 @@
 {
     <div class="container">
         <div>
+            <h5 style="font-family:'Times New Roman'; font-size:20px; color:#1228a3">IDCustomer: @session1.IdCustomer </h5>
             <h5 style="font-family:'Times New Roman'; font-size:20px; color:#1228a3">Customer: @session1.UserName </h5>
+        </div>
+        <div class="mt-2">
+            <a style="font-family:'Times New Roman'; font-size:20px; color:#1228a3">List of Foudation </a>
+            <br />
+            @foreach (var item in idfound)
+            {
+                <a style="font-family: 'Times New Roman'; font-size: 20px;" class="mb-2">@item.IdFound: @item.FoundationName</a>
+                <br />
+            }
         </div>
         <div class="mt-4">
             <table class="table text-center" style="font-family:'Times New Roman'">
@@ -39,17 +53,17 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <lable hidden="@(totalpayment += item.Price * item.Amount)"></lable>
-                        
+                        <lable hidden="@(totalpayment += item.Amount * item.Price)"></lable>
+
                         <tr>
                             <td>@(idorder.IdCustomer + 1)</td>
                             <td>@item.IdProduct</td>
                             <td>@item.ProductName</td>
-                            <td>@item.Amount</td>
+                            <td><input value="@item.Amount" data-id="@item.IdProduct" class="txtamount" style="font-family:'Times New Roman'; width:100px;" type="number" /></td>
                             <td>@item.Price</td>
-                            <td style=" color:#ff0000">@(item.Amount * item.Price)</td>
+                            <td style="color: #ff0000"><input type="hidden" style=" width: 10px; color:#ff0000" value="@(item.Amount * item.Price)" readonly="readonly" name="intomoney" />@(item.Amount * item.Price)</td>
                             <td>
-                                <a class="btn btn-outline-danger">
+                                <a class="btn btn-outline-danger" href="/Order/RemoveCart/@item.IdProduct">
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                             <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
@@ -63,25 +77,37 @@
                 </tbody>
             </table>
         </div>
-        <div class="row mt-4">
-            <div class="col-md-10 text-right">
-                <a style="font-family:'Times New Roman';font-size:25px; ">Total Money: </a>
-                <a style="font-family: 'Times New Roman'; color: #ff0000; font-size: 30px; "> $@totalpayment</a>
-            </div>
-            <div class="col-md-2 text-right">
-                <a href="" class="btn" style="font-family:'Times New Roman'; color:white;  background:#ff6a00; border-width:2px;">
-                    Payment
-                </a>
-            </div>
-        </div>
-        <div class="container text-center mt-5">
-            <a href="/" class="btn" style="font-family:'Times New Roman'; color:white;  background:#1228a3; border-width:2px;" id="btnContinue">
+        <hr />
+        <div class="container text-center mt-3">
+            <button class="btn" style="font-family:'Times New Roman'; color:white;  background:#1228a3; border-width:2px;" id="btnContinue">
                 Continue buying
-            </a>
-            <a href="/" class="btn ml-3" style="font-family:'Times New Roman'; color:white;  background:#1228a3; border-width:2px;" id="btnContinue">
+            </button>
+            <button class="btn ml-3" style="font-family:'Times New Roman'; color:white;  background:#1228a3; border-width:2px;" id="btnUpdate">
                 Update Order
-            </a>
+            </button>
         </div>
+        @using (Html.BeginForm("CheckOut", "Order"))
+        {
+            <div class="mt-4 text-center">
+                <a style="font-family:'Times New Roman';font-size:25px;">Total Payment: $ @totalpayment</a>
+                    <input style="font-family: 'Times New Roman'; color: #ff0000; font-size: 30px; " name="totalpayment" type="hidden" value=" @totalpayment" /> 
+            </div>
+            <div class="text-center mt-4">
+                <div class="mt-2">
+                    <a style="font-family:'Times New Roman';font-size:20px; color:#b22020" class="mr-2 input">Input Your IDCustomer: </a>
+                    <input class="input" type="text" name="idCustomer" required style="width: 70px;" />
+                </div>
+                <div class="mt-2">
+                    <a style="font-family: 'Times New Roman'; font-size: 20px; color: #b22020" class="mr-2 input">Donate for: </a>
+                    <input type="number" max="4" min="1" required name="idfound" />
+                </div>
+                <div class="text-center mt-2">
+                    <button type="submit" class="btn" style="font-family:'Times New Roman'; color:white;  background:#ff6a00; border-width:2px;">
+                        Payment
+                    </button>
+                </div>
+            </div>
+        }
     </div>
 }
 else
@@ -95,5 +121,4 @@ else
         </a>
     </div>
 }
-
 

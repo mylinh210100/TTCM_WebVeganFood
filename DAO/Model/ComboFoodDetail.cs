@@ -12,7 +12,7 @@ namespace DAO.Model
         public int Id { get; set; }
 
         [Required(ErrorMessage = "You must input to this field")]
-        [StringLength(10)]
+        [StringLength(50)]
         public string IdCombo { get; set; }
 
         [Required(ErrorMessage = "You must input to this field")]

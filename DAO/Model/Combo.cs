@@ -18,7 +18,7 @@ namespace DAO.Model
         }
 
         [Key]
-        [StringLength(10)]
+        [StringLength(50)]
         [Required(ErrorMessage = "You must input to this field")]
         public string IdCombo { get; set; }
 

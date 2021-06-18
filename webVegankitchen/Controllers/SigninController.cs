@@ -12,6 +12,7 @@ namespace webVegankitchen.Controllers
 {
     public class SigninController : Controller
     {
+        DBWebsite db = new DBWebsite();
         // GET: Signin
         [HttpGet]
         public ActionResult Signin()
@@ -31,8 +32,10 @@ namespace webVegankitchen.Controllers
                 {
                     var user = dao.GetByName(model.UserName);
                     var usession = new UserLogin();
+                    var idCus = db.Customers.SingleOrDefault(s => s.IdAcc == user.IdAcc);
                     usession.UserName = user.Username;
                     usession.Id = user.IdAcc;
+                    usession.IdCustomer = idCus.IdCustomer;
                     Session["login"] = usession;
                     return Redirect("/");
                 }
