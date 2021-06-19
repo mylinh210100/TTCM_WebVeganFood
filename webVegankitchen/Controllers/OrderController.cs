@@ -128,19 +128,16 @@ namespace webVegankitchen.Controllers
                 var idOrder = new OrdersModel().ViewID();
                 var sscart = Session[cartsession];
                 var list = (List<CartItem>)sscart;
-                Foundation found = new Foundation();
+                //Foundation found = new Foundation();
                 Order order = new Order();
                 // add to order
                 order.Date = DateTime.Now;
                 order.IdCustomer = int.Parse(form["idCustomer"]);
                 order.IdFoundation = int.Parse(form["idfound"]);
                 order.SumOfProduct = list.Count;
+                order.Discount = 0;
                 order.TotalCash = float.Parse(form["totalpayment"]);
                 db.Orders.Add(order);
-                // add cash to foundation
-                db.Foundations.SingleOrDefault(f => f.IdFound == int.Parse(form["idfound"]));
-                found.TotalCash += float.Parse(form["totalpayment"]) * 0.1;
-                db.Foundations.Add(found);
                 foreach (var item in list)
                 {
 

@@ -146,12 +146,12 @@ BEGIN
 END
 
 --UPDATE TOTAL_CASH FOR FOUNDATION FROM ORDER
-ALTER TRIGGER trg_TotalCashFoundation
+ALter TRIGGER trg_TotalCashFoundation
 ON [Order]
 AFTER INSERT AS
 BEGIN
 	UPDATE Foundation
-	SET TotalCash = Foundation.TotalCash + (SELECT COUNT(a.TotalCash)  FROM inserted a WHERE a.IdFoundation = Foundation.IdFound)*0.1
+	SET TotalCash = Foundation.TotalCash + (SELECT a.TotalCash  FROM inserted a WHERE a.IdFoundation = Foundation.IdFound)*0.1
 	FROM Foundation
 	JOIN inserted ON Foundation.IdFound = inserted.IdFoundation
 

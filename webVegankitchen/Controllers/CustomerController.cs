@@ -5,11 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using webVegankitchen.Common;
 
 namespace webVegankitchen.Controllers
 {
     public class CustomerController : Controller
     {
+        DBWebsite db = new DBWebsite();
         // GET: Customer
         [HttpGet]
         public ActionResult ViewInfo(int id)
@@ -44,10 +46,6 @@ namespace webVegankitchen.Controllers
             return View("CustomIndex");
         }
 
-        public ActionResult ChangePassWord()
-        {
-            return PartialView();
-        }
 
         public ActionResult OldOrder(int id)
         {

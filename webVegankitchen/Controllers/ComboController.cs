@@ -22,6 +22,7 @@ namespace webVegankitchen.Controllers
         {
             var combo = new CombosModel().ViewDetail(id);
             ViewBag.othercombo = new CombosModel().ListOther(id, page, pSz);
+            ViewBag.comment = new CommentsModel().ViewComment(id);
             return View(combo);
         }
 

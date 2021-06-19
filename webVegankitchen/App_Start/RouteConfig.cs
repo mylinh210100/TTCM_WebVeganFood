@@ -21,6 +21,14 @@ namespace webVegankitchen
             namespaces: new[] { "webVegankitchen.Controllers" }
         );
 
+            //Change Pass
+            routes.MapRoute(
+            name: "Change Password",
+            url: "change-password/{id}",
+            defaults: new { controller = "Customer", action = "ChangePassWord" },
+            namespaces: new[] { "webVegankitchen.Controllers" }
+        );
+
             //View detail old order
             routes.MapRoute(
             name: "View Detail Old Order",

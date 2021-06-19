@@ -44,11 +44,11 @@ namespace DIO
         }
 
 
-        public int InsertCmt(Comment comment)
+        public string InsertCmt(Comment comment)
         {
             context.Comments.Add(comment);
             context.SaveChanges();
-            return comment.IdComment;
+            return comment.Comments;
         }
     }
 }

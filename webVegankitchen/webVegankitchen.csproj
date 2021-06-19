@@ -979,7 +979,6 @@
     <Content Include="Views\Customer\EditInfo.cshtml" />
     <Content Include="Views\Customer\ViewInfo.cshtml" />
     <Content Include="Views\Order\OrderMenu.cshtml" />
-    <Content Include="Views\Food\AddComment.cshtml" />
     <Content Include="Views\Order\Order.cshtml" />
     <Content Include="Views\Order\Success.cshtml" />
     <Content Include="Views\Customer\OldOrder.cshtml" />

@@ -11,7 +11,7 @@
 <div class="container-fluid">
     <table class="table table-bordered mr-2">
         <thead>
-            <tr style="background: #ebffff ">
+            <tr style="background: #ebffff " class="text-center">
                 <th>ID Order</th>
                 <th>Id customer</th>
                 <th>Date</th>
@@ -32,14 +32,14 @@
                     <td>@item.IdFoundation</td>
                     <td>@item.TotalCash</td>
                     <td>
-                        <a href="/Customer/DetailOldOrder/@item.IdOrder" class="btn btn-outline-info">Detail</a>
+                        <a href="/view-detail-old-order/@item.IdOrder" class="btn btn-outline-info">Detail</a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
     <div class="text-center mt-2">
-        <a href="/" class="btn btn-outline-primary"> Home</a>
+        <a href="/" class="btn btn-outline-primary mr-3"> Home</a>
     </div>
 </div>
 

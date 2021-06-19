@@ -17,8 +17,8 @@ namespace DAO.Model
         }
 
         [Key]
-        [StringLength(50)]
-        public string IdTypeMember { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int IdTypeMember { get; set; }
 
         [StringLength(50)]
         public string TypeName { get; set; }

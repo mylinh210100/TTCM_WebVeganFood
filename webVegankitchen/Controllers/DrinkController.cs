@@ -22,6 +22,7 @@ namespace webVegankitchen.Controllers
         {
             var drink = new DrinksModel().ViewDetail(id);
             ViewBag.otherdrink = new DrinksModel().ListOther(id, page, pageSz);
+            ViewBag.comment = new CommentsModel().ViewComment(id);
             return View(drink);
         }
 

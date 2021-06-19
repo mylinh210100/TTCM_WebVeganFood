@@ -11,8 +11,8 @@ namespace DAO.Model
     {
         [Key]
         [Column(Order = 0)]
-        [StringLength(50)]
-        public string IdType { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int IdType { get; set; }
 
         [Key]
         [Column(Order = 1)]

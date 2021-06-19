@@ -8,7 +8,7 @@ namespace DAO.Model
     public partial class DBWebsite : DbContext
     {
         public DBWebsite()
-            : base("name=DBWebsite1")
+            : base("name=DBWebsite")
         {
         }
 
@@ -40,10 +40,6 @@ namespace DAO.Model
 
             modelBuilder.Entity<Account>()
                 .Property(e => e.ConfirmPass)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Account>()
-                .Property(e => e.IdType)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Account>()
@@ -154,10 +150,6 @@ namespace DAO.Model
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Type>()
-                .Property(e => e.IdTypeMember)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Type>()
                 .Property(e => e.TypeName)
                 .IsUnicode(false);
 
@@ -175,10 +167,6 @@ namespace DAO.Model
                 .WithRequired(e => e.Type)
                 .HasForeignKey(e => e.IdType)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<TypePermission>()
-                .Property(e => e.IdType)
-                .IsUnicode(false);
 
             modelBuilder.Entity<TypePermission>()
                 .Property(e => e.IdPermission)

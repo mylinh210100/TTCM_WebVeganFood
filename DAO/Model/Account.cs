@@ -31,8 +31,7 @@ namespace DAO.Model
         [StringLength(50)]
         public string ConfirmPass { get; set; }
 
-        [StringLength(50)]
-        public string IdType { get; set; }
+        public int? IdType { get; set; }
 
         public virtual Type Type { get; set; }
 

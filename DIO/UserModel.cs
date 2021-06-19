@@ -93,5 +93,10 @@ namespace DIO
             return acc.IdAcc;
         }
 
+        public Account ViewDetailAcc(int id)
+        {
+            return context.Accounts.SingleOrDefault(a => a.IdAcc == id);
+        }
+
     }
 }
