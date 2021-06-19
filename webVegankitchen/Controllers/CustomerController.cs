@@ -43,5 +43,22 @@ namespace webVegankitchen.Controllers
             }
             return View("CustomIndex");
         }
+
+        public ActionResult ChangePassWord()
+        {
+            return PartialView();
+        }
+
+        public ActionResult OldOrder(int id)
+        {
+            var model = new OrdersModel().ViewOrderByIdCus(id);
+            return View(model);
+        }
+
+        public ActionResult DetailOldOrder(int id)
+        {
+            var model = new OrdersModel().ViewDetailOrder(id);
+            return View(model);
+        }
     }
 }

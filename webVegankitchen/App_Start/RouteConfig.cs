@@ -13,6 +13,22 @@ namespace webVegankitchen
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //View old order
+            routes.MapRoute(
+            name: "View Old Order",
+            url: "view-old-order/{id}",
+            defaults: new { controller = "Customer", action = "OldOrder" },
+            namespaces: new[] { "webVegankitchen.Controllers" }
+        );
+
+            //View detail old order
+            routes.MapRoute(
+            name: "View Detail Old Order",
+            url: "view-detail-old-order/{id}",
+            defaults: new { controller = "Customer", action = "DetailOldOrder" },
+            namespaces: new[] { "webVegankitchen.Controllers" }
+        );
+
             //add to cart
             routes.MapRoute(
             name: "Add Order",
@@ -37,7 +53,7 @@ namespace webVegankitchen
            );
 
 
-            //signinpage
+            //signin page
             routes.MapRoute(
                name: "Sign In",
                url: "sign-in",

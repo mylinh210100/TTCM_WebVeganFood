@@ -7,6 +7,7 @@ using webVegankitchen.Common;
 
 namespace webVegankitchen.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Ad")]
     public class BaseController : Controller
     {
         // GET: Admin/Base

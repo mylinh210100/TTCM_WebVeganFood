@@ -19,7 +19,13 @@ namespace webVegankitchen.Areas.Admin.Controllers
         public ActionResult Logout()
         {
             Session.Clear();
+            FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Login");
+        }
+
+        public ActionResult ErrorPermission()
+        {
+            return View();
         }
     }
 }

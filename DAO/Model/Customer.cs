@@ -18,23 +18,21 @@ namespace DAO.Model
         [Key]
         public int IdCustomer { get; set; }
 
-        [Required(ErrorMessage = "You must input to this field")]
+        [Required]
         [StringLength(100)]
         public string FullName { get; set; }
 
-        [Required(ErrorMessage = "You must input to this field")]
+        [Required]
         [StringLength(10)]
         public string Phone { get; set; }
 
-        [Required(ErrorMessage = "You must input to this field")]
+        [Required]
         [StringLength(500)]
         public string Address { get; set; }
 
         [StringLength(500)]
-        [Required(ErrorMessage = "You must input to this field")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "You must input to this field")]
         public long? IdAcc { get; set; }
 
         public virtual Account Account { get; set; }

@@ -85,10 +85,6 @@ namespace DIO
             }
         }
 
-        //public int GetUsername(string name)
-        //{
-        //    return
-        //}
 
         public long InsertAcc(Account acc)
         {

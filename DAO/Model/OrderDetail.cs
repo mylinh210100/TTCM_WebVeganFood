@@ -9,8 +9,6 @@ namespace DAO.Model
     [Table("OrderDetail")]
     public partial class OrderDetail
     {
-        
-
         [Key]
         public int Serial { get; set; }
 

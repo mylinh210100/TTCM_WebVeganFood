@@ -17,24 +17,23 @@ namespace DAO.Model
         }
 
         [Key]
-        [Required(ErrorMessage = "You must input to this field")]
-        [StringLength(50, ErrorMessage = "maximum is 50 characters")]
+        [StringLength(50)]
         public string IdFood { get; set; }
 
-        [Required(ErrorMessage = "You must input to this field")]
-        [StringLength(100, ErrorMessage = "maximum is 100 characters")]
+        [Required]
+        [StringLength(100)]
         public string FoodName { get; set; }
 
-        [Required(ErrorMessage = "You must input to this field")]
+        [Required]
         public double FoodPrice { get; set; }
 
-        [StringLength(500, ErrorMessage = "maximum is 500 characters")]
+        [StringLength(500)]
         public string Foodmaterial { get; set; }
 
         public long? Quantitysold { get; set; }
 
-        [StringLength(500, ErrorMessage = "maximum is 500 characters")]
-        [Required(ErrorMessage = "You must input to this field")]
+        [Required]
+        [StringLength(500)]
         public string ImgFood { get; set; }
 
         public int? Status { get; set; }

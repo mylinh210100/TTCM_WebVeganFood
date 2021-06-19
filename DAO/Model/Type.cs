@@ -6,40 +6,30 @@ namespace DAO.Model
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Account")]
-    public partial class Account
+    [Table("Type")]
+    public partial class Type
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Account()
+        public Type()
         {
-            Comments = new HashSet<Comment>();
-            Customers = new HashSet<Customer>();
+            Accounts = new HashSet<Account>();
+            TypePermissions = new HashSet<TypePermission>();
         }
 
         [Key]
-        public long IdAcc { get; set; }
-
-        [Required]
         [StringLength(50)]
-        public string Username { get; set; }
-
-        [Required]
-        [StringLength(50)]
-        public string PassWo { get; set; }
-
-        [Required]
-        [StringLength(50)]
-        public string ConfirmPass { get; set; }
+        public string IdTypeMember { get; set; }
 
         [StringLength(50)]
-        public string IdType { get; set; }
+        public string TypeName { get; set; }
 
-        public virtual Type Type { get; set; }
+        [StringLength(50)]
+        public string Preferential { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Account> Accounts { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Customer> Customers { get; set; }
+        public virtual ICollection<TypePermission> TypePermissions { get; set; }
     }
 }

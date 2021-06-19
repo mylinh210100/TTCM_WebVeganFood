@@ -1,0 +1,46 @@
+﻿@model IEnumerable<DAO.Model.OrderDetail>
+@{
+    ViewBag.Title = "DetailOldOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="mb-2 container text-center mt-3">
+    <h2 style="font-family:'Times New Roman'; color:navy">Detail Order: </h2>
+</div>
+<div class="container-fluid">
+    <table class="table table-bordered mr-2">
+        <thead>
+            <tr style="background: #ebffff ">
+                <th>ID order detail</th>
+                <th>ID Order</th>
+                <th>Id Food</th>
+                <th>Id Drink</th>
+                <th>Id Combo</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Serial</td>
+                    <td>@item.IdOrder</td>
+                    <td>@item.IdFood</td>
+                    <td>@item.IdDrink</td>
+                    <td>@item.IdCombo</td>
+                    <td>@item.Amount</td>
+                    <td>@item.Price</td>
+                    <td>@item.IntoMoney</td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="text-center mt-2">
+        <a href="/" class="btn btn-outline-primary"> Home</a>
+    </div>
+</div>
+

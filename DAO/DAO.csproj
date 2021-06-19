@@ -65,7 +65,10 @@
     <Compile Include="Model\Foundation.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\OrderDetail.cs" />
+    <Compile Include="Model\Permission.cs" />
     <Compile Include="Model\sysdiagram.cs" />
+    <Compile Include="Model\Type.cs" />
+    <Compile Include="Model\TypePermission.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

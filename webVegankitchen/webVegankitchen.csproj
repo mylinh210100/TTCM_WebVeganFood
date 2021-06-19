@@ -938,6 +938,7 @@
     <Content Include="Areas\Admin\Views\ComboDetail\DeleteFood.cshtml" />
     <Content Include="Areas\Admin\Views\ComboDetail\DeleteDrink.cshtml" />
     <Content Include="Areas\Admin\Views\Orders\OrderDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\HomeAdmin\ErrorPermission.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -981,6 +982,8 @@
     <Content Include="Views\Food\AddComment.cshtml" />
     <Content Include="Views\Order\Order.cshtml" />
     <Content Include="Views\Order\Success.cshtml" />
+    <Content Include="Views\Customer\OldOrder.cshtml" />
+    <Content Include="Views\Customer\DetailOldOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

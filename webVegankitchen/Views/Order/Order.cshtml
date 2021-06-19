@@ -89,24 +89,25 @@
         @using (Html.BeginForm("CheckOut", "Order"))
         {
             <div class="mt-4 text-center">
-                <a style="font-family:'Times New Roman';font-size:25px;">Total Payment: $ @totalpayment</a>
-                    <input style="font-family: 'Times New Roman'; color: #ff0000; font-size: 30px; " name="totalpayment" type="hidden" value=" @totalpayment" /> 
+                <a style="font-family: 'Times New Roman'; font-size: 25px; color: #ff0000;">Total Payment: $ @totalpayment</a>
+                <input style="font-family: 'Times New Roman'; color: #ff0000; font-size: 30px; " name="totalpayment" type="hidden" value=" @totalpayment" />
             </div>
-            <div class="text-center mt-4">
-                <div class="mt-2">
+            <div class="row mt-3">
+                <div class="mt-2 col-md-5">
                     <a style="font-family:'Times New Roman';font-size:20px; color:#b22020" class="mr-2 input">Input Your IDCustomer: </a>
-                    <input class="input" type="text" name="idCustomer" required style="width: 70px;" />
+                    <input class="input" type="text" name="idCustomer" required style="width: 100px;" />
                 </div>
-                <div class="mt-2">
+                <div class="mt-2 col-md-3">
                     <a style="font-family: 'Times New Roman'; font-size: 20px; color: #b22020" class="mr-2 input">Donate for: </a>
-                    <input type="number" max="4" min="1" required name="idfound" />
+                    <input type="number" max="4" min="1" required name="idfound" style="width: 100px;"/>
                 </div>
-                <div class="text-center mt-2">
-                    <button type="submit" class="btn" style="font-family:'Times New Roman'; color:white;  background:#ff6a00; border-width:2px;">
+                <div class="text-center mt-2 col-md-4">
+                    <button type="submit" class="btn" style="font-size: 20px; font-family: 'Times New Roman'; color: white; background: #ff6a00; border-width: 2px;">
                         Payment
                     </button>
                 </div>
             </div>
+
         }
     </div>
 }

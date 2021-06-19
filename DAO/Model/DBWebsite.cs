@@ -8,7 +8,7 @@ namespace DAO.Model
     public partial class DBWebsite : DbContext
     {
         public DBWebsite()
-            : base("name=DBWebsite")
+            : base("name=DBWebsite1")
         {
         }
 
@@ -23,7 +23,10 @@ namespace DAO.Model
         public virtual DbSet<Foundation> Foundations { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
+        public virtual DbSet<Permission> Permissions { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<Type> Types { get; set; }
+        public virtual DbSet<TypePermission> TypePermissions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -34,8 +37,13 @@ namespace DAO.Model
             modelBuilder.Entity<Account>()
                 .Property(e => e.PassWo)
                 .IsUnicode(false);
+
             modelBuilder.Entity<Account>()
                 .Property(e => e.ConfirmPass)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Account>()
+                .Property(e => e.IdType)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Account>()
@@ -43,10 +51,8 @@ namespace DAO.Model
                 .WithRequired(e => e.Account)
                 .WillCascadeOnDelete(false);
 
-
             modelBuilder.Entity<Combo>()
                 .Property(e => e.IdCombo)
-                .IsFixedLength()
                 .IsUnicode(false);
 
             modelBuilder.Entity<Combo>()
@@ -57,14 +63,8 @@ namespace DAO.Model
                 .Property(e => e.ImgCombo)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Combo>()
-                .HasMany(e => e.OrderDetails)
-                .WithOptional(e => e.Combo)
-                .WillCascadeOnDelete();
-
             modelBuilder.Entity<ComboDrinkDetail>()
                 .Property(e => e.IdCombo)
-                .IsFixedLength()
                 .IsUnicode(false);
 
             modelBuilder.Entity<ComboDrinkDetail>()
@@ -73,7 +73,6 @@ namespace DAO.Model
 
             modelBuilder.Entity<ComboFoodDetail>()
                 .Property(e => e.IdCombo)
-                .IsFixedLength()
                 .IsUnicode(false);
 
             modelBuilder.Entity<ComboFoodDetail>()
@@ -102,11 +101,6 @@ namespace DAO.Model
                 .Property(e => e.ImgDrink)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Drink>()
-                .HasMany(e => e.OrderDetails)
-                .WithOptional(e => e.Drink)
-                .WillCascadeOnDelete();
-
             modelBuilder.Entity<Food>()
                 .Property(e => e.IdFood)
                 .IsUnicode(false);
@@ -115,17 +109,12 @@ namespace DAO.Model
                 .Property(e => e.ImgFood)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Food>()
-                .HasMany(e => e.OrderDetails)
-                .WithOptional(e => e.Food)
-                .WillCascadeOnDelete();
-
             modelBuilder.Entity<Foundation>()
-                .Property(e => e.Link)
+                .Property(e => e.ImgFound)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Foundation>()
-                .Property(e => e.ImgFound)
+                .Property(e => e.Link)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Foundation>()
@@ -149,9 +138,55 @@ namespace DAO.Model
 
             modelBuilder.Entity<OrderDetail>()
                 .Property(e => e.IdCombo)
-                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Permission>()
+                .Property(e => e.IdPermission)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Permission>()
+                .Property(e => e.NamePer)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Permission>()
+                .HasMany(e => e.TypePermissions)
+                .WithRequired(e => e.Permission)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Type>()
+                .Property(e => e.IdTypeMember)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Type>()
+                .Property(e => e.TypeName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Type>()
+                .Property(e => e.Preferential)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Type>()
+                .HasMany(e => e.Accounts)
+                .WithOptional(e => e.Type)
+                .HasForeignKey(e => e.IdType);
+
+            modelBuilder.Entity<Type>()
+                .HasMany(e => e.TypePermissions)
+                .WithRequired(e => e.Type)
+                .HasForeignKey(e => e.IdType)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<TypePermission>()
+                .Property(e => e.IdType)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TypePermission>()
+                .Property(e => e.IdPermission)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TypePermission>()
+                .Property(e => e.Notes)
                 .IsUnicode(false);
         }
-
     }
 }

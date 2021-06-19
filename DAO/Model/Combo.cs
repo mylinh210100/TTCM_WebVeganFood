@@ -19,25 +19,25 @@ namespace DAO.Model
 
         [Key]
         [StringLength(50)]
-        [Required(ErrorMessage = "You must input to this field")]
         public string IdCombo { get; set; }
 
-        [Required(ErrorMessage = "You must input to this field")]
+        [Required]
         [StringLength(50)]
         public string ComboName { get; set; }
 
+        [Required]
         public double? ComboPrice { get; set; }
 
         public int? NumberOfFoods { get; set; }
 
         public int? NumberOfDinks { get; set; }
 
-        [Required(ErrorMessage = "You must input to this field")]
+        [Required]
         public int NumberOfPerson { get; set; }
 
         public long? Quantitysold { get; set; }
 
-        [Required(ErrorMessage = "You must input to this field")]
+        [Required]
         [StringLength(500)]
         public string ImgCombo { get; set; }
 

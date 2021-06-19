@@ -138,7 +138,8 @@ namespace webVegankitchen.Controllers
                 order.TotalCash = float.Parse(form["totalpayment"]);
                 db.Orders.Add(order);
                 // add cash to foundation
-                found.TotalCash = float.Parse(form["totalpayment"]) * 0.1;
+                db.Foundations.SingleOrDefault(f => f.IdFound == int.Parse(form["idfound"]));
+                found.TotalCash += float.Parse(form["totalpayment"]) * 0.1;
                 db.Foundations.Add(found);
                 foreach (var item in list)
                 {

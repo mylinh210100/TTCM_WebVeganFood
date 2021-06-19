@@ -55,5 +55,10 @@ namespace DIO
             return context.Orders.OrderByDescending(o => o.IdOrder).FirstOrDefault();
         }
 
+        public List<Order> ViewOrderByIdCus(int idCus)
+        {
+            return context.Orders.Where(x => x.IdCustomer == idCus).ToList();
+        }
+
     }
 }

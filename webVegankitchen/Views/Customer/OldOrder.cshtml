@@ -1,0 +1,45 @@
+﻿@model IEnumerable<DAO.Model.Order>
+
+@{
+    ViewBag.Title = "OldOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="mb-2 container text-center mt-3">
+    <h2 style="font-family:'Times New Roman'; color:navy">Your old Order:</h2>
+</div>
+<div class="container-fluid">
+    <table class="table table-bordered mr-2">
+        <thead>
+            <tr style="background: #ebffff ">
+                <th>ID Order</th>
+                <th>Id customer</th>
+                <th>Date</th>
+                <th>Sum of Product (dishes)</th>
+                <th>Id Foundation</th>
+                <th>Total Payment ($)</th>
+                <th>Acttion</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.IdOrder</td>
+                    <td>@item.IdCustomer</td>
+                    <td>@(item.Date.HasValue?item.Date.Value.ToString("dd/MM/yyyy hh:mm:ss") : "")</td>
+                    <td>@item.SumOfProduct</td>
+                    <td>@item.IdFoundation</td>
+                    <td>@item.TotalCash</td>
+                    <td>
+                        <a href="/Customer/DetailOldOrder/@item.IdOrder" class="btn btn-outline-info">Detail</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="text-center mt-2">
+        <a href="/" class="btn btn-outline-primary"> Home</a>
+    </div>
+</div>
+
