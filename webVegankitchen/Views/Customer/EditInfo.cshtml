@@ -4,69 +4,138 @@
 @{
     ViewBag.Title = "EditInfo";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var session1 = Session["login"] as webVegankitchen.Common.UserLogin;
+    var session2 = Session["newinfo"] as DAO.Model.Customer;
 }
 
 
 <div class="container-fluid text-center mt-3 mb-2">
     <h2 style="color: #ae1c1c; font-weight: bolder">EditInfo</h2>
 </div>
-@using (Html.BeginForm("EditInfo", "Customer", FormMethod.Post))
+@if (session1 != null)
 {
-    @Html.AntiForgeryToken()
+    using (Html.BeginForm("EditInfo", "Customer", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
 
-    <div class="form-horizontal container">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.IdCustomer)
+        <div class="form-horizontal container">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.IdCustomer)
 
-        <div class="form-group">
-            <h5 style="font-size: 23px; font-family:'Times New Roman'; color:#0026ff" class="mt-2">
-                Full name:
-            </h5>
-            <div class="col-md-10 mt-2">
-                @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <h5 style="font-size: 23px; font-family:'Times New Roman'; color:#0026ff" class="mt-2">
+                    Full name:
+                </h5>
+                <div class="col-md-10 mt-2">
+                    @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h5 style="font-size: 23px; font-family:'Times New Roman'; color:#0026ff" class="mt-2">
+                    Phone:
+                </h5>
+                <div class="col-md-10 mt-2">
+                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h5 style="font-size: 23px; font-family:'Times New Roman'; color:#0026ff" class="mt-2">
+                    Address:
+                </h5>
+                <div class="col-md-10 mt-2">
+                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h5 style="font-size: 23px; font-family:'Times New Roman'; color:#0026ff" class="mt-2">
+                    Email:
+                </h5>
+                <div class="col-md-10 mt-2">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-1">
+                    <input type="submit" value="Save" class="btn btn-outline-danger" />
+                </div>
+                <div class="col-md-2">
+                    <a href="/view-info/@session1.IdCustomer" class="btn btn-outline-success" style="font-family: 'Times New Roman'; font-size: 18px;">Home</a>
+                </div>
             </div>
         </div>
+    }
 
-        <div class="form-group">
-            <h5 style="font-size: 23px; font-family:'Times New Roman'; color:#0026ff" class="mt-2">
-                Phone:
-            </h5>
-            <div class="col-md-10 mt-2">
-                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
-            </div>
-        </div>
+}
+else if (session2 != null)
+{
+    using (Html.BeginForm("EditInfo", "Customer", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            <h5 style="font-size: 23px; font-family:'Times New Roman'; color:#0026ff" class="mt-2">
-                Address:
-            </h5>
-            <div class="col-md-10 mt-2">
-                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <div class="form-horizontal container">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.IdCustomer)
 
-        <div class="form-group">
-            <h5 style="font-size: 23px; font-family:'Times New Roman'; color:#0026ff" class="mt-2">
-                Email:
-            </h5>
-            <div class="col-md-10 mt-2">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <h5 style="font-size: 23px; font-family:'Times New Roman'; color:#0026ff" class="mt-2">
+                    Full name:
+                </h5>
+                <div class="col-md-10 mt-2">
+                    @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h5 style="font-size: 23px; font-family:'Times New Roman'; color:#0026ff" class="mt-2">
+                    Phone:
+                </h5>
+                <div class="col-md-10 mt-2">
+                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h5 style="font-size: 23px; font-family:'Times New Roman'; color:#0026ff" class="mt-2">
+                    Address:
+                </h5>
+                <div class="col-md-10 mt-2">
+                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h5 style="font-size: 23px; font-family:'Times New Roman'; color:#0026ff" class="mt-2">
+                    Email:
+                </h5>
+                <div class="col-md-10 mt-2">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-1">
+                    <input type="submit" value="Save" class="btn btn-outline-danger" />
+                </div>
+                <div class="col-md-2">
+                    <a href="/view-info/@session2.IdCustomer" class="btn btn-outline-success" style="font-family: 'Times New Roman'; font-size: 18px;">Home</a>
+                </div>
             </div>
         </div>
-        <div class="form-group row">
-            <div class="col-md-1">
-                <input type="submit" value="Save" class="btn btn-outline-danger" />
-            </div>
-            <div class="col-md-2">
-                <a href="@Url.Action("CustomIndex", "HomeCustom") " class="btn btn-outline-success" style="font-family: 'Times New Roman'; font-size: 18px;">Home</a>
-            </div>
-        </div>
-    </div>
+    }
+
 }
 
 

@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "DetailOldOrder";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 @{
     var session1 = Session["login"] as webVegankitchen.Common.UserLogin;
@@ -42,6 +43,7 @@
         </tbody>
     </table>
     <hr />
+
     <div>
         <h3 class="text-center mt-2" style="font-family:'Times New Roman'; color:#ab2020">Feedback here:</h3>
     </div>
@@ -63,29 +65,32 @@
                         </tr>
                         <tr>
                             <td>
-                                <a style="font-family:'Times New Roman'; font-size: 20px;" > Content: </a>
+                                <a style="font-family:'Times New Roman'; font-size: 20px;" class="mt-2"> Content: </a>
                             </td>
                             <td>
-                                <input style="width: 100%; font-family: 'Times New Roman';" type="text" name="content" />
+                                <input class="mt-2" style="width: 100%; font-family: 'Times New Roman';" type="text" name="content" />
                             </td>
 
                         </tr>
                         <tr>
                             <td>
-                                <a style="font-family:'Times New Roman'; font-size: 20px;">Your id account:</a>
+                                @*<a style="font-family:'Times New Roman'; font-size: 20px;">Your id account:</a>*@
                             </td>
                             <td width="85%">
-                                <input type="number" name="idacc" readonly="readonly" value="@session1.Id" />
+                                <input type="hidden" name="idacc" readonly="readonly" value="@session1.Id" />
                             </td>
                         </tr>
-                        <tr class="text-right">
+                        <tr class="text-center">
                             <td colspan="2">
-                                <button type="submit" class="btn btn-outline-warning">Add Comment</button>
+                                <button type="submit" class="mt-2 btn btn-outline-warning">Add Comment</button>
                             </td>
                         </tr>
                     </table>
                 }
             </div>
+        </div>
+        <div class="text-center mt-2">
+            <a href="/view-info/@session1.IdCustomer" class="btn btn-outline-primary">Back</a>
         </div>
     }
     else if (session2 != null)
@@ -100,27 +105,28 @@
                                 <a style="font-family:'Times New Roman'; font-size: 20px;">Id Product: </a>
                             </td>
                             <td>
-                                <input type="text" name="idproduct" />
+                                <input type="text" name="idproduct" required />
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <a style="font-family:'Times New Roman'; font-size: 20px;"> Content: </a>
+                                <a class="mt-2" style="font-family:'Times New Roman'; font-size: 20px;"> Content: </a>
                             </td>
                             <td>
-                                <input style="width:100%;" type="text" name="content" />
+                                <input class="mt-2" style="width:100%;" type="text" name="content" required />
                             </td>
 
                         </tr>
                         <tr>
                             <td>
-                                <a style="font-family:'Times New Roman'; font-size: 20px;">Your id account:</a>
+                                @*<a style="font-family:'Times New Roman'; font-size: 20px;">Your id account:</a>*@
                             </td>
                             <td width="85%">
-                                <input type="number" name="idacc" readonly="readonly" value="@session2.IdAcc" />
+                                <input type="hidden" name="idacc" readonly="readonly" value="@session2.IdAcc" />
                             </td>
+                            
                         </tr>
-                        <tr class="text-right">
+                        <tr class="text-center">
                             <td colspan="2">
                                 <button type="submit" class="btn btn-outline-warning">Add Comment</button>
                             </td>
@@ -129,9 +135,10 @@
                 }
             </div>
         </div>
+        <div class="text-center mt-2">
+            <a href="/view-info/@session2.IdCustomer" class="btn btn-outline-primary">Back</a>
+        </div>
     }
-    <div class="text-center mt-2">
-        <a href="/" class="btn btn-outline-primary"> Home</a>
-    </div>
+
 </div>
 

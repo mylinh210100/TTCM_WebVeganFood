@@ -3,43 +3,87 @@
 @{
     ViewBag.Title = "OldOrder";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var session1 = Session["login"] as webVegankitchen.Common.UserLogin;
+    var session2 = Session["newinfo"] as DAO.Model.Customer;
 }
 
 <div class="mb-2 container text-center mt-3">
     <h2 style="font-family:'Times New Roman'; color:navy">Your old Order:</h2>
 </div>
-<div class="container-fluid">
-    <table class="table table-bordered mr-2">
-        <thead>
-            <tr style="background: #ebffff " class="text-center">
-                <th>ID Order</th>
-                <th>Id customer</th>
-                <th>Date</th>
-                <th>Sum of Product (dishes)</th>
-                <th>Id Foundation</th>
-                <th>Total Payment ($)</th>
-                <th>Acttion</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.IdOrder</td>
-                    <td>@item.IdCustomer</td>
-                    <td>@(item.Date.HasValue?item.Date.Value.ToString("dd/MM/yyyy hh:mm:ss") : "")</td>
-                    <td>@item.SumOfProduct</td>
-                    <td>@item.IdFoundation</td>
-                    <td>@item.TotalCash</td>
-                    <td>
-                        <a href="/view-detail-old-order/@item.IdOrder" class="btn btn-outline-info">Detail</a>
-                    </td>
+@if (session1 != null)
+{
+    <div class="container-fluid">
+        <table class="table table-bordered mr-2">
+            <thead>
+                <tr style="background: #ebffff " class="text-center">
+                    <th>ID Order</th>
+                    <th>Id customer</th>
+                    <th>Date</th>
+                    <th>Sum of Product (dishes)</th>
+                    <th>Id Foundation</th>
+                    <th>Total Payment ($)</th>
+                    <th>Acttion</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-    <div class="text-center mt-2">
-        <a href="/" class="btn btn-outline-primary mr-3"> Home</a>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.IdOrder</td>
+                        <td>@item.IdCustomer</td>
+                        <td>@(item.Date.HasValue?item.Date.Value.ToString("dd/MM/yyyy hh:mm:ss") : "")</td>
+                        <td>@item.SumOfProduct</td>
+                        <td>@item.IdFoundation</td>
+                        <td>@item.TotalCash</td>
+                        <td>
+                            <a href="/view-detail-old-order/@item.IdOrder" class="btn btn-outline-info">Detail</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="text-center mt-2">
+            <a href="/view-info/@session1.IdCustomer" class="btn btn-outline-primary mr-3">Back</a>
+        </div>
     </div>
-</div>
+}
+else if (session2 != null)
+{
+    <div class="container-fluid">
+        <table class="table table-bordered mr-2">
+            <thead>
+                <tr style="background: #ebffff " class="text-center">
+                    <th>ID Order</th>
+                    <th>Id customer</th>
+                    <th>Date</th>
+                    <th>Sum of Product (dishes)</th>
+                    <th>Id Foundation</th>
+                    <th>Total Payment ($)</th>
+                    <th>Acttion</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.IdOrder</td>
+                        <td>@item.IdCustomer</td>
+                        <td>@(item.Date.HasValue?item.Date.Value.ToString("dd/MM/yyyy hh:mm:ss") : "")</td>
+                        <td>@item.SumOfProduct</td>
+                        <td>@item.IdFoundation</td>
+                        <td>@item.TotalCash</td>
+                        <td>
+                            <a href="/view-detail-old-order/@item.IdOrder" class="btn btn-outline-info">Detail</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="text-center mt-2">
+            <a href="/view-info/@session1.IdCustomer" class="btn btn-outline-primary mr-3">Back</a>
+        </div>
+    </div>
+}
+
 

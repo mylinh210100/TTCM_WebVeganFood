@@ -27,7 +27,7 @@
     {
         <div class="container">
             <div>
-                <h5 style="font-family:'Times New Roman'; font-size:20px; color:#1228a3">IDCustomer: @session1.IdCustomer </h5>
+                @*<h5 style="font-family:'Times New Roman'; font-size:20px; color:#1228a3">IDCustomer: @session1.IdCustomer </h5>*@
                 <h5 style="font-family:'Times New Roman'; font-size:20px; color:#1228a3">Customer: @session1.UserName </h5>
             </div>
             <div class="mt-2">
@@ -96,8 +96,8 @@
                 </div>
                 <div class="row mt-3">
                     <div class="mt-2 col-md-5">
-                        <a style="font-family:'Times New Roman';font-size:20px; color:#b22020" class="mr-2 input">Input Your IDCustomer: </a>
-                        <input class="input" type="text" name="idCustomer" required style="width: 100px;" />
+                        @*<a style="font-family:'Times New Roman';font-size:20px; color:#b22020" class="mr-2 input">Input Your IDCustomer: </a>*@
+                        <input class="input" type="hidden" name="idCustomer" required style="width: 100px;" value="@session1.IdCustomer" />
                     </div>
                     <div class="mt-2 col-md-3">
                         <a style="font-family: 'Times New Roman'; font-size: 20px; color: #b22020" class="mr-2 input">Donate for: </a>
@@ -131,7 +131,7 @@ else if(session2 != null)
     {
         <div class="container">
             <div>
-                <h5 style="font-family:'Times New Roman'; font-size:20px; color:#1228a3">IDCustomer: @session2.IdCustomer </h5>
+                @*<h5 style="font-family:'Times New Roman'; font-size:20px; color:#1228a3">IDCustomer: @session2.IdCustomer </h5>*@
                 <h5 style="font-family:'Times New Roman'; font-size:20px; color:#1228a3">Customer: @session2.FullName </h5>
             </div>
             <div class="mt-2">
@@ -206,8 +206,8 @@ else if(session2 != null)
                 </div>
                 <div class="row mt-3">
                     <div class="mt-2 col-md-5">
-                        <a style="font-family:'Times New Roman';font-size:20px; color:#b22020" class="mr-2 input">Input Your IDCustomer: </a>
-                        <input class="input" type="text" name="idCustomer" required style="width: 100px;" />
+                        @*<a style="font-family:'Times New Roman';font-size:20px; color:#b22020" class="mr-2 input">Input Your IDCustomer: </a>*@
+                        <input class="input" type="text" name="idCustomer" required style="width: 100px;" value="@session2.IdCustomer" />
                     </div>
                     <div class="mt-2 col-md-3">
                         <a style="font-family: 'Times New Roman'; font-size: 20px; color: #b22020" class="mr-2 input">Donate for: </a>
