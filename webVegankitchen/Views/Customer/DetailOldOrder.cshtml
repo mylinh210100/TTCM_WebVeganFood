@@ -11,7 +11,7 @@
 <div class="mb-2 container text-center mt-3">
     <h2 style="font-family:'Times New Roman'; color:navy">Detail Order: </h2>
 </div>
-<div class="container-fluid">
+<div class="container">
     <table class="table table-bordered mr-2">
         <thead>
             <tr style="background: #ebffff ">
@@ -23,7 +23,6 @@
                 <th>Quantity</th>
                 <th>Price</th>
                 <th>Total</th>
-                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -38,11 +37,14 @@
                     <td>@item.Amount</td>
                     <td>@item.Price</td>
                     <td>@item.IntoMoney</td>
-                    <td></td>
                 </tr>
             }
         </tbody>
     </table>
+    <hr />
+    <div>
+        <h3 class="text-center mt-2" style="font-family:'Times New Roman'; color:#ab2020">Feedback here:</h3>
+    </div>
 
     @if (session1 != null)
     {
@@ -56,15 +58,15 @@
                                 <a style="font-family:'Times New Roman'; font-size: 20px;">Id Product: </a>
                             </td>
                             <td>
-                                <input type="text" name="idproduct" />
+                                <input type="text" name="idproduct" style="font-family: 'Times New Roman'; " />
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <a style="font-family:'Times New Roman'; font-size: 20px;"> Content: </a>
+                                <a style="font-family:'Times New Roman'; font-size: 20px;" > Content: </a>
                             </td>
                             <td>
-                                <input style="width:100%;" type="text" name="content" />
+                                <input style="width: 100%; font-family: 'Times New Roman';" type="text" name="content" />
                             </td>
 
                         </tr>
