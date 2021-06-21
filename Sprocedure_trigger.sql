@@ -5,7 +5,7 @@ BEGIN
 	SELECT IdFood
 	FROM Food
 END
---2 // update so luong mon an khi them moi trong detail food
+--1 // update so luong mon an khi them moi trong detail food
 CREATE TRIGGER trg_numofFoodCombo ON ComboFoodDetail
 AFTER INSERT AS
 BEGIN
@@ -15,7 +15,7 @@ BEGIN
 	FROM Combo
 END
 
---3 update so luong do uong khi them moi trong detail drink
+--2 update so luong do uong khi them moi trong detail drink
 CREATE TRIGGER trg_numofDrink On ComboDrinkDetail
 AFTER INSERT AS
 BEGIN
@@ -24,7 +24,7 @@ BEGIN
 						WHERE a.IdCombo = Combo.IdCombo)
 	FROM Combo
 END
---4 update gia combo sau khi insert new food
+--3 update gia combo sau khi insert new food
 ALTER TRIGGER trg_PriceCombo ON ComboFoodDetail
 AFTER INSERT AS
 BEGIN
@@ -34,7 +34,7 @@ BEGIN
 	FROM Combo
 	JOIN inserted ON Combo.IdCombo = inserted.IdCombo
 END
--- sau khi insert drink
+--4 sau khi insert drink
 ALTER TRIGGER trg_Price2Combo ON ComboDrinkDetail
 AFTER INSERT AS
 BEGIN
@@ -54,7 +54,7 @@ BEGIN
 	FROM Combo
 	JOIN deleted ON Combo.IdCombo = deleted.IdCombo
 END
--- update so luong do uong sau khi xoa drink	
+--6 update so luong do uong sau khi xoa drink	
 ALTER TRIGGER trg_deletedrinkc ON  ComboDrinkDetail
 AFTER DELETE AS
 BEGIN	
@@ -65,7 +65,7 @@ BEGIN
 	JOIN deleted ON Combo.IdCombo = deleted.IdCombo
 END
 
---6 Update gia Combo
+--7Update gia Combo
 -- sau khi xoa Food
 CREATE TRIGGER trg_priceAfterDelete1 ON  ComboFoodDetail
 AFTER DELETE AS
@@ -76,7 +76,7 @@ BEGIN
 	FROM Combo
 	JOIN deleted ON Combo.IdCombo = deleted.IdCombo
 END
--- sau khi xoa drink
+--8 sau khi xoa drink
 CREATE TRIGGER trg_priceAfterDelete2 ON  ComboDrinkDetail
 AFTER DELETE AS
 BEGIN	
@@ -87,19 +87,8 @@ BEGIN
 	JOIN deleted ON Combo.IdCombo = deleted.IdCombo
 END
 
---7 UPDATE TOTALCASH FOR ORDER FROM ORDER_DETAIL
-ALTER TRIGGER trg_TotalCashOrder
-ON OrderDetail
-AFTER INSERT AS
-BEGIN
-	UPDATE [Order]
-	SET TotalCash = TotalCash + (SELECT SUM(a.IntoMoney) FROM inserted a WHERE a.IdOrder = [Order].IdOrder) 
-	FROM [Order]
-	JOIN inserted ON [Order].IdOrder = inserted.IdOrder
-END
 
-
---8  UPDATE QUANTITYSOLD FOR FOOD, DRINK, COMBO FROM OERDER_DETAIL
+--9  UPDATE QUANTITYSOLD FOR FOOD, DRINK, COMBO FROM OERDER_DETAIL
 ALTER TRIGGER trg_updateQuantitysoldFood
 ON OrderDetail
 AFTER INSERT AS
@@ -110,7 +99,7 @@ BEGIN
 	FROM Food
 	JOIN inserted ON Food.IdFood = inserted.IdFood
 END
---9
+--10
 ALTER TRIGGER trg_updateQuantitysoldDrink
 ON OrderDetail
 AFTER INSERT AS
@@ -121,7 +110,7 @@ BEGIN
 	FROM Drink
 	JOIN inserted ON Drink.IdDrink = inserted.IdDrink
 END
---10
+--11
 ALTER TRIGGER trg_updateQuantitysoldCombo
 ON OrderDetail
 AFTER INSERT AS
@@ -133,19 +122,8 @@ BEGIN
 	JOIN inserted ON Combo.IdCombo = inserted.IdCombo
 END
 
---UPDATE SUMOFPRODUCT FOR ORDER FROM ORDER_DETAIL
-ALTER TRIGGER trg_SumofProduct
-ON OrderDetail
-AFTER INSERT AS
-BEGIN
-	UPDATE [Order]
-	SET SumOfProduct = SumOfProduct + (SELECT SUM(a.Amount) FROM inserted a
-							WHERE a.IdOrder = [Order].IdOrder)
-	FROM [Order]
-	JOIN inserted ON [Order].IdOrder = inserted.IdOrder
-END
 
---UPDATE TOTAL_CASH FOR FOUNDATION FROM ORDER
+--12 UPDATE TOTAL_CASH FOR FOUNDATION FROM ORDER
 ALter TRIGGER trg_TotalCashFoundation
 ON [Order]
 AFTER INSERT AS

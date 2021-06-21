@@ -89,6 +89,7 @@
     <Compile Include="FoundationModel.cs" />
     <Compile Include="OrdersModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Statistics.cs" />
     <Compile Include="UserModel.cs" />
   </ItemGroup>
   <ItemGroup>

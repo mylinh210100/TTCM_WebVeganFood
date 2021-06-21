@@ -165,6 +165,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StatisticsController.cs" />
     <Compile Include="Areas\Admin\Model\LoginModel.cs" />
     <Compile Include="Common\ComConstants.cs" />
     <Compile Include="Common\Encryptor.cs" />
@@ -185,6 +186,7 @@
     <Compile Include="Common\UserLogin.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\ContentAdmin\statistic.css" />
     <Content Include="Content\bootstrap\bootstrap-theme.css" />
     <Content Include="Content\bootstrap\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap\bootstrap.css" />
@@ -939,6 +941,7 @@
     <Content Include="Areas\Admin\Views\ComboDetail\DeleteDrink.cshtml" />
     <Content Include="Areas\Admin\Views\Orders\OrderDetail.cshtml" />
     <Content Include="Areas\Admin\Views\HomeAdmin\ErrorPermission.cshtml" />
+    <Content Include="Areas\Admin\Views\Statistics\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

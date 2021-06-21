@@ -28,7 +28,7 @@ namespace DAO.Model
 
         public double? Discount { get; set; }
 
-        public double? TotalCash { get; set; }
+        public double TotalCash { get; set; }
 
         public virtual Customer Customer { get; set; }
 
