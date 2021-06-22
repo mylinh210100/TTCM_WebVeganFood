@@ -36,6 +36,10 @@ namespace webVegankitchen.Controllers
                     usession.UserName = user.Username;
                     usession.Id = user.IdAcc;
                     usession.IdCustomer = idCus.IdCustomer;
+                    usession.Name = idCus.FullName;
+                    usession.Phone = idCus.Phone;
+                    usession.Address = idCus.Address;
+                    usession.Email = idCus.Email;
                     Session["login"] = usession;
                     return Redirect("/");
                 }

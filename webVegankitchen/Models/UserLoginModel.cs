@@ -13,6 +13,7 @@ namespace webVegankitchen.Models
 
         [Required(ErrorMessage = "You must input this field")]
         public string PassWord { get; set; }
+
         public bool RememberMe { get; set; }
 
     }

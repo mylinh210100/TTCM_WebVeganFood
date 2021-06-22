@@ -2,62 +2,127 @@
 @{
     ViewBag.Title = "ViewInfo";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var session1 = Session["login"] as webVegankitchen.Common.UserLogin;
+    var session2 = Session["newinfo"] as DAO.Model.Customer;
 }
 
-<div class="container-fluid">
-    @using (Html.BeginForm("ViewInfo", "Customer", FormMethod.Get))
-    {
-        <div>
-            <div class=" text-center">
-                <label class="label-info mt-2" style="font-family:'Times New Roman'; color:#c82222; font-size:35px;">
-                    Your infomation:
-                </label>
+@if (session1 != null)
+{
+    <div class="container-fluid">
+        @using (Html.BeginForm("ViewInfo", "Customer", FormMethod.Get))
+        {
+            <div>
+                <div class=" text-center">
+                    <label class="label-info mt-2" style="font-family:'Times New Roman'; color:#c82222; font-size:35px;">
+                        Your infomation:
+                    </label>
+                </div>
+                <hr />
+                <div class="container">
+                    <div>
+                        <h5 style="font-size: 23px; font-family:'Times New Roman'; color:#0026ff" class="mt-2">
+                            Id Customer:
+                        </h5>
+                        <a style="font-family:'Times New Roman'; font-size:20px;"><span>@session1.IdCustomer</span></a>
+                    </div>
+                    <div>
+                        <h5 style="font-size: 23px; font-family:'Times New Roman'; color:#0026ff" class="mt-2">
+                            Full name:
+                        </h5>
+                        <a style="font-family:'Times New Roman'; font-size:20px;"><span>@session1.Name</span></a>
+                    </div>
+                    <div>
+                        <h5 style="font-size: 23px; font-family:'Times New Roman'; color:#0026ff" class="mt-2">
+                            Phone:
+                        </h5>
+                        <a style="font-family:'Times New Roman'; font-size:20px;"><span>@session1.Phone</span></a>
+                    </div>
+                    <div>
+                        <h5 style="font-size: 23px; font-family:'Times New Roman'; color:#0026ff" class="mt-2">
+                            Address:
+                        </h5>
+                        <a style="font-family:'Times New Roman'; font-size:20px;"><span>@session1.Address</span></a>
+                    </div>
+                    <div>
+                        <h5 style="font-size: 23px; font-family:'Times New Roman'; color:#0026ff" class="mt-2">
+                            Email:
+                        </h5>
+                        <a style="font-family:'Times New Roman'; font-size:20px;"><span>@session1.Email</span></a>
+                    </div>
+                </div>
             </div>
-            <hr />
-            <div class="container">
-                <div>
-                    <h5 style="font-size: 23px; font-family:'Times New Roman'; color:#0026ff" class="mt-2">
-                        Id Customer:
-                    </h5>
-                    <a style="font-family:'Times New Roman'; font-size:20px;"><span>@Model.IdCustomer</span></a>
+            <div class=" row">
+                <div class="col-md-4"></div>
+                <div class="col-md-2  mt-3 text-center">
+                    <a class="btn" style="border-color: #0094ff; font-family:'Times New Roman'; font-size: 18px;" href="/edit-info/@session1.IdCustomer">
+                        Edit Infomation
+                    </a>
                 </div>
-                <div>
-                    <h5 style="font-size: 23px; font-family:'Times New Roman'; color:#0026ff" class="mt-2">
-                        Full name:
-                    </h5>
-                    <a style="font-family:'Times New Roman'; font-size:20px;"><span>@Model.FullName</span></a>
-                </div>
-                <div>
-                    <h5 style="font-size: 23px; font-family:'Times New Roman'; color:#0026ff" class="mt-2">
-                        Phone:
-                    </h5>
-                    <a style="font-family:'Times New Roman'; font-size:20px;"><span>@Model.Phone</span></a>
-                </div>
-                <div>
-                    <h5 style="font-size: 23px; font-family:'Times New Roman'; color:#0026ff" class="mt-2">
-                        Address:
-                    </h5>
-                    <a style="font-family:'Times New Roman'; font-size:20px;"><span>@Model.Address</span></a>
-                </div>
-                <div>
-                    <h5 style="font-size: 23px; font-family:'Times New Roman'; color:#0026ff" class="mt-2">
-                        Email:
-                    </h5>
-                    <a style="font-family:'Times New Roman'; font-size:20px;"><span>@Model.Email</span></a>
+                <div class="col-md-2 mt-3 text-center">
+                    <a href="/view-old-order/@session1.IdCustomer" class="btn btn-outline-success" style="font-family: 'Times New Roman';">Your Old Order</a>
                 </div>
             </div>
-        </div>
-        <div class=" row">
-            <div class="col-md-4"></div>
-            <div class="col-md-2  mt-3 text-center">
-                <a class="btn" style="border-color: #0094ff; font-family:'Times New Roman'; font-size: 18px;" href="/edit-info/@Model.IdCustomer">
-                    Edit Infomation
-                </a>
+        }
+    </div>
+}
+else if (session2 != null)
+{
+    <div class="container-fluid">
+        @using (Html.BeginForm("ViewInfo", "Customer", FormMethod.Get))
+        {
+            <div>
+                <div class=" text-center">
+                    <label class="label-info mt-2" style="font-family:'Times New Roman'; color:#c82222; font-size:35px;">
+                        Your infomation:
+                    </label>
+                </div>
+                <hr />
+                <div class="container">
+                    <div>
+                        <h5 style="font-size: 23px; font-family:'Times New Roman'; color:#0026ff" class="mt-2">
+                            Id Customer:
+                        </h5>
+                        <a style="font-family:'Times New Roman'; font-size:20px;"><span>@session2.IdCustomer</span></a>
+                    </div>
+                    <div>
+                        <h5 style="font-size: 23px; font-family:'Times New Roman'; color:#0026ff" class="mt-2">
+                            Full name:
+                        </h5>
+                        <a style="font-family:'Times New Roman'; font-size:20px;"><span>@session2.FullName</span></a>
+                    </div>
+                    <div>
+                        <h5 style="font-size: 23px; font-family:'Times New Roman'; color:#0026ff" class="mt-2">
+                            Phone:
+                        </h5>
+                        <a style="font-family:'Times New Roman'; font-size:20px;"><span>@session2.Phone</span></a>
+                    </div>
+                    <div>
+                        <h5 style="font-size: 23px; font-family:'Times New Roman'; color:#0026ff" class="mt-2">
+                            Address:
+                        </h5>
+                        <a style="font-family:'Times New Roman'; font-size:20px;"><span>@session2.Address</span></a>
+                    </div>
+                    <div>
+                        <h5 style="font-size: 23px; font-family:'Times New Roman'; color:#0026ff" class="mt-2">
+                            Email:
+                        </h5>
+                        <a style="font-family:'Times New Roman'; font-size:20px;"><span>@session2.Email</span></a>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-2 mt-3 text-center">
-                <a href="/view-old-order/@Model.IdCustomer" class="btn btn-outline-success" style="font-family: 'Times New Roman';">Your Old Order</a>
+            <div class=" row">
+                <div class="col-md-4"></div>
+                <div class="col-md-2  mt-3 text-center">
+                    <a class="btn" style="border-color: #0094ff; font-family:'Times New Roman'; font-size: 18px;" href="/edit-info/@session2.IdCustomer">
+                        Edit Infomation
+                    </a>
+                </div>
+                <div class="col-md-2 mt-3 text-center">
+                    <a href="/view-old-order/@session2.IdCustomer" class="btn btn-outline-success" style="font-family: 'Times New Roman';">Your Old Order</a>
+                </div>
             </div>
-        </div>
-    }
-</div>
+        }
+    </div>
+}
 
